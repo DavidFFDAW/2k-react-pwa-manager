@@ -1,0 +1,5 @@
+@media only screen and (max-width: 768px) {
+    .custom-totalpage-wallpaper {
+        background-image: url('/cody.jpg');
+    }
+}

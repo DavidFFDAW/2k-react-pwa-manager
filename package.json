@@ -1,0 +1,29 @@
+{
+    "name": "2k-react-pwa-manager",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "notistack": "^3.0.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.10.0"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.1.2",
+        "@commitlint/config-conventional": "^17.1.0",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@vitejs/plugin-react": "^3.1.0",
+        "eslint": "^8.25.0",
+        "eslint-plugin-react": "^7.31.10",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "husky": "^8.0.1",
+        "vite": "^4.2.0"
+    }
+}
