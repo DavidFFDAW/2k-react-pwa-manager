@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { validateForm } from './validators/form.validator';
 import { enqueueSnackbar } from 'notistack';
 import { PageBackground } from '~/components/Background/Background';
-import { PublicRoutes } from '~/constants/routes';
+import { PrivateRoutes, PublicRoutes } from '~/constants/routes';
 import './custom.css';
 
 export default function Login() {
@@ -67,7 +67,7 @@ export default function Login() {
 
                             <div className="w1 flex between row">
                                 <Link to={PublicRoutes.REGISTER}>
-                                    <button variant="contained" className="w1">
+                                    <button type="button" role="button" variant="contained" className="w1">
                                         Registrar
                                     </button>
                                 </Link>

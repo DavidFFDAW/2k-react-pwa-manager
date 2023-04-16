@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { BrowserRouter, Navigate, Route } from 'react-router-dom';
 import { AuthGuard, LoginAuthGuard } from './guards/auth.guard';
-import { PrivateRoutes, PublicRoutes } from './constants/routes';
 import RoutesWithNotFound from './components/RoutesWithNotFound';
+import { PrivateRoutes, PublicRoutes } from './constants/routes';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
