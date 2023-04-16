@@ -2,4 +2,11 @@
     .custom-totalpage-wallpaper {
         background-image: url('/cody.jpg');
     }
+    .pagination .pagination-numbers button.pagination-button {
+        padding: 0 4px;
+        font-size: 12px;
+    }
+    .pagination .pagination-numbers button.pagination-button .unlink {
+        color: blue;
+    }
 }

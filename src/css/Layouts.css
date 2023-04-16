@@ -139,6 +139,12 @@
 .gap-small {
     gap: 15px;
 }
+.gap-smaller {
+    gap: 10px;
+}
+.gap-5 {
+    gap: 5px;
+}
 .grid {
     display: grid;
 }
@@ -155,6 +161,12 @@
 }
 .w90 {
     width: 90%;
+}
+.minh1 {
+    min-height: 100%;
+}
+.minh1v {
+    min-height: 99vh;
 }
 .h1vh {
     height: 100vh;

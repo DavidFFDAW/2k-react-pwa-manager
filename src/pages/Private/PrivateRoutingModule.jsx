@@ -3,12 +3,14 @@ import { Navigate, Route } from 'react-router-dom';
 import Dashboard from './Dashboard/PrivateDashboard';
 import { PrivateRoutes } from '~/constants/routes';
 import RoutesWithNotFound from '~/components/RoutesWithNotFound';
+import { AdminHeaders } from '~/components/PageHeaders/Headers';
 
 const Wrestler = lazy(() => import('./Wrestlers/WrestlersRouting'));
 
 function PrivateRoutingModule() {
     return (
         <>
+            <AdminHeaders />
             <RoutesWithNotFound>
                 <Route path="/" element={<Navigate to={PrivateRoutes.DASHBOARD} />}></Route>
                 <Route path={PrivateRoutes.DASHBOARD} element={<Dashboard />}></Route>

@@ -22,7 +22,25 @@
     background-color: #fff !important;
     color: #2f2f2f !important;
 } */
-
+label.label {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #2f2f2f;
+    text-transform: uppercase;
+}
+input {
+    font-family: inherit;
+    font-size: 0.8em;
+    font-weight: 400;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 1.2em;
+    background-color: #ffffff;
+    color: #2d2d2d;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
 input.app-custom-input {
     padding: 10px 15px;
     background-color: #fff;
@@ -69,6 +87,16 @@ button {
     outline: none;
     border: none;
 }
+button.unbutton {
+    border-radius: 0;
+    padding: 0;
+    font-size: normal;
+    font-weight: normal;
+    background-color: unset;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
 button.nradius {
     border-radius: 0;
 }
@@ -77,4 +105,119 @@ button.cta {
     color: #ffffff;
     font-weight: 500;
     text-transform: uppercase;
+}
+
+.wrestler-card__image {
+    width: 50%;
+}
+.wrestler-card__image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.sticky-filters {
+    top: 0;
+    left: 0;
+}
+.filters-block {
+    background-color: #ffffff;
+    padding-bottom: 20px;
+}
+.boxed {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.list-block .items-listing {
+    /* padding-top: 50px; */
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+header {
+    z-index: 2;
+    padding: 0 0 10px 0;
+}
+header .admin-header {
+    padding: 10px 20px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.admin-header button.menu {
+    display: flex;
+    flex-direction: column;
+    width: 34px;
+    height: auto;
+    border: 0;
+    background: transparent;
+    gap: 5px;
+}
+.admin-header button.menu > div {
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+.admin-header button.menu.active > div:nth-child(1) {
+    width: 50%;
+    transform: translate(10px, 4px) rotate(45deg);
+}
+.admin-header button.menu.active > div:nth-child(2) {
+    opacity: 0;
+}
+.admin-header button.menu.active > div:nth-child(3) {
+    width: 50%;
+    transform: translate(10px, -10px) rotate(-45deg);
+}
+header .menu-content ul.list-menu {
+    list-style: none;
+    position: fixed;
+    top: 41px;
+    right: 0;
+    width: 35%;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 0 5px;
+    padding: 10px 0;
+    z-index: 99;
+    animation: appear 0.3s ease;
+}
+header .menu-content ul.list-menu li {
+    padding: 5px 15px;
+    text-align: end;
+}
+.create-new-button {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    z-index: 99;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-weight: 500;
+    animation: appear 0.3s ease;
+}
+.create-new-button .unlink {
+    color: #ffffff;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        z-index: 1;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
