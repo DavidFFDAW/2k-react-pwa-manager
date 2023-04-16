@@ -28,7 +28,9 @@ label.label {
     color: #2f2f2f;
     text-transform: uppercase;
 }
-input {
+input,
+textarea.custom,
+select.custom {
     font-family: inherit;
     font-size: 0.8em;
     font-weight: 400;
@@ -208,6 +210,9 @@ header .menu-content ul.list-menu li {
 }
 .create-new-button .unlink {
     color: #ffffff;
+}
+.space-down {
+    padding-bottom: 20px;
 }
 
 @keyframes appear {

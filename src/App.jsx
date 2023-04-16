@@ -11,7 +11,7 @@ function App() {
         <ErrorBoundary>
             <Suspense fallback={<h1>Loading...</h1>}>
                 <SnackbarProvider
-                    autoHideDuration={3000}
+                    autoHideDuration={4000}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     className="notistack-notification-popup"
                     maxSnack={3}

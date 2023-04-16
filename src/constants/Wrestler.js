@@ -1,0 +1,17 @@
+export const WrestlerDataModel = {
+    id: 0,
+    name: '',
+    alias: '',
+    sex: '',
+    brand: '',
+    status: '',
+    is_tag: 0,
+    is_champ: 0,
+    twitter_account: '',
+    twitter_name: '',
+    finisher: '',
+    image: '',
+    kayfabe: '',
+    twitter_image: '',
+    overall: 0,
+};
