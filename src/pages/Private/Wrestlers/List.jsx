@@ -34,14 +34,20 @@ export default function List() {
                             <div className="w1 flex center al-center filters-block__content">
                                 <div className="w90 flex column al-start gap-5 filters">
                                     <label className="label">Nombre</label>
-                                    <input
-                                        className="w1"
-                                        type="text"
-                                        name="name"
-                                        id="name"
-                                        value={wrestlerFilters.name}
-                                        onChange={changeNameFilters}
-                                    />
+
+                                    <div className="w1 flex start gap-smaller">
+                                        <input
+                                            className="w1"
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            value={wrestlerFilters.name}
+                                            onChange={ev => changeNameFilters(ev.target.value)}
+                                        />
+                                        <button className="unbutton" onClick={_ => changeNameFilters('')}>
+                                            X
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

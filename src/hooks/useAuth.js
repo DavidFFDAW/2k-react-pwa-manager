@@ -2,10 +2,13 @@ import { useCallback } from 'react';
 import { AppConfig } from '../AppConfig';
 import { persistUserObject } from '../services/auth.service';
 import { useUserStorage } from '../contexts/user.context';
-import http from '../services/http.service';
 import { enqueueSnackbar } from 'notistack';
+import { PublicRoutes } from '~/constants/routes';
+import { useNavigate } from 'react-router-dom';
+import http from '../services/http.service';
 
 export function useAuth() {
+    const navigate = useNavigate();
     const { storedUser, setStoredUser } = useUserStorage();
 
     const tryPersistUser = user => {
@@ -30,9 +33,15 @@ export function useAuth() {
         });
     }, []);
 
+    const logOut = useCallback(() => {
+        tryPersistUser({});
+        navigate(`/${PublicRoutes.LOGIN}`, { replace: true });
+    }, [navigate]);
+
     return {
         tryLogInUser,
         storedUser,
         setStoredUser,
+        logOut,
     };
 }

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '~/hooks/useAuth';
 
 export function AdminMenuContent() {
+    const { logOut } = useAuth();
+
     return (
         <>
             <ul className="list-menu">
@@ -13,6 +16,11 @@ export function AdminMenuContent() {
                     <Link to={'/admin/wrestlers'} className="unlink">
                         Wrestlers
                     </Link>
+                </li>
+                <li>
+                    <a onClick={logOut} className="unlink">
+                        Cerrar sesión
+                    </a>
                 </li>
             </ul>
         </>

@@ -38,8 +38,7 @@ export default function useWrestler() {
         setWrestlerFilters(filters => ({ ...filters, show: !filters.show }));
     };
 
-    const changeNameFilters = event => {
-        const name = event.target.value;
+    const changeNameFilters = name => {
         setWrestlerFilters(filters => ({ ...filters, name, hasFilters: Boolean(name) }));
         setFilteredWrestlerList(name);
     };
