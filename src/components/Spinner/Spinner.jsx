@@ -9,7 +9,7 @@ export default function Spinner() {
 
     return (
         <div className="w1 flex center" style={scss}>
-            <div className="spinner"></div>;
+            <div className="spinner"></div>
         </div>
     );
 }
