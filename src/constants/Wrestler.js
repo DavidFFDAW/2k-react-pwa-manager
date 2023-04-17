@@ -1,5 +1,4 @@
 export const WrestlerDataModel = {
-    id: 0,
     name: '',
     alias: '',
     sex: '',
