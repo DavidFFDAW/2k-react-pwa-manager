@@ -10,7 +10,7 @@ export const TYPES = {
 };
 
 export default function useUpsert(type, id) {
-    const { get } = useHttp();
+    const { get, post } = useHttp();
     const navigate = useNavigate();
     const [formState, setFormState] = React.useState(WrestlerDataModel);
 
@@ -28,9 +28,11 @@ export default function useUpsert(type, id) {
 
     const sendForm = ev => {
         ev.preventDefault();
-        console.log(JSON.stringify(formState));
-        const redirect = '/admin/wrestlers';
-        navigate(redirect);
+        post(`${AppConfig.API_BASE_URL}wrestlers/upsert`, formState).then((d) => {
+            console.log(d);
+            const redirect = '/admin/wrestlers';
+            navigate(redirect);
+        });
     };
 
     return { formState, setFormState, sendForm };
