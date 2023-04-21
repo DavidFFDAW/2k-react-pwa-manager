@@ -1,5 +1,6 @@
 import React from 'react';
 import { AdminMenuContent } from './AdminMenu';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function AdminHeaders() {
     const [showMenu, setShowMenu] = React.useState(false);
@@ -9,11 +10,18 @@ export function AdminHeaders() {
         setShowMenu(previous => !previous);
     };
 
+    const navigate = useNavigate();
+
     return (
         <>
-            <header className="">
+            <header className="sticky-header">
                 <div className="admin-header flex between al-center gap">
-                    <h4 className="admin-header-title">Admin</h4>
+                    <button className="unbutton" style={{ color: '#fff' }} role="button" type="button" onClick={_ => navigate(-1)}>
+                        ←
+                    </button>
+                    <Link className="block" to={'/admin'}>
+                        <h4 className="admin-header-title">Admin</h4>
+                    </Link>
                     <button className={menuClass} onClick={setMenu}>
                         <div></div>
                         <div></div>
@@ -22,7 +30,7 @@ export function AdminHeaders() {
                 </div>
                 {showMenu && (
                     <div className="menu-content flex end al-center gap-smaller">
-                        <AdminMenuContent />
+                        <AdminMenuContent closeMenu={setMenu} />
                     </div>
                 )}
             </header>
