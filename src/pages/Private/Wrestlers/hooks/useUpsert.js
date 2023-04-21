@@ -10,7 +10,8 @@ export const TYPES = {
 };
 
 export default function useUpsert(type, id) {
-    const { get, post } = useHttp();
+    const wrestlerListRoute = '/admin/wrestlers';
+    const { get, post, deleteReq } = useHttp();
     const navigate = useNavigate();
     const [formState, setFormState] = React.useState(WrestlerDataModel);
 
@@ -28,12 +29,21 @@ export default function useUpsert(type, id) {
 
     const sendForm = ev => {
         ev.preventDefault();
-        post(`${AppConfig.API_BASE_URL}wrestlers/upsert`, formState).then((d) => {
-            console.log(d);
-            const redirect = '/admin/wrestlers';
-            navigate(redirect);
+        post(`${AppConfig.API_BASE_URL}wrestlers/upsert`, formState).then(d => {
+            navigate(wrestlerListRoute);
         });
     };
 
-    return { formState, setFormState, sendForm };
+    const deleteWrestler = () => {
+        const { id, name } = formState;
+
+        if (confirm(`¿ Seguro que quieres borrar ${name} ?`)) {
+            deleteReq(`${AppConfig.API_BASE_URL}wrestlers/delete/${id}`).then(d => {
+                console.log(d);
+                navigate(wrestlerListRoute);
+            });
+        }
+    };
+
+    return { formState, setFormState, sendForm, deleteWrestler };
 }

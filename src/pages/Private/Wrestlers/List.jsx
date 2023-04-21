@@ -9,7 +9,7 @@ export default function List() {
     const { wrestlerList, wrestlerFilters, setShowFilters, changeNameFilters } = useWrestler();
     const { page } = useParams();
 
-    if (wrestlerList.loading || !wrestlerList.list.length > 0) {
+    if (wrestlerList.loading) {
         return <Spinner />;
     }
 
@@ -22,12 +22,14 @@ export default function List() {
         ? wrestlerList.list.slice(0, wrestlersPerPage + offset)
         : wrestlerList.list.slice(offset, wrestlersPerPage + offset);
 
+    const filtersButtonText = Boolean(wrestlerFilters.show) ? 'Ocultar filtros' : 'Mostrar filtros';
+
     return (
         <>
-            <div className="w1 minh1v flex between column al-center gap">
+            <div className="w1 flex between column al-center gap">
                 <div className="w1 sticky sticky-filters">
                     <button className="w1 filters" onClick={setShowFilters}>
-                        Mostrar filtros
+                        {filtersButtonText}
                     </button>
                     {wrestlerFilters.show && (
                         <div className="w1 filters-block">

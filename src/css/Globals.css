@@ -109,18 +109,37 @@ button.cta {
     text-transform: uppercase;
 }
 
+button.btn.danger {
+    background-color: #930a0a;
+    color: #ffffff;
+}
+
 .wrestler-card__image {
     width: 50%;
 }
+img.rounded-preview-icon,
 .wrestler-card__image img {
     max-width: 100%;
     height: auto;
+    min-height: 95px;
     object-fit: cover;
     border-radius: 50%;
 }
-.sticky-filters {
+.sticky-header {
+    position: sticky;
     top: 0;
     left: 0;
+    z-index: 8;
+}
+.sticky-filters {
+    top: 35px;
+    left: 0;
+}
+.admin-header-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 .filters-block {
     background-color: #ffffff;
@@ -234,7 +253,7 @@ header .menu-content ul.list-menu li {
     100% {
         transform: scale(1);
     }
-} 
+}
 
 @keyframes appear {
     0% {
