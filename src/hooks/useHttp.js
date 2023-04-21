@@ -15,12 +15,12 @@ export default function useHttp() {
     const get = url => HttpService.get(url).then(processResponse);
     const post = (url, data) => HttpService.post(url, data).then(processResponse);
     const put = (url, data) => HttpService.put(url, data).then(processResponse);
-    const del = url => HttpService.delete(url).then(processResponse);
+    const deleteReq = url => HttpService.delete(url).then(processResponse);
 
     return {
         get,
         post,
         put,
-        del,
+        deleteReq,
     };
 }
