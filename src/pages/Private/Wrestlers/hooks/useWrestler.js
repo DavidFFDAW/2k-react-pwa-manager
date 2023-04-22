@@ -3,14 +3,14 @@ import React from 'react';
 import { AppConfig } from '~/AppConfig';
 import http from '~/services/http.service';
 
-export default function useWrestler() {
+export default function useWrestler(endpoint) {
     const cachedWrestlers = localStorage.getItem('cached__wrestlers');
     const baseArrayWrestlers = cachedWrestlers ? JSON.parse(cachedWrestlers) : [];
     const [wrestlerList, setWrestlerList] = React.useState({ list: baseArrayWrestlers, original: baseArrayWrestlers, loading: false });
     const [wrestlerFilters, setWrestlerFilters] = React.useState({ name: '', show: false, hasFilters: false });
 
     const getWrestlers = () => {
-        return http.get(AppConfig.API_BASE_URL + 'wrestlers/all').then(response => {
+        return http.get(AppConfig.API_BASE_URL + `wrestlers/${endpoint}`).then(response => {
             if (!response.ok) {
                 return enqueueSnackbar(response.content.message, { variant: 'error' });
             }

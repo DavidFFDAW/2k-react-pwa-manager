@@ -5,8 +5,8 @@ import Spinner from '~/components/Spinner/Spinner';
 import WrestlerCard from '~/components/Wrestler/WrestlerCard';
 import CreateButton from '~/components/Buttons/CreateButton';
 
-export default function List() {
-    const { wrestlerList, wrestlerFilters, setShowFilters, changeNameFilters } = useWrestler();
+export default function List({ endpoint }) {
+    const { wrestlerList, wrestlerFilters, setShowFilters, changeNameFilters } = useWrestler(endpoint);
     const { page } = useParams();
 
     if (wrestlerList.loading) {

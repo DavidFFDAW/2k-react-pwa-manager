@@ -18,8 +18,13 @@ export function AdminMenuContent({ closeMenu }) {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/admin/wrestlers'} className="unlink" onClick={closeMenu}>
-                        Wrestlers
+                    <Link to={'/admin/wrestlers/all/page/1'} className="unlink" onClick={closeMenu}>
+                        All Wrestlers
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'/admin/wrestlers/active/page/1'} className="unlink" onClick={closeMenu}>
+                        Active Wrestlers
                     </Link>
                 </li>
                 <li>
