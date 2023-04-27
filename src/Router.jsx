@@ -4,17 +4,24 @@ import { AuthGuard, LoginAuthGuard } from './guards/auth.guard';
 import RoutesWithNotFound from './components/RoutesWithNotFound';
 import { PrivateRoutes, PublicRoutes } from './constants/routes';
 import HomeDashboard from './pages/Home/Home';
+import { useUserStorage } from './contexts/user.context';
+import { AdminHeaders } from './components/PageHeaders/Headers';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
 const TwitterRouting = lazy(() => import('./pages/Twitter/PublicTwitterRouting'));
 
 export function Router() {
+    const { storedUser } = useUserStorage();
+
+    const Headers = storedUser.id ? <AdminHeaders /> : null;
+
     return (
         <>
             <BrowserRouter>
+                {Headers}
                 <RoutesWithNotFound>
-                    <Route path="/" element={<HomeDashboard/>} />
+                    <Route path="/" element={<HomeDashboard />} />
                     <Route path={PublicRoutes.REGISTER} element={<Login />} />
 
                     <Route element={<LoginAuthGuard />}>
