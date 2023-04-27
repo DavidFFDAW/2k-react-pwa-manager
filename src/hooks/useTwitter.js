@@ -2,7 +2,7 @@ import React from 'react'
 import useAbortRequest from '~/hooks/useAbortRequest';
 import useHttp from '~/hooks/useHttp'
 
-export default function usePublicTwitter() {
+export default function useTwitter() {
       const http = useHttp();
       const aborter = useAbortRequest();
       const [tweets, setTweets] = React.useState([])

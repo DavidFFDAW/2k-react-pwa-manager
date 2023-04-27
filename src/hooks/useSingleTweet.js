@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import useAbortRequest from '~/hooks/useAbortRequest';
 import useHttp from '~/hooks/useHttp';
 
-export default function usePublicTwitter() {
+export default function useSingleTwitter() {
     const { id } = useParams();
     const http = useHttp();
     const aborter = useAbortRequest();
