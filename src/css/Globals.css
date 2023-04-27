@@ -10,7 +10,9 @@ a {
     color: #2f2f2f;
     cursor: pointer;
 }
-
+.pointer {
+    cursor: pointer;
+}
 .custom-totalpage-wallpaper {
     position: absolute;
     top: 0;
@@ -61,10 +63,10 @@ input.app-custom-input {
 input.app-custom-input.nradius {
     border-radius: 2px 0 0 2px;
 }
-a .fixed.btn.got-to-admin {
+.btn.got-to-admin {
     position: fixed;
     bottom: 12px;
-    right: 50px;
+    right: 12px;
     z-index: 999;
     padding: 15px;
     background-color: #fff;
@@ -72,6 +74,16 @@ a .fixed.btn.got-to-admin {
     border: none;
     border-radius: 20px;
     outline: none;
+}
+.twitter-button,
+.btn.got-to-admin.twitter-button {
+    border-radius: 50%;
+    fill: #ffffff;
+    color: #ffffff;
+    font-weight: 500;
+    stroke: #ffffff;
+    text-transform: uppercase;
+    background-color: #1da1f2;
 }
 .unlink {
     width: 100%;
@@ -142,21 +154,9 @@ img.rounded-preview-icon,
     object-fit: cover;
     border-radius: 50%;
 }
-.sticky-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 8;
-}
 .sticky-filters {
     top: 35px;
     left: 0;
-}
-.admin-header-title {
-    font-size: 18px;
-    font-weight: 500;
-    color: #ffffff;
-    text-transform: uppercase;
 }
 .filters-block {
     background-color: #ffffff;
@@ -174,60 +174,6 @@ img.rounded-preview-icon,
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-header {
-    z-index: 2;
-    padding: 0 0 10px 0;
-}
-header .admin-header {
-    padding: 10px 20px;
-    background-color: #2d2d2d;
-    color: #ffffff;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-}
-.admin-header button.menu {
-    display: flex;
-    flex-direction: column;
-    width: 34px;
-    height: auto;
-    border: 0;
-    background: transparent;
-    gap: 5px;
-}
-.admin-header button.menu > div {
-    width: 100%;
-    height: 2px;
-    background: #ffffff;
-    border-radius: 0.25rem;
-    transition: all 0.3s ease;
-}
-.admin-header button.menu.active > div:nth-child(1) {
-    width: 50%;
-    transform: translate(10px, 4px) rotate(45deg);
-}
-.admin-header button.menu.active > div:nth-child(2) {
-    opacity: 0;
-}
-.admin-header button.menu.active > div:nth-child(3) {
-    width: 50%;
-    transform: translate(10px, -10px) rotate(-45deg);
-}
-header .menu-content ul.list-menu {
-    list-style: none;
-    position: fixed;
-    top: 41px;
-    right: 0;
-    width: 35%;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 0 5px;
-    padding: 10px 0;
-    z-index: 99;
-    animation: appear 0.3s ease;
-}
-header .menu-content ul.list-menu li {
-    padding: 5px 15px;
-    text-align: end;
 }
 .create-new-button {
     position: fixed;
