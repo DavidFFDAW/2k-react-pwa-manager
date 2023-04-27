@@ -8,6 +8,7 @@
 a {
     text-decoration: none;
     color: #2f2f2f;
+    cursor: pointer;
 }
 
 .custom-totalpage-wallpaper {
@@ -59,6 +60,18 @@ input.app-custom-input {
 }
 input.app-custom-input.nradius {
     border-radius: 2px 0 0 2px;
+}
+a .fixed.btn.got-to-admin {
+    position: fixed;
+    bottom: 12px;
+    right: 50px;
+    z-index: 999;
+    padding: 15px;
+    background-color: #fff;
+    color: #2f2f2f;
+    border: none;
+    border-radius: 20px;
+    outline: none;
 }
 .unlink {
     width: 100%;

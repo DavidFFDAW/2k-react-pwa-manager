@@ -5,11 +5,12 @@ import { SnackbarProvider } from 'notistack';
 import { Router } from './Router';
 import './css/Globals.css';
 import './css/MediaQueries.css';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
     return (
         <ErrorBoundary>
-            <Suspense fallback={<h1>Loading...</h1>}>
+            <Suspense fallback={<Spinner />}>
                 <SnackbarProvider
                     autoHideDuration={4000}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}

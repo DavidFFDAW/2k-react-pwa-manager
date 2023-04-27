@@ -9,4 +9,9 @@
     .pagination .pagination-numbers button.pagination-button .unlink {
         color: blue;
     }
+    a .fixed.btn.got-to-admin {
+        position: fixed;
+        bottom: 12px;
+        right: 12px;
+    }
 }
