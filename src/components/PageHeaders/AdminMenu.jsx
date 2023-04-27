@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/useAuth';
+import HeaderLink from './MenuLink';
 
 export function AdminMenuContent({ closeMenu }) {
     const { logOut } = useAuth();
@@ -13,22 +14,24 @@ export function AdminMenuContent({ closeMenu }) {
         <>
             <ul className="list-menu">
                 <li>
-                    <Link to={'/admin/blog'} className="unlink" onClick={closeMenu}>
-                        Blog
-                    </Link>
+                    <span className='super-menu-item'>Público</span>
+                    <ul className='submenu'>
+                        <HeaderLink href={'/'} closeMenu={closeMenu}>Public Menú</HeaderLink>
+                        <HeaderLink href={'/twitter'} closeMenu={closeMenu}>Twitter</HeaderLink>
+                    </ul>
                 </li>
                 <li>
-                    <Link to={'/admin/wrestlers/all/page/1'} className="unlink" onClick={closeMenu}>
-                        All Wrestlers
-                    </Link>
+                    <span className='super-menu-item'>Administrador</span>
+                    <ul className='submenu'>
+                        <HeaderLink href={'/admin'} closeMenu={closeMenu}>Administrador</HeaderLink>
+                        <HeaderLink href={'/admin/blog'} closeMenu={closeMenu}>Blog</HeaderLink>
+                        <HeaderLink href={'/admin/wrestlers/all/page/1'} closeMenu={closeMenu}>Wrestlers</HeaderLink>
+                        <HeaderLink href={'/admin/wrestlers/active/page/1'} closeMenu={closeMenu}>Active Wrestlers</HeaderLink>
+                        <HeaderLink href={'/admin/twitter'} closeMenu={closeMenu}>Twitter Panel</HeaderLink>
+                    </ul>
                 </li>
-                <li>
-                    <Link to={'/admin/wrestlers/active/page/1'} className="unlink" onClick={closeMenu}>
-                        Active Wrestlers
-                    </Link>
-                </li>
-                <li>
-                    <a onClick={handleLogOut} className="unlink">
+                <li style={{ marginTop: 20 }} className='logout'>
+                    <a onClick={handleLogOut} className="logout-link unlink">
                         Cerrar sesión
                     </a>
                 </li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AdminMenuContent } from './AdminMenu';
 import { Link, useNavigate } from 'react-router-dom';
+import './header.css';
 
 export function AdminHeaders() {
     const [showMenu, setShowMenu] = React.useState(false);
