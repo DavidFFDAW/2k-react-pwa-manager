@@ -1,13 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppConfig } from '~/AppConfig';
+import { TYPES } from '~/constants/UpsertTypes';
 import { WrestlerDataModel } from '~/constants/Wrestler';
 import useHttp from '~/hooks/useHttp';
 
-export const TYPES = {
-    CREATE: 'create',
-    UPDATE: 'update',
-};
 
 export default function useUpsert(type, id) {
     const wrestlerListRoute = '/admin/wrestlers';

@@ -14,7 +14,6 @@ export default function Dashboard() {
                 <HomeLink href={makePrivateRoute(PrivateRoutes.TEAMS)} text="Teams" />
                 <HomeLink href={makePrivateRoute(PrivateRoutes.USER)} text="User" />
                 <HomeLink href={makePrivateRoute(PrivateRoutes.TWITTER)} text="Twitter" />
-                <HomeLink href={makePrivateRoute(PrivateRoutes.GALLERY)} text="Gallería" />
             </div>
         </PageBackground>
     );

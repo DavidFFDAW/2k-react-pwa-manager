@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Likes, Replies, Retweets } from './TweetIcons';
 import { numberFormatter } from '~/utilities/number.formatter.utility';
 
 export default function Tweet({ tweet }) {
-    console.log(tweet);
+    const navigate = useNavigate();
+
+    const goToTweet = (ev) => {
+        const tweet = ev.currentTarget.dataset.id;
+        if (tweet) return navigate(`/twitter/tweet/${tweet}`);
+    };
+
     return (
-        <aside className="tweet">
+        <aside className="tweet" data-id={tweet.id} onClick={goToTweet}>
             <header className="tweet-header">
                 <div className="tweet-header-avatar">
                     <img src={tweet.wrestler_image} alt="" />

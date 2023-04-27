@@ -1,5 +1,5 @@
-import ImagePreview from './ImagePreview';
-import UpsertInput, { UpsertSelect } from './UpsertInput';
+import ImagePreview from '~/components/Forms/ImagePreview';
+import UpsertInput, { UpsertSelect } from '~/components/Forms/UpsertInput';
 
 export default function UpsertDatas({ formState, setFormState }) {
     return (

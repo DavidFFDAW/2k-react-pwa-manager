@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import RoutesWithNotFound from '~/components/RoutesWithNotFound';
-import { TYPES } from './hooks/useUpsert';
+import { TYPES } from '~/constants/UpsertTypes';
 
 const WrestlersList = React.lazy(() => import('./List'));
 const UpsertPage = React.lazy(() => import('./Upsert'));
