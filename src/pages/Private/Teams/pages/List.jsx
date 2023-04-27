@@ -1,7 +1,6 @@
 import React from 'react'
 import useTeams from '../hooks/useTeams'
 import Spinner from '~/components/Spinner/Spinner';
-import ImagePreview from '../../Wrestlers/components/ImagePreview';
 
 export default function List() {
     const { teams } = useTeams();

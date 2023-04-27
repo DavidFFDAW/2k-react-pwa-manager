@@ -1,9 +1,9 @@
 import React from 'react'
 import useTwitter from '~/hooks/useTwitter';
-import ImagePreview from '../../Wrestlers/components/ImagePreview';
 import { transformDate } from '~/utilities/date.normalizer.utility';
 import { Link } from 'react-router-dom';
 import TwitterCreateButton from '~/components/Twitter/TwitterCreateButton';
+import ImagePreview from '~/components/Forms/ImagePreview';
 
 export default function TweetsList() {
     const { tweets } = useTwitter();
