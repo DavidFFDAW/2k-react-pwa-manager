@@ -1,33 +1,32 @@
-import React from 'react'
-import UpsertInput from '~/components/Forms/UpsertInput';
+import UpsertInput, { UpsertTextArea } from '~/components/Forms/FormInputs';
 import Spinner from '~/components/Spinner/Spinner';
 import WrestlerCustomSelect from '~/components/Wrestler/CustomSelect/WrestlerCustomSelect';
-import useGlobalWrestlers from '~/hooks/useGlobalWrestlers'
+import useGlobalWrestlers from '~/hooks/useGlobalWrestlers';
+import useTwitterFormState from './hooks/useTwitterFormState';
 
 export default function Upsert({ type }) {
     const { wrestlers } = useGlobalWrestlers('active');
+    const { formState, setFormState, getIdCallback } = useTwitterFormState();
 
     return (
-        <form action="POST" className="flex center al-center column gap wrestler-upsert-form" >
+        <form action="POST" className="flex center al-center column gap wrestler-upsert-form">
             <div className="w90 boxed">
                 <h2 className="space-down">Autor</h2>
                 <div className="w1 flex column al-start gap-small">
                     {wrestlers.length > 0 ? (
-                        <WrestlerCustomSelect
-                            list={wrestlers}
-                            name_prop={'name'}
-                            image_prop={'image'}
-                        />
-                    ) : <Spinner />}
+                        <WrestlerCustomSelect list={wrestlers} nameProp={'name'} imageProp={'image'} getIdCallback={getIdCallback} />
+                    ) : (
+                        <Spinner />
+                    )}
                 </div>
             </div>
 
             <div className="w90 boxed">
                 <h2 className="space-down">Datos del Tweet</h2>
                 <div className="w1 flex column al-start gap-small">
-                    <UpsertInput type="text" label="Nombre" property="name" formState={{ a: '' }} setFormState={_ => console.log('hil')} />
+                    <UpsertTextArea label="Contenido" property="message" formState={formState} setFormState={setFormState} />
                 </div>
             </div>
         </form>
-    )
+    );
 }
