@@ -19,8 +19,8 @@ export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = 
             <div className="pagination-previous">
                 {showPrev ? (
                     <button type="button" className="pagination-button" disabled={!showPrev} onClick={movePageToTop}>
-                        <Link to={`${baseUrl}/page/${pages.prev}`} className="unlink">
-                            Página: {pages.prev}
+                        <Link to={`${baseUrl}/page/${pages.prev}`} className="page unlink">
+                            &lt;
                         </Link>
                     </button>
                 ) : null}
@@ -30,7 +30,7 @@ export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = 
                 {showNext ? (
                     <button type="button" className="pagination-button" onClick={movePageToTop}>
                         <Link to={`${baseUrl}/page/${pages.next}`} className="unlink">
-                            Página: {pages.next}
+                            &gt;
                         </Link>
                     </button>
                 ) : null}

@@ -1,4 +1,4 @@
-export default function UpsertInput({ type, max, label, property, formState, setFormState }) {
+export default function UpsertInput({ type, max, label, property, formState, setFormState, required = false }) {
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
@@ -8,6 +8,7 @@ export default function UpsertInput({ type, max, label, property, formState, set
                 maxLength={max}
                 type={type}
                 name={property}
+                required={required}
                 value={formState[`${property}`]}
                 onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
             />
@@ -15,19 +16,26 @@ export default function UpsertInput({ type, max, label, property, formState, set
     );
 }
 
-export function UpsertSelect({ children, label, property, formState, setFormState, defaultVal = '' }) {
+export function UpsertSelect({ children, label, property, formState, setFormState, defaultVal = '', required = false }) {
     const value = formState[`${property}`] || defaultVal;
+
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
-            <select className="w1 custom" name={property} value={value} onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}>
+            <select
+                className="w1 custom"
+                name={property}
+                value={value}
+                required={required}
+                onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
+            >
                 {children}
             </select>
         </div>
     );
 }
 
-export function UpsertTextArea({ label, property, formState, setFormState, rows = 5 }) {
+export function UpsertTextArea({ label, property, formState, setFormState, required = false, rows = 5 }) {
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
@@ -36,6 +44,7 @@ export function UpsertTextArea({ label, property, formState, setFormState, rows 
                 name={property}
                 value={formState[`${property}`]}
                 rows={rows}
+                required={required}
                 onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
             />
         </div>
