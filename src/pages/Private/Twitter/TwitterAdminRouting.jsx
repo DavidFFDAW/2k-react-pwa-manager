@@ -12,6 +12,10 @@ export default function WrestlersRouting() {
             <Route path="/" element={<TweetsList />}></Route>
             <Route path={'/tweet/create'} element={<TweetsUpsert type={TYPES.CREATE} />}></Route>
             <Route path={'/tweet/update/:id'} element={<TweetsUpsert type={TYPES.UPDATE} />}></Route>
+            <Route
+                path={'/tweet/create/reply/tweet/:id'}
+                element={<TweetsUpsert type={TYPES.CREATE} reply={true} />}
+            ></Route>
         </RoutesWithNotFound>
     );
 }
