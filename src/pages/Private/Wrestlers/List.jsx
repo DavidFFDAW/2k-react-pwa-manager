@@ -66,7 +66,13 @@ export default function List({ endpoint }) {
                 <CreateButton endpoint={'wrestlers/create/new'} />
 
                 <div className="w1 pagination-block">
-                    <SimplePagination page={page} maxPages={maxPages} currentPage={currentPage} baseUrl="/admin/wrestlers" goUp />
+                    <SimplePagination
+                        page={page}
+                        maxPages={maxPages}
+                        currentPage={currentPage}
+                        baseUrl={`/admin/wrestlers/${endpoint}`}
+                        goUp
+                    />
                 </div>
             </div>
         </>

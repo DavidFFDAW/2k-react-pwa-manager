@@ -5,9 +5,8 @@ import { TYPES } from '~/constants/UpsertTypes';
 import { WrestlerDataModel } from '~/constants/Wrestler';
 import useHttp from '~/hooks/useHttp';
 
-
 export default function useUpsert(type, id) {
-    const wrestlerListRoute = '/admin/wrestlers';
+    const wrestlerListRoute = localStorage.getItem('previousLocation') || '/admin/wrestlers';
     const { get, post, deleteReq } = useHttp();
     const navigate = useNavigate();
     const [formState, setFormState] = React.useState(WrestlerDataModel);
