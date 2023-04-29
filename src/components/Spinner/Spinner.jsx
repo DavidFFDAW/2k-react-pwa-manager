@@ -13,3 +13,11 @@ export default function Spinner() {
         </div>
     );
 }
+
+export function ComponentSpinner() {
+    return (
+        <div className="w1 flex center">
+            <div className="spinner small"></div>
+        </div>
+    );
+}

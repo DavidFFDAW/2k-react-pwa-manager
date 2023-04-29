@@ -13,6 +13,9 @@ a {
 .pointer {
     cursor: pointer;
 }
+.uppercase {
+    text-transform: uppercase;
+}
 .custom-totalpage-wallpaper {
     position: absolute;
     top: 0;
@@ -24,6 +27,30 @@ a {
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 0;
+}
+.pagination-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 10px 0;
+}
+.pagination {
+    width: 50%;
+    padding: 0 10px;
+}
+.pagination .pagination-button {
+    background-color: #676767;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    font-weight: 700;
+    outline: none;
+    cursor: pointer;
+}
+.pagination .pagination-button a {
+    color: #ffffff;
 }
 /* .notistack-notification-popup {
     background-color: #fff !important;
