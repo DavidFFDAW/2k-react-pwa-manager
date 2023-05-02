@@ -9,8 +9,8 @@ export default function useSingleTwitter() {
     const aborter = useAbortRequest();
     const [tweetWithReplies, setTweetWithReplies] = React.useState({});
 
-    const endpoint = `twitter/${id}`;
-    aborter.requestWithAbort(_ => http.APIGet(endpoint).then(setTweetWithReplies));
+    const endpoint = `twitter/tweet/${id}`;
+    aborter.requestWithAbort(_ => http.APIGet(endpoint).then(setTweetWithReplies), [id]);
 
     return {
         tweetWithReplies,
