@@ -25,8 +25,7 @@ export default function useDraft() {
     const aborter = useAbortRequest();
     aborter.requestWithAbort(_ =>
         http.APIGet(`wrestlers/active`).then(wrestlers => {
-            const firstfour = wrestlers.slice(0, 3);
-            setDraftedWrestlers({ ...draftedWrestlers, list: firstfour, loading: false });
+            setDraftedWrestlers({ ...draftedWrestlers, list: wrestlers, loading: false });
         }),
     );
 
