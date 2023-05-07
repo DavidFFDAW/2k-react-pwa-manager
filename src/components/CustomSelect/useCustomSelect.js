@@ -9,6 +9,14 @@ export default function useCustomSelect(list, nameProp, imageProp, value) {
     };
     const [selectState, setSelectState] = useState(state);
 
+    useEffect(
+        _ => {
+            const callback = previous => ({ ...previous, searchResults: list });
+            setSelectState(callback);
+        },
+        [list],
+    );
+
     const setListVisible = () => {
         const callback = previous => ({ ...previous, showList: true });
         setSelectState(callback);
