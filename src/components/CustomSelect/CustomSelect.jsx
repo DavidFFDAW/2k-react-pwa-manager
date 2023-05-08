@@ -1,20 +1,20 @@
 import useCustomSelect from './useCustomSelect';
-import WrestlerCustomSelectList from './CustomSelectList';
+import CustomSelectList from './CustomSelectList';
 import './customselect.css';
 
-export default function WrestlerCustomSelect({ list, imageProp, nameProp, getIdCallback, value }) {
+export default function CustomSelect({ list, imageProp, nameProp, getIdCallback, value, deleteText }) {
     const { showList, search, searchResults, handleChangeSearch, handleSetShowList, handleSelect, setListVisible } =
-        useCustomSelect(list, nameProp, imageProp, value);
+        useCustomSelect(list, nameProp, imageProp, value, deleteText);
 
     const handleSelectCustom = getIdCallback
         ? item => {
-              getIdCallback(item.id);
-              handleSelect(item);
-          }
+            getIdCallback(item.id);
+            handleSelect(item);
+        }
         : handleSelect;
 
     const List = Boolean(showList) ? (
-        <WrestlerCustomSelectList select={handleSelectCustom} list={searchResults} image={imageProp} name={nameProp} />
+        <CustomSelectList select={handleSelectCustom} list={searchResults} image={imageProp} name={nameProp} />
     ) : null;
     const taptap = !showList ? 'V listado' : 'X listado';
 
@@ -26,7 +26,7 @@ export default function WrestlerCustomSelect({ list, imageProp, nameProp, getIdC
                         type="text"
                         className="input"
                         onChange={handleChangeSearch}
-                        value={search}
+                        value={deleteText ? '' : search}
                         onFocus={setListVisible}
                     />
                     <button type="button" className="btn-list" onClick={handleSetShowList}>
