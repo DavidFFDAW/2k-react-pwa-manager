@@ -2,13 +2,13 @@ import React from 'react';
 import useHttp from '~/hooks/useHttp';
 import useAbortRequest from '~/hooks/useAbortRequest';
 
-export default function useDraft() {
+export default function useDraft(debug) {
     const [draftedWrestlers, setDraftedWrestlers] = React.useState({
         raw: [],
         smackdown: [],
         list: [],
         loading: true,
-        selected: null,
+        selected: false,
         smackdown_select: {
             id: null,
             object: null,
@@ -25,7 +25,8 @@ export default function useDraft() {
     const aborter = useAbortRequest();
     aborter.requestWithAbort(_ =>
         http.APIGet(`wrestlers/active`).then(wrestlers => {
-            setDraftedWrestlers({ ...draftedWrestlers, list: wrestlers, loading: false });
+            const list = debug ? wrestlers.slice(0, 5) : wrestlers;
+            setDraftedWrestlers({ ...draftedWrestlers, list: list, loading: false });
         }),
     );
 
@@ -34,7 +35,7 @@ export default function useDraft() {
             ...draftedWrestlers.smackdown_select,
             id,
         };
-        setDraftedWrestlers({ ...draftedWrestlers, smackdown_select: smackdownSelect });
+        setDraftedWrestlers({ ...draftedWrestlers, smackdown_select: smackdownSelect, selected: false });
     };
 
     const chooseOwnerWrestler = () => {
@@ -64,6 +65,7 @@ export default function useDraft() {
 
             setDraftedWrestlers({
                 ...draftedWrestlers,
+                selected: true,
                 raw_select: {
                     ...draftedWrestlers.raw_select,
                     object: rawSelect.selected,
