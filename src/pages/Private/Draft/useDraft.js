@@ -23,9 +23,12 @@ export default function useDraft(debug) {
 
     const http = useHttp();
     const aborter = useAbortRequest();
+    const endpoint = 'wrestlers/with/championships/active';
+    // const endpoint = 'wrestlers/active';
     aborter.requestWithAbort(_ =>
-        http.APIGet(`wrestlers/active`).then(wrestlers => {
+        http.APIGet(endpoint).then(wrestlers => {
             const list = debug ? wrestlers.slice(0, 5) : wrestlers;
+            console.log(list);
             setDraftedWrestlers({ ...draftedWrestlers, list: list, loading: false });
         }),
     );
@@ -45,6 +48,7 @@ export default function useDraft(debug) {
             id: selectedWrestler.id,
             name: selectedWrestler.name,
             image: selectedWrestler.image,
+            championship: selectedWrestler.championship,
         };
         const listAfterSmackDownSelection = draftedWrestlers.list.filter(wrestler => wrestler.id !== selectedID);
         const rawSelect = chooseRawWrestler(selectedWrestler, listAfterSmackDownSelection);
@@ -98,6 +102,7 @@ export default function useDraft(debug) {
             id: selectedWrestler.id,
             name: selectedWrestler.name,
             image: selectedWrestler.image,
+            championship: selectedWrestler.championship,
         };
 
         return {

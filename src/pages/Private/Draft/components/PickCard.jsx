@@ -24,6 +24,7 @@ export function PickCard({ wrestler, brand, hideCurrent }) {
         RAW: '/raw.png',
         SMACKDOWN: '/smackdown.jpg',
     };
+    console.log(wrestler);
     const brandImage = brands[brand.toUpperCase()] || 'https://i.imgur.com/5Z1Z6XN.png';
     // TODO: vacant image 512x512
     // TODO: RAW image to 72x72
@@ -40,6 +41,11 @@ export function PickCard({ wrestler, brand, hideCurrent }) {
             <div className="draft-wrestler-image">
                 <img draggable={false} src={wrestlerImage} alt={wrestler.name} />
             </div>
+            {/* {wrestler.championship && (
+                <div className="draft-championship-image">
+                    <img draggable={false} src={wrestler.championship.image} alt={wrestler.championship.name} />
+                </div>
+            )} */}
         </div>
     );
 }

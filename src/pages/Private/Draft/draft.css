@@ -24,6 +24,15 @@
     right: -140px;
     /* transform: scale(1.2); */
 }
+/* .draft-championship-image { 
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    max-width: 512px;
+    width: 100%;
+    transform: translateX(-50%);
+    z-index: 10;
+} */
 .draft-wrestler-card-name {
     position: absolute;
     top: 102px;
