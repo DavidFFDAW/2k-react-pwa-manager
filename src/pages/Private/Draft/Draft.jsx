@@ -42,12 +42,12 @@ export default function Draft() {
                             <DraftBrandRoster
                                 draftedWrestlers={draftedWrestlers}
                                 brand={'RAW'}
-                                imgsrc={'/raw-logo.png'}
+                                imgsrc={'/raw-logo.webp'}
                             />
                             <DraftBrandRoster
                                 draftedWrestlers={draftedWrestlers}
                                 brand={'SmackDown'}
-                                imgsrc={'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/WWE_SmackDown_%282019%29_Logo.svg/2560px-WWE_SmackDown_%282019%29_Logo.svg.png'}
+                                imgsrc={'/smackdown-logo.webp'}
                             />
                         </div>
                     </div>

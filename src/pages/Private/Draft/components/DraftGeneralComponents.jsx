@@ -6,7 +6,7 @@ export function DraftSelect({ draftedWrestlers, getTheID }) {
             <div className="flex center al-center" style={{ padding: '20px 0' }}>
                 <img
                     style={{ maxWidth: '30%' }}
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/WWE_SmackDown_%282019%29_Logo.svg/2560px-WWE_SmackDown_%282019%29_Logo.svg.png"
+                    src="/smackdown-logo.webp"
                     alt=""
                 />
             </div>

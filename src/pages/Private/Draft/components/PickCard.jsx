@@ -21,17 +21,11 @@ export function PickCard({ wrestler, brand, hideCurrent }) {
     }
 
     const brands = {
-        RAW: '/raw.png',
-        SMACKDOWN: '/smackdown.jpg',
+        RAW: '/raw-roster.jpg',
+        SMACKDOWN: '/sd-roster.jpg',
     };
-    console.log(wrestler);
-    const brandImage = brands[brand.toUpperCase()] || 'https://i.imgur.com/5Z1Z6XN.png';
-    // TODO: vacant image 512x512
-    // TODO: RAW image to 72x72
-    // TODO: SmackDown image to 72x72
-    const wrestlerImage =
-        wrestler.image ||
-        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/307c21f9-99cb-4088-b4ed-5c65cb4dcf94/df3af9t-2837e86e-9087-429b-875b-a2fe96c58a9b.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzMwN2MyMWY5LTk5Y2ItNDA4OC1iNGVkLTVjNjVjYjRkY2Y5NFwvZGYzYWY5dC0yODM3ZTg2ZS05MDg3LTQyOWItODc1Yi1hMmZlOTZjNThhOWIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.bzyK8J91a-XllC1e0LuXeSr2lXIKmbsBhrq04megICo';
+    const brandImage = brands[brand.toUpperCase()] || brands.RAW;
+    const wrestlerImage = wrestler.image || '/vacant.webp';
 
     return (
         <div className={`anim-${show}  draft wrestler-card`} style={{ backgroundImage: `url(${brandImage})` }}>
