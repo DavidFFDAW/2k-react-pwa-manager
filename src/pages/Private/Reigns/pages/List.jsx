@@ -2,6 +2,7 @@ import React from 'react'
 import useChampions from '../hooks/useChampions';
 import Champion from '../components/Champion';
 import Spinner from '~/components/Spinner/Spinner';
+import CreateButton from '~/components/Buttons/CreateButton';
 
 export default function ChampionsList() {
     const { champions } = useChampions();
@@ -14,6 +15,7 @@ export default function ChampionsList() {
                 {Object.entries(champions).map(([key, champion]) => {
                     return <Champion key={key} champion={champion} />
                 })}
+                <CreateButton endpoint={'champions/create/team'} />
             </div>
         </>
     )
