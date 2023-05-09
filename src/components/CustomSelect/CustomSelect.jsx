@@ -16,7 +16,7 @@ export default function CustomSelect({ list, imageProp, nameProp, getIdCallback,
     const List = Boolean(showList) ? (
         <CustomSelectList select={handleSelectCustom} list={searchResults} image={imageProp} name={nameProp} />
     ) : null;
-    const taptap = !showList ? 'V listado' : 'X listado';
+    const taptap = !showList ? <i class="open-list-icon"></i> : <i class="close-list-icon"></i>;
 
     return (
         <>
