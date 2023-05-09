@@ -30,8 +30,11 @@
     border-top: none;
 }
 .custom-select-container .custom-select-result {
+    z-index: 10;
     width: 100%;
+    display: block;
     padding: 5px 5px;
+    position: relative;
     background-color: #ffffff;
     border-bottom: 1px solid lightgray;
 }
