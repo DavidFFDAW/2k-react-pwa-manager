@@ -1,37 +1,33 @@
 import React from 'react'
-import useCreateReign from '../hooks/useCreateReign'
+import useCreateReign, { ITEMS } from '../hooks/useCreateReign'
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import { Boxed } from '~/components/Box/Boxed';
 import TeamPanel from './TeamPanel';
 
 export default function Create() {
-    const { createDatas, form, setFormState, getWrestlerID, getChampionshipID, submitForm } = useCreateReign();
+    const { createDatas, form, setFormState, getItemID, submitForm } = useCreateReign();
 
-    // if (createDatas.loading) return <Spinner />
     const CustomSelectChampions = createDatas.championships.length > 0 ? <CustomSelect
         nameProp={'name'}
         imageProp={'image'}
         list={createDatas.championships}
-        getIdCallback={getChampionshipID}
+        getIdCallback={id => getItemID(id, ITEMS.CHAMPIONSHIP)}
     /> : <ComponentSpinner />
 
-    // const wrestlerOrTeam = Boolean(createDatas.selectedChampionship.tag) ? createDatas.teams : createDatas.wrestlers;
     const isTagTeam = Boolean(createDatas.selectedChampionship.tag);
 
     const CustomSelectWrestlers = createDatas.wrestlers.length > 0 ? <CustomSelect
         nameProp={'name'}
         imageProp={'image'}
         list={createDatas.wrestlers}
-        getIdCallback={getWrestlerID}
+        getIdCallback={id => getItemID(id, ITEMS.WRESTLER)}
     /> : <ComponentSpinner />
 
-    const CustomSelectTeams = createDatas.wrestlers.length > 0 ? <CustomSelect
-        nameProp={'name'}
-        imageProp={'image'}
-        list={createDatas.teams}
-        getIdCallback={getWrestlerID}
-    /> : <ComponentSpinner />
+    console.log({
+        createDatas,
+        form,
+    });
 
     return (
         <>
@@ -52,7 +48,12 @@ export default function Create() {
                     </div>
                 </Boxed> : null}
 
-                {isTagTeam ? <TeamPanel createDatas={createDatas} customSelectTeams={CustomSelectTeams} /> : null}
+                {isTagTeam ? <TeamPanel
+                    createDatas={createDatas}
+                    form={form}
+                    setFormState={setFormState}
+                    getTeamID={id => getItemID(id, ITEMS.TEAM)}
+                /> : null}
 
                 <div className="w90 flex end al-center gap-small">
                     <button

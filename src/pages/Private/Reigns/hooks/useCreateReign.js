@@ -1,11 +1,23 @@
 import { useEffect, useState } from 'react'
 import useHttp from '~/hooks/useHttp';
 
+export const ITEMS = {
+    CHAMPIONSHIP: 'championship',
+    WRESTLER: 'wrestler',
+    TEAM: 'team',
+};
+
 export default function useCreateReign() {
     const endpoint = 'championships/reigns/create/datas';
     const http = useHttp();
     const [state, setFormState] = useState({
         name: '',
+        isCreateTagTeam: false,
+        createTeam: {
+            name: '',
+            members: [],
+            overall: 0,
+        },
     });
     const [datas, setDatas] = useState({
         loading: true,
@@ -14,6 +26,7 @@ export default function useCreateReign() {
         wrestlers: [],
         selectedChampionship: {},
         selectedWrestler: {},
+        selectedTeam: {},
     });
     
     useEffect(_ => {
@@ -28,25 +41,18 @@ export default function useCreateReign() {
         });
     }, []);
 
-    const getChampionshipID = id => {
-        setDatas(prv => ({
-            ...prv,
-            selectedChampionship: {
-                ...datas.selectedChampionship,
+    const getItemID = (id, type) => {
+        const typeCaps = type.charAt(0).toUpperCase() + type.slice(1);
+        const key = `selected${typeCaps}`;
+
+        setDatas(prev => ({
+            ...prev,
+            [key]: {
+                ...datas[key],
                 ...datas.championships.find(championship => championship.id === id)
             }
         }));
-    }
-
-    const getWrestlerID = id => {
-        setDatas(prv => ({
-            ...prv, 
-            selectedWrestler: {
-                ...datas.selectedWrestler,
-                ...datas.wrestlers.find(wrestler => wrestler.id === id)
-            }
-        }));
-    }
+    };
 
     const submitForm = ev => {
         ev.preventDefault();
@@ -56,7 +62,9 @@ export default function useCreateReign() {
             championshipID: datas.selectedChampionship.id,
             wrestlerID: datas.selectedWrestler.id,
             teamID: datas.selectedWrestler.id,
-            teamCreate: true,
+            teamCreate: {
+                ...state
+            },
         };
         console.log(payload);
         // http.APIPost(endpoint, payload).then(res => {
@@ -70,7 +78,6 @@ export default function useCreateReign() {
         form: state,
         submitForm: submitForm,
         setFormState: setFormState,
-        getWrestlerID: getWrestlerID,
-        getChampionshipID: getChampionshipID,
+        getItemID: getItemID,
     }
 }
