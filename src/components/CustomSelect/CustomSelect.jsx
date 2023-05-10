@@ -16,7 +16,7 @@ export default function CustomSelect({ list, imageProp, nameProp, getIdCallback,
     const List = Boolean(showList) ? (
         <CustomSelectList select={handleSelectCustom} list={searchResults} image={imageProp} name={nameProp} />
     ) : null;
-    const taptap = !showList ? <i class="open-list-icon"></i> : <i class="close-list-icon"></i>;
+    const taptap = !showList ? <i className="open-list-icon"></i> : <i className="close-list-icon"></i>;
 
     return (
         <>
@@ -26,7 +26,7 @@ export default function CustomSelect({ list, imageProp, nameProp, getIdCallback,
                         type="text"
                         className="input"
                         onChange={handleChangeSearch}
-                        value={deleteText ? '' : search}
+                        value={search}
                         onFocus={setListVisible}
                     />
                     <button type="button" className="btn-list" onClick={handleSetShowList}>

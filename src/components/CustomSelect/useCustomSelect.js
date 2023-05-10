@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useCustomSelect(list, nameProp, imageProp, value) {
+export default function useCustomSelect(list, nameProp, imageProp, value, deleteText) {
     const state = {
         id: '',
         search: '',
@@ -15,6 +15,14 @@ export default function useCustomSelect(list, nameProp, imageProp, value) {
             setSelectState(callback);
         },
         [list],
+    );
+
+    useEffect(
+        _ => {
+            const callback = previous => ({ ...previous, search: deleteText ? '' : previous.search });
+            setSelectState(callback);
+        },
+        [deleteText],
     );
 
     const setListVisible = () => {
