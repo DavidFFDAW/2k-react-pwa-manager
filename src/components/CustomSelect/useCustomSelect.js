@@ -26,7 +26,7 @@ export default function useCustomSelect(list, nameProp, imageProp, value, delete
     );
 
     const setListVisible = () => {
-        const callback = previous => ({ ...previous, showList: true });
+        const callback = previous => ({ ...previous, showList: !previous.showList });
         setSelectState(callback);
     };
 

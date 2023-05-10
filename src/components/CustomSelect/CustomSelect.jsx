@@ -27,7 +27,7 @@ export default function CustomSelect({ list, imageProp, nameProp, getIdCallback,
                         className="input"
                         onChange={handleChangeSearch}
                         value={search}
-                        onFocus={setListVisible}
+                        onClick={setListVisible}
                     />
                     <button type="button" className="btn-list" onClick={handleSetShowList}>
                         {taptap}
