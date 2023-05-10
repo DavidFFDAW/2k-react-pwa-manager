@@ -18,11 +18,15 @@ export default function useCreateReign() {
             members: [],
             overall: 0,
         },
+        start: new Date().toISOString().split('T')[0],
+        isCurrent: true,
+        end: '',
     });
     const [datas, setDatas] = useState({
         loading: true,
         championships: [],
         teams: [],
+        originalWrestlers: [],
         wrestlers: [],
         selectedChampionship: {},
         selectedWrestler: {},
@@ -37,6 +41,7 @@ export default function useCreateReign() {
                 championships: res.championship,
                 teams: res.teams,
                 wrestlers: res.wrestlers,
+                originalWrestlers: res.wrestlers,
             }));
         });
     }, []);
@@ -45,11 +50,21 @@ export default function useCreateReign() {
         const typeCaps = type.charAt(0).toUpperCase() + type.slice(1);
         const key = `selected${typeCaps}`;
 
+        const isChampionship = type === ITEMS.CHAMPIONSHIP;
+        const chp = isChampionship ? datas.championships.find(item => item.id === id) : {};
+        const wrestlersGender = isChampionship
+            ? datas.originalWrestlers.filter(wr => {
+                console.log({ wr, chp });
+                return wr.sex === chp.gender
+            })
+            : datas.originalWrestlers;
+
         setDatas(prev => ({
             ...prev,
+            wrestlers: wrestlersGender,
             [key]: {
                 ...datas[key],
-                ...datas.championships.find(championship => championship.id === id)
+                ...datas[`${type}s`].find(item => item.id === id)
             }
         }));
     };

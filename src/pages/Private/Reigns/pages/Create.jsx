@@ -4,6 +4,7 @@ import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import { Boxed } from '~/components/Box/Boxed';
 import TeamPanel from './TeamPanel';
+import UpsertInput, { UpsertToggle } from '~/components/Forms/FormInputs';
 
 export default function Create() {
     const { createDatas, form, setFormState, getItemID, submitForm } = useCreateReign();
@@ -40,6 +41,7 @@ export default function Create() {
                     <div className="w1 flex column al-start gap-small">
                         {CustomSelectChampions}
                     </div>
+                    <UpsertToggle toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))} label={'Actual'} />
                 </Boxed>
 
                 {!isTagTeam ? <Boxed title={'Luchador'}>
@@ -55,7 +57,31 @@ export default function Create() {
                     getTeamID={id => getItemID(id, ITEMS.TEAM)}
                 /> : null}
 
-                <div className="w90 flex end al-center gap-small">
+                <Boxed title={'Datos del reinado'}>
+                    <div className="w1 flex column al-start gap">
+
+                        <UpsertInput
+                            type={'date'}
+                            name={'start'}
+                            label={'Fecha Inicio'}
+                            property={'start'}
+                            formState={form}
+                            setFormState={setFormState}
+                        />
+
+                        {form.isCurrent ? null : <UpsertInput
+                            type={'date'}
+                            name={'end'}
+                            label={'Fecha Fin'}
+                            property={'end'}
+                            formState={form}
+                            setFormState={setFormState}
+                        />}
+                    </div>
+                </Boxed>
+
+
+                <div className="w90 flex end al-center gap">
                     <button
                         type="submit"
                         className="cta"
