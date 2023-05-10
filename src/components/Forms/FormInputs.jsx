@@ -1,5 +1,7 @@
-export default function UpsertInput({ type, max, label, property, formState, setFormState, onChangeCallback, required = false }) {
-    const value = formState[`${property}`] || '';
+import './toggle.css';
+
+export default function UpsertInput({ type, max, label, property, literalValue, formState, setFormState, onChangeCallback, required = false }) {
+    const value = literalValue || formState[`${property}`] || '';
     const defaultChange = ev => setFormState({ ...formState, [property]: ev.target.value });
     const change = !setFormState && Boolean(onChangeCallback) ? onChangeCallback : defaultChange;
 
@@ -51,5 +53,18 @@ export function UpsertTextArea({ label, property, formState, setFormState, requi
                 onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
             />
         </div>
+    );
+}
+
+export function UpsertToggle({ toggleCallback, label }) {
+    return (
+        <>
+            <label class="form-label block">{label}</label>
+            <label class="switch block">
+                <input type="checkbox" name="isCurrent" onChange={toggleCallback} />
+                <span class="slider round"></span>
+            </label>
+
+        </>
     );
 }
