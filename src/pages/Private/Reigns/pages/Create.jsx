@@ -41,7 +41,6 @@ export default function Create() {
                     <div className="w1 flex column al-start gap-small">
                         {CustomSelectChampions}
                     </div>
-                    <UpsertToggle toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))} label={'Actual'} />
                 </Boxed>
 
                 {!isTagTeam ? <Boxed title={'Luchador'}>
@@ -59,6 +58,9 @@ export default function Create() {
 
                 <Boxed title={'Datos del reinado'}>
                     <div className="w1 flex column al-start gap">
+                        <div>
+                            <UpsertToggle toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))} label={'Actual'} />
+                        </div>
 
                         <UpsertInput
                             type={'date'}
