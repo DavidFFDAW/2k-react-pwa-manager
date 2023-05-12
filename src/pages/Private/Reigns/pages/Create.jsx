@@ -44,7 +44,13 @@ export default function Create() {
         <>
             <form method="POST" className="flex center al-center column gap wrestler-upsert-form" onSubmit={submitForm}>
                 <Boxed title={'Título'}>
+<<<<<<< HEAD
                     <div className="w1 flex column al-start gap-small">{CustomSelectChampions}</div>
+=======
+                    <div className="w1 flex column al-start gap-small">
+                        {CustomSelectChampions}
+                    </div>
+>>>>>>> 9962304c72697a3e32f97aa63fde38317393e61c
                 </Boxed>
 
                 {!isTagTeam ? (
@@ -65,10 +71,14 @@ export default function Create() {
                 <Boxed title={'Datos del reinado'}>
                     <div className="w1 flex column al-start gap">
                         <div>
+<<<<<<< HEAD
                             <UpsertToggle
                                 toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))}
                                 label={'Actual'}
                             />
+=======
+                            <UpsertToggle toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))} label={'Actual'} />
+>>>>>>> 9962304c72697a3e32f97aa63fde38317393e61c
                         </div>
 
                         <UpsertInput

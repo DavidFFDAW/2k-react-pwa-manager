@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Likes, Replies, Retweets } from './TweetIcons';
 import { numberFormatter } from '~/utilities/number.formatter.utility';
+import { transformDate } from '~/utilities/date.normalizer.utility';
 
 export default function Tweet({ tweet, link = true }) {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function Tweet({ tweet, link = true }) {
 
     const replies = Boolean(tweet.replies) ? tweet.replies.length : 0;
     const twitterAccount = tweet.twitter_account || tweet.twitter_acc || tweet.wrestler_name;
+
 
     return (
         <aside style={{ cursor: 'pointer' }} className="tweet" data-id={tweet.id} onClick={goToTweet}>
@@ -29,8 +31,21 @@ export default function Tweet({ tweet, link = true }) {
                         <span className="account not-needed-arroba">{twitterAccount}</span>
                     </div>
                 </div>
+                <aside className="tweet-date">
+                    {transformDate(tweet.created_at)}
+                </aside>
             </header>
-            <section className="tweet-content">{tweet.message}</section>
+            <section className="tweet-content">{
+                tweet.message.split(' ').map((word, index) => {
+                    if (word.startsWith('#')) {
+                        return <a key={index} href={`/twitter/hashtag/${word.slice(1)}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1da1f2' }}>{word} </a>
+                    }
+                    if (word.startsWith('@')) {
+                        return <a key={index} href={`/twitter/account/${word.slice(1)}`} target="_blank" rel="noopener noreferrer">{word} </a>
+                    }
+                    return word + ' ';
+                })
+            }</section>
             <footer className="tweet-footer">
                 <aside className="tweet-footer-item">
                     <div className="icon">
@@ -58,6 +73,8 @@ export default function Tweet({ tweet, link = true }) {
                         <span>{numberFormatter(tweet.likes)}</span>
                     </div>
                 </aside>
+
+
             </footer>
         </aside>
     );
