@@ -1,6 +1,16 @@
 import './toggle.css';
 
-export default function UpsertInput({ type, max, label, property, literalValue, formState, setFormState, onChangeCallback, required = false }) {
+export default function UpsertInput({
+    type,
+    max,
+    label,
+    property,
+    literalValue,
+    formState,
+    setFormState,
+    onChangeCallback,
+    required = false,
+}) {
     const value = literalValue || formState[`${property}`] || '';
     const defaultChange = ev => setFormState({ ...formState, [property]: ev.target.value });
     const change = !setFormState && Boolean(onChangeCallback) ? onChangeCallback : defaultChange;
@@ -58,13 +68,30 @@ export function UpsertTextArea({ label, property, formState, setFormState, requi
 
 export function UpsertToggle({ toggleCallback, label }) {
     return (
-        <>
-            <label class="form-label block">{label}</label>
-            <label class="switch block">
+        <div className="custom-toggle-switch">
+            <label className="form-label block">{label}</label>
+            <label className="switch block">
                 <input type="checkbox" name="isCurrent" onChange={toggleCallback} />
-                <span class="slider round"></span>
+                <span className="slider round"></span>
             </label>
+        </div>
+    );
+}
 
-        </>
+export function UpsertDate({ min, max, label, property, formState, setFormState, required = false }) {
+    return (
+        <div className="w1 flex column gap-5">
+            <label className="label">{label}</label>
+            <input
+                min={min}
+                max={max}
+                className="w1 date-input"
+                type="date"
+                name={property}
+                required={required}
+                value={formState[`${property}`] || ''}
+                onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
+            />
+        </div>
     );
 }

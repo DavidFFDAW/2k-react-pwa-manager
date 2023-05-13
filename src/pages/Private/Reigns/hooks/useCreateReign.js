@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import useHttp from '~/hooks/useHttp';
 
 export const ITEMS = {
@@ -21,6 +21,7 @@ export default function useCreateReign() {
         start: new Date().toISOString().split('T')[0],
         isCurrent: true,
         end: '',
+        today: new Date().toISOString().split('T')[0],
     });
     const [datas, setDatas] = useState({
         loading: true,
@@ -32,7 +33,7 @@ export default function useCreateReign() {
         selectedWrestler: {},
         selectedTeam: {},
     });
-    
+
     useEffect(_ => {
         http.APIGet(endpoint).then(res => {
             setDatas(previous => ({
@@ -54,9 +55,9 @@ export default function useCreateReign() {
         const chp = isChampionship ? datas.championships.find(item => item.id === id) : {};
         const wrestlersGender = isChampionship
             ? datas.originalWrestlers.filter(wr => {
-                console.log({ wr, chp });
-                return wr.sex === chp.gender
-            })
+                  console.log({ wr, chp });
+                  return wr.sex === chp.gender;
+              })
             : datas.originalWrestlers;
 
         setDatas(prev => ({
@@ -64,29 +65,28 @@ export default function useCreateReign() {
             wrestlers: wrestlersGender,
             [key]: {
                 ...datas[key],
-                ...datas[`${type}s`].find(item => item.id === id)
-            }
+                ...datas[`${type}s`].find(item => item.id === id),
+            },
         }));
     };
 
     const submitForm = ev => {
         ev.preventDefault();
-        
+
         const payload = {
             isTagTeam: Boolean(datas.selectedChampionship.tag),
             championshipID: datas.selectedChampionship.id,
             wrestlerID: datas.selectedWrestler.id,
             teamID: datas.selectedWrestler.id,
             teamCreate: {
-                ...state
+                ...state,
             },
         };
         console.log(payload);
         // http.APIPost(endpoint, payload).then(res => {
         //     console.log(res);
         // });
-    }
-
+    };
 
     return {
         createDatas: datas,
@@ -94,5 +94,5 @@ export default function useCreateReign() {
         submitForm: submitForm,
         setFormState: setFormState,
         getItemID: getItemID,
-    }
+    };
 }

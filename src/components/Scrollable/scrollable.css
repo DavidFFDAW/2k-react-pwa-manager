@@ -1,0 +1,20 @@
+.scrollable-section-component .scroll-section-title {
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #ebebeb;
+    border-bottom: none;
+}
+.scrollable-section-component .scroll-section-title h3 {
+    font-weight: 600;
+    color: #2d2d2d;
+}
+.scrollable-section-component .scrollable-area {
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #ebebeb;
+}
+.scrollable-section-component .scrollable-item {
+    padding: 10px;
+    border-bottom: 1px solid #ebebeb;
+    background: #fff;
+}

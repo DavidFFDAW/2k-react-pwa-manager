@@ -4,7 +4,8 @@ import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import { Boxed } from '~/components/Box/Boxed';
 import TeamPanel from './TeamPanel';
-import UpsertInput, { UpsertToggle } from '~/components/Forms/FormInputs';
+import UpsertInput, { UpsertDate, UpsertToggle } from '~/components/Forms/FormInputs';
+import { FlexCenter } from '~/components/Layouts/Flex';
 
 export default function Create() {
     const { createDatas, form, setFormState, getItemID, submitForm } = useCreateReign();
@@ -38,24 +39,27 @@ export default function Create() {
     console.log({
         createDatas,
         form,
+        isCurrent: form.isCurrent,
     });
 
     return (
         <>
-            <form method="POST" className="flex center al-center column gap wrestler-upsert-form" onSubmit={submitForm}>
+            <form
+                method="POST"
+                className="flex center al-center column gap wrestler-upsert-form space-down"
+                onSubmit={submitForm}
+            >
                 <Boxed title={'Título'}>
-<<<<<<< HEAD
-                    <div className="w1 flex column al-start gap-small">{CustomSelectChampions}</div>
-=======
-                    <div className="w1 flex column al-start gap-small">
+                    <FlexCenter justify={'center'} align={'start'} gap={'small'}>
                         {CustomSelectChampions}
-                    </div>
->>>>>>> 9962304c72697a3e32f97aa63fde38317393e61c
+                    </FlexCenter>
                 </Boxed>
 
                 {!isTagTeam ? (
                     <Boxed title={'Luchador'}>
-                        <div className="w1 flex column al-start gap-small">{CustomSelectWrestlers}</div>
+                        <FlexCenter justify={'center'} align={'start'} gap={'small'}>
+                            {CustomSelectWrestlers}
+                        </FlexCenter>
                     </Boxed>
                 ) : null}
 
@@ -69,38 +73,34 @@ export default function Create() {
                 ) : null}
 
                 <Boxed title={'Datos del reinado'}>
-                    <div className="w1 flex column al-start gap">
+                    <FlexCenter justify={'center'} align={'start'} direction={'row'} className={'spaced'}>
                         <div>
-<<<<<<< HEAD
                             <UpsertToggle
                                 toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))}
-                                label={'Actual'}
+                                label={'Anterior'}
                             />
-=======
-                            <UpsertToggle toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))} label={'Actual'} />
->>>>>>> 9962304c72697a3e32f97aa63fde38317393e61c
                         </div>
 
-                        <UpsertInput
-                            type={'date'}
+                        <UpsertDate
+                            max={form.today}
                             name={'start'}
                             label={'Fecha Inicio'}
                             property={'start'}
                             formState={form}
                             setFormState={setFormState}
                         />
-
-                        {form.isCurrent ? null : (
-                            <UpsertInput
-                                type={'date'}
-                                name={'end'}
-                                label={'Fecha Fin'}
-                                property={'end'}
-                                formState={form}
-                                setFormState={setFormState}
-                            />
-                        )}
-                    </div>
+                    </FlexCenter>
+                    {form.isCurrent ? null : (
+                        <UpsertDate
+                            min={form.start}
+                            max={form.today}
+                            name={'end'}
+                            label={'Fecha Fin'}
+                            property={'end'}
+                            formState={form}
+                            setFormState={setFormState}
+                        />
+                    )}
                 </Boxed>
 
                 <div className="w90 flex end al-center gap">
