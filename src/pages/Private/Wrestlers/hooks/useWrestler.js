@@ -5,11 +5,11 @@ import http from '~/services/http.service';
 
 export default function useWrestler(endpoint) {
     const cachedWrestlers = localStorage.getItem('cached__wrestlers');
-    const baseArrayWrestlers = cachedWrestlers ? JSON.parse(cachedWrestlers) : [];
+    // const baseArrayWrestlers = cachedWrestlers ? JSON.parse(cachedWrestlers) : [];
     const [wrestlerList, setWrestlerList] = React.useState({
-        list: baseArrayWrestlers,
-        original: baseArrayWrestlers,
-        loading: false,
+        list: [],
+        original: [],
+        loading: true, 
     });
     const [wrestlerFilters, setWrestlerFilters] = React.useState({ name: '', show: false, hasFilters: false });
 
@@ -37,6 +37,13 @@ export default function useWrestler(endpoint) {
         const filteredList = wrestlerList.original.filter(
             wrestler => show && wrestler.name.toLowerCase().includes(name.toLowerCase()),
         );
+        console.log({
+            show,
+            name,
+            filteredList,
+            original: wrestlerList.original,
+
+        });
         setWrestlerList({ ...wrestlerList, list: filteredList });
     };
 
