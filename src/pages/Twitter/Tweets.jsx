@@ -16,8 +16,8 @@ export default function Tweets() {
 
     return (
         <div className="twitter__module">
-            {AdminButton}
             <div className="super-container">
+                {AdminButton}
                 <div className="cctt">{tweets.length > 0 ? tweets.map(tweet => <Tweet key={tweet.id} tweet={tweet} replies={tweet.replies.length} />) : <Spinner />}</div>
             </div>
         </div>

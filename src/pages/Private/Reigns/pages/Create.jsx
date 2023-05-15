@@ -1,46 +1,39 @@
 import React from 'react';
-import useCreateReign, { ITEMS } from '../hooks/useCreateReign';
-import { ComponentSpinner } from '~/components/Spinner/Spinner';
-import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import { Boxed } from '~/components/Box/Boxed';
+import useCreateReign, { ITEMS } from '../hooks/useCreateReign';
+import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import TeamPanel from './TeamPanel';
-import UpsertInput, { UpsertDate, UpsertToggle } from '~/components/Forms/FormInputs';
+import { UpsertDate, UpsertToggle } from '~/components/Forms/FormInputs';
 import { FlexCenter } from '~/components/Layouts/Flex';
+import { LengthLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
+import { ButtonCTA } from '~/components/Buttons/Buttons';
 
 export default function Create() {
     const { createDatas, form, setFormState, getItemID, submitForm } = useCreateReign();
+    const isTagTeam = Boolean(createDatas.selectedChampionship.tag);
 
     const CustomSelectChampions =
-        createDatas.championships.length > 0 ? (
+        <LengthLoading list={createDatas.championships}>
             <CustomSelect
+                zindex={12}
                 nameProp={'name'}
                 imageProp={'image'}
                 list={createDatas.championships}
                 getIdCallback={id => getItemID(id, ITEMS.CHAMPIONSHIP)}
             />
-        ) : (
-            <ComponentSpinner />
-        );
+        </LengthLoading>
 
-    const isTagTeam = Boolean(createDatas.selectedChampionship.tag);
 
     const CustomSelectWrestlers =
-        createDatas.wrestlers.length > 0 ? (
+        <LengthLoading list={createDatas.wrestlers}>
             <CustomSelect
+                zindex={10}
                 nameProp={'name'}
                 imageProp={'image'}
                 list={createDatas.wrestlers}
                 getIdCallback={id => getItemID(id, ITEMS.WRESTLER)}
             />
-        ) : (
-            <ComponentSpinner />
-        );
-
-    console.log({
-        createDatas,
-        form,
-        isCurrent: form.isCurrent,
-    });
+        </LengthLoading>
 
     return (
         <>
@@ -55,22 +48,14 @@ export default function Create() {
                     </FlexCenter>
                 </Boxed>
 
-                {!isTagTeam ? (
+                <NullableLoading condition={!isTagTeam}>
                     <Boxed title={'Luchador'}>
                         <FlexCenter justify={'center'} align={'start'} gap={'small'}>
                             {CustomSelectWrestlers}
                         </FlexCenter>
                     </Boxed>
-                ) : null}
+                </NullableLoading>
 
-                {isTagTeam ? (
-                    <TeamPanel
-                        createDatas={createDatas}
-                        form={form}
-                        setFormState={setFormState}
-                        getTeamID={id => getItemID(id, ITEMS.TEAM)}
-                    />
-                ) : null}
 
                 <Boxed title={'Datos del reinado'}>
                     <FlexCenter justify={'center'} align={'start'} direction={'row'} className={'spaced'}>
@@ -90,7 +75,9 @@ export default function Create() {
                             setFormState={setFormState}
                         />
                     </FlexCenter>
-                    {form.isCurrent ? null : (
+
+
+                    <NullableLoading condition={!form.isCurrent}>
                         <UpsertDate
                             min={form.start}
                             max={form.today}
@@ -100,13 +87,21 @@ export default function Create() {
                             formState={form}
                             setFormState={setFormState}
                         />
-                    )}
+                    </NullableLoading>
                 </Boxed>
 
+                <NullableLoading condition={isTagTeam}>
+                    <TeamPanel
+                        createDatas={createDatas}
+                        form={form}
+                        setFormState={setFormState}
+                        getTeamID={id => getItemID(id, ITEMS.TEAM)}
+                    />
+                </NullableLoading>
+
+
                 <div className="w90 flex end al-center gap">
-                    <button type="submit" className="cta" disabled={createDatas.loading}>
-                        Crear
-                    </button>
+                    <ButtonCTA type={'submit'} disabled={createDatas.loading} text={'Crear'} />
                 </div>
             </form>
         </>

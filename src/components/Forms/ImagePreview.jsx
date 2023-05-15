@@ -1,6 +1,6 @@
 export default function ImagePreview({ image, name, maxW, maxH, px = false }) {
-    const maxWidth = Number(maxW) ? Number(maxW) : 30;
-    const maxHeight = Number(maxH) ? Number(maxH) : 30;
+    const maxWidth = Number(maxW) ? Number(maxW) : 100;
+    const maxHeight = Number(maxH) ? Number(maxH) : 100;
     const convertToPx = max => px ? max : `${max}%`;
 
     const finalImage = image || '/noimage.jpg';
@@ -20,5 +20,7 @@ export default function ImagePreview({ image, name, maxW, maxH, px = false }) {
         height: convertToPx(maxHeight),
     }
 
-    return <img style={style} className="rounded-preview-icon" src={finalImage} alt={alt} title={title} onError={errorHandler} />;
+    return <div className="wrestler-card__image">
+        <img style={style} className="rounded-preview-icon" src={finalImage} alt={alt} title={title} onError={errorHandler} />
+    </div>
 }

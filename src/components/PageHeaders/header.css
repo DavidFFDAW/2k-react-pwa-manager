@@ -17,7 +17,7 @@ header {
 }
 header .admin-header {
     padding: 10px 20px;
-    background-color: #2d2d2d;
+    background-color: var(--dark2);
     color: #ffffff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }

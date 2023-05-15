@@ -2,6 +2,7 @@ import React from 'react';
 import { DangerButton } from '~/components/Buttons/Buttons';
 import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import UpsertInput from '~/components/Forms/FormInputs';
+import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import ScrollableArea from '~/components/Scrollable/ScrollableArea';
 
 function MembersList({ form, setFormState }) {
@@ -14,21 +15,21 @@ function MembersList({ form, setFormState }) {
 
     return (
         <>
-            {form.createTeam.members.length > 0
-                ? form.createTeam.members.map((member, index) => {
-                      const img = member.image ? member.image : '/noimage.jpg';
+            <NullableLoading condition={form.createTeam.members.length > 0}>
+                {form.createTeam.members.map((member, index) => {
+                    const img = member.image ? member.image : '/noimage.jpg';
 
-                      return (
-                          <div key={index} className="w1 scrollable-item flex between al-center gap">
-                              <div className="flex start al-center gap">
-                                  <div className="backgroundimage" style={{ backgroundImage: `url(${img})` }}></div>
-                                  <p>{member.name}</p>
-                              </div>
-                              <DangerButton text={<>&times;</>} onClick={() => removeTeamMember(member.id)} />
-                          </div>
-                      );
-                  })
-                : null}
+                    return (
+                        <div key={index} className="w1 scrollable-item flex between al-center gap">
+                            <div className="flex start al-center gap">
+                                <div className="backgroundimage" style={{ backgroundImage: `url(${img})` }}></div>
+                                <p>{member.name}</p>
+                            </div>
+                            <DangerButton text={<>&times;</>} onClick={() => removeTeamMember(member.id)} />
+                        </div>
+                    );
+                })}
+            </NullableLoading>
         </>
     );
 }
@@ -68,7 +69,7 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
                     }
                     required={true}
                 />
-                <UpsertInput
+                {/* <UpsertInput
                     type={'number'}
                     label={'Media de equipo'}
                     name={'number'}
@@ -78,7 +79,7 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
                         setFormState(p => ({ ...p, createTeam: { ...p.createTeam, overall: ev.target.value } }))
                     }
                     required={true}
-                />
+                /> */}
             </div>
 
             <div className="w1 flex between al-center column gap-smaller team-members-list-container">
@@ -87,7 +88,11 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
                 </ScrollableArea>
             </div>
 
-            {form.createTeam.members.length < 5 ? (
+            <ConditionalLoading condition={form.createTeam.members.length < 5} fallback={
+                <div className="w1 flex center al-center">
+                    <p>Los equipos no deben tener más de 5 miembros</p>
+                </div>
+            }>
                 <div className="w1 flex center al-center column gap">
                     <CustomSelect
                         nameProp={'name'}
@@ -100,11 +105,7 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
                         Agregar
                     </button>
                 </div>
-            ) : (
-                <div className="w1 flex center al-center">
-                    <p>Los equipos no deben tener más de 5 miembros</p>
-                </div>
-            )}
+            </ConditionalLoading>
         </>
     );
 }

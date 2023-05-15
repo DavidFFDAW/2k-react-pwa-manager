@@ -2,7 +2,7 @@ import useCustomSelect from './useCustomSelect';
 import CustomSelectList from './CustomSelectList';
 import './customselect.css';
 
-export default function CustomSelect({ list, imageProp, nameProp, getIdCallback, value, deleteText }) {
+export default function CustomSelect({ zindex = 10, list, imageProp, nameProp, getIdCallback, value, deleteText }) {
     const { showList, search, searchResults, handleChangeSearch, handleSetShowList, handleSelect, setListVisible } =
         useCustomSelect(list, nameProp, imageProp, value, deleteText);
 
@@ -14,7 +14,7 @@ export default function CustomSelect({ list, imageProp, nameProp, getIdCallback,
         : handleSelect;
 
     const List = Boolean(showList) ? (
-        <CustomSelectList select={handleSelectCustom} list={searchResults} image={imageProp} name={nameProp} />
+        <CustomSelectList select={handleSelectCustom} zindex={zindex} list={searchResults} image={imageProp} name={nameProp} />
     ) : null;
     const taptap = !showList ? <i className="open-list-icon"></i> : <i className="close-list-icon"></i>;
 

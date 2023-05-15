@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function WrestlerCustomSelectList({ list, image, name, select }) {
+export default function WrestlerCustomSelectList({ zindex, list, image, name, select }) {
     return (
-        <div className='custom-select-result-listing'>
+        <div className='custom-select-result-listing' style={{ zIndex: zindex }}>
             {list.map((item, index) => {
                 const imageItem = item[image];
                 const nameItem = item[name];

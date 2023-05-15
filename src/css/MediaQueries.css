@@ -18,4 +18,7 @@
         flex-direction: column;
         gap: 10px;
     }
+    .wrestler-card__image {
+        width: 50%;
+    }
 }

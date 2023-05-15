@@ -1,17 +1,15 @@
 import { useParams } from 'react-router-dom';
 import useWrestler from './hooks/useWrestler';
 import { SimplePagination } from '~/components/Pagination/Pagination';
-import Spinner from '~/components/Spinner/Spinner';
 import WrestlerCard from '~/components/Wrestler/WrestlerCard';
 import CreateButton from '~/components/Buttons/CreateButton';
+import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
+import { ComponentSpinner } from '~/components/Spinner/Spinner';
 
 export default function List({ endpoint }) {
     const { wrestlerList, wrestlerFilters, setShowFilters, changeNameFilters } = useWrestler(endpoint);
     const { page } = useParams();
 
-    if (wrestlerList.loading) {
-        return <Spinner />;
-    }
 
     const wrestlersPerPage = 10;
     const currentPage = page || 1;
@@ -28,11 +26,11 @@ export default function List({ endpoint }) {
         <>
             <div className="w1 flex between column al-center gap">
                 <div className="w1 sticky sticky-filters">
-                    <button className="w1 filters" onClick={setShowFilters}>
+                    <button className="w90 filters" onClick={setShowFilters}>
                         {filtersButtonText}
                     </button>
-                    {wrestlerFilters.show && (
-                        <div className="w1 filters-block">
+                    <NullableLoading condition={wrestlerFilters.show}>
+                        <div className="w90 filters-block">
                             <div className="w1 flex center al-center filters-block__content">
                                 <div className="w90 flex column al-start gap-5 filters">
                                     <label className="label">Nombre</label>
@@ -53,15 +51,18 @@ export default function List({ endpoint }) {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    </NullableLoading>
                 </div>
-                <div className="w1 list-block overflow-y">
-                    <div className="wrestlers-list items-listing">
-                        {sliced.map(wrestler => (
-                            <WrestlerCard key={wrestler.id} wrestler={wrestler} />
-                        ))}
+
+                <ConditionalLoading condition={!wrestlerList.loading} fallback={<ComponentSpinner />}>
+                    <div className="w1 list-block overflow-y">
+                        <div className="wrestlers-list items-listing">
+                            {sliced.map(wrestler => (
+                                <WrestlerCard key={wrestler.id} wrestler={wrestler} />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                </ConditionalLoading>
 
                 <CreateButton endpoint={'wrestlers/create/new'} />
 
@@ -74,7 +75,7 @@ export default function List({ endpoint }) {
                         goUp
                     />
                 </div>
-            </div>
+            </div >
         </>
     );
 }
