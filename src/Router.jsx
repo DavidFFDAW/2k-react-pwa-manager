@@ -20,20 +20,22 @@ export function Router() {
         <>
             <BrowserRouter>
                 {Headers}
-                <RoutesWithNotFound>
-                    <Route path="/" element={<HomeDashboard />} />
-                    <Route path={PublicRoutes.REGISTER} element={<Login />} />
+                <main className='responsive-lockup' style={{ minHeight: '99vh' }}>
+                    <RoutesWithNotFound>
+                        <Route path="/" element={<HomeDashboard />} />
+                        <Route path={PublicRoutes.REGISTER} element={<Login />} />
 
-                    <Route element={<LoginAuthGuard />}>
-                        <Route path={PublicRoutes.LOGIN} element={<Login />} />
-                    </Route>
+                        <Route element={<LoginAuthGuard />}>
+                            <Route path={PublicRoutes.LOGIN} element={<Login />} />
+                        </Route>
 
-                    <Route path={'/twitter/*'} element={<TwitterRouting />} />
+                        <Route path={'/twitter/*'} element={<TwitterRouting />} />
 
-                    <Route element={<AuthGuard privateValidation={true} />}>
-                        <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
-                    </Route>
-                </RoutesWithNotFound>
+                        <Route element={<AuthGuard privateValidation={true} />}>
+                            <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
+                        </Route>
+                    </RoutesWithNotFound>
+                </main>
             </BrowserRouter>
         </>
     );
