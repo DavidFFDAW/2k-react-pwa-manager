@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AuthGuard, LoginAuthGuard } from './guards/auth.guard';
 import RoutesWithNotFound from './components/RoutesWithNotFound';
@@ -15,6 +15,14 @@ export function Router() {
     const { storedUser } = useUserStorage();
 
     const Headers = storedUser.id ? <AdminHeaders /> : null;
+
+    useEffect(() => {
+        const body = document.body;
+        body.classList.add(storedUser.theme);
+        return () => {
+            body.classList.remove(storedUser.theme);
+        };
+    }, [storedUser]);
 
     return (
         <>

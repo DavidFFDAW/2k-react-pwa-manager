@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 8;
+    z-index: 999;
 }
 .admin-header-title {
     font-size: 18px;
@@ -58,7 +58,7 @@ header .menu-content ul.list-menu {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 0 0 0 5px;
     padding: 10px 0;
-    z-index: 99;
+    z-index: 99999;
     animation: appear 0.3s ease;
 }
 header .menu-content ul.list-menu li {
@@ -74,7 +74,7 @@ header .menu-content ul.list-menu li ul.submenu {
     list-style: disclosure-closed;
 }
 header .menu-content ul.list-menu li ul.submenu li {
-    color: #1da1f2;
+    color: var(--blue);
 }
 header .menu-content ul.list-menu li ul.submenu li a.unlink {
     color: #363636;

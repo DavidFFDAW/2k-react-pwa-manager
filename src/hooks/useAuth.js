@@ -33,15 +33,22 @@ export function useAuth() {
         });
     }, []);
 
+    const changeColorThemeProp = useCallback(colorTheme => { 
+        setStoredUser(user => ({ ...user, theme: colorTheme }));
+        persistUserObject({ ...storedUser, theme: colorTheme });
+    });
+
     const logOut = useCallback(() => {
         tryPersistUser({});
         navigate(`/${PublicRoutes.LOGIN}`, { replace: true });
     }, [navigate]);
 
     return {
+        colorTheme: storedUser.theme,
         tryLogInUser,
         storedUser,
         setStoredUser,
+        changeColorThemeProp,
         logOut,
     };
 }

@@ -66,12 +66,12 @@ export function UpsertTextArea({ label, property, formState, setFormState, requi
     );
 }
 
-export function UpsertToggle({ toggleCallback, label }) {
+export function UpsertToggle({ toggleCallback, label, checked }) {
     return (
         <div className="custom-toggle-switch">
             <label className="form-label block">{label}</label>
             <label className="switch block">
-                <input type="checkbox" name="isCurrent" onChange={toggleCallback} />
+                <input type="checkbox" name="isCurrent" checked={checked || false} onChange={toggleCallback} />
                 <span className="slider round"></span>
             </label>
         </div>
