@@ -9,9 +9,8 @@ export default function useWrestler(endpoint) {
     const [wrestlerList, setWrestlerList] = React.useState({
         list: [],
         original: [],
-        loading: true, 
+        loading: true,
     });
-    const [wrestlerFilters, setWrestlerFilters] = React.useState({ name: '', show: false, hasFilters: false });
 
     const getWrestlers = () => {
         return http.get(AppConfig.API_BASE_URL + `wrestlers/${endpoint}`).then(response => {
@@ -32,29 +31,5 @@ export default function useWrestler(endpoint) {
         }
     }, [endpoint]);
 
-    const setFilteredWrestlerList = name => {
-        const { show } = wrestlerFilters;
-        const filteredList = wrestlerList.original.filter(
-            wrestler => show && wrestler.name.toLowerCase().includes(name.toLowerCase()),
-        );
-        console.log({
-            show,
-            name,
-            filteredList,
-            original: wrestlerList.original,
-
-        });
-        setWrestlerList({ ...wrestlerList, list: filteredList });
-    };
-
-    const setShowFilters = () => {
-        setWrestlerFilters(filters => ({ ...filters, show: !filters.show }));
-    };
-
-    const changeNameFilters = name => {
-        setWrestlerFilters(filters => ({ ...filters, name, hasFilters: Boolean(name) }));
-        setFilteredWrestlerList(name);
-    };
-
-    return { wrestlerList, wrestlerFilters, setShowFilters, changeNameFilters };
+    return { wrestlerList, setWrestlerList };
 }

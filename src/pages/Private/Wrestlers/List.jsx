@@ -5,11 +5,16 @@ import WrestlerCard from '~/components/Wrestler/WrestlerCard';
 import CreateButton from '~/components/Buttons/CreateButton';
 import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
+import useWrestlerFilters from './hooks/useFilters';
 
 export default function List({ endpoint }) {
-    const { wrestlerList, wrestlerFilters, setShowFilters, changeNameFilters } = useWrestler(endpoint);
-    const { page } = useParams();
+    const { wrestlerList, setWrestlerList } = useWrestler(endpoint);
+    const { wrestlerFilters, setShowFilters, changeNameFilters } = useWrestlerFilters({
+        wrestlersList: wrestlerList,
+        stateSetter: setWrestlerList,
+    });
 
+    const { page } = useParams();
 
     const wrestlersPerPage = 10;
     const currentPage = page || 1;
@@ -75,7 +80,7 @@ export default function List({ endpoint }) {
                         goUp
                     />
                 </div>
-            </div >
+            </div>
         </>
     );
 }
