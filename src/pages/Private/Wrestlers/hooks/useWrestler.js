@@ -10,6 +10,9 @@ export default function useWrestler(endpoint) {
         list: [],
         original: [],
         loading: true,
+        hasFilters: false,
+        pagination: true,
+        wrestlersByPage: 10,
     });
 
     const getWrestlers = () => {
@@ -23,13 +26,20 @@ export default function useWrestler(endpoint) {
 
     React.useEffect(() => {
         getWrestlers().then(wrestlers => {
-            setWrestlerList({ list: wrestlers, original: wrestlers, loading: false });
+            setWrestlerList(prev => ({ ...prev, list: wrestlers, original: wrestlers, loading: false }));
         });
 
         if (!cachedWrestlers) {
             localStorage.setItem('cached__wrestlers', JSON.stringify(wrestlerList.list));
         }
     }, [endpoint]);
+
+    const setWrestlerPaginatedList = newObject => {
+        setWrestlerList(prev => ({
+            ...prev,
+            ...newObject,
+        }));
+    };
 
     return { wrestlerList, setWrestlerList };
 }

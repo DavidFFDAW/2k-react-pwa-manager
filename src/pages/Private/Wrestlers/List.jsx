@@ -6,63 +6,34 @@ import CreateButton from '~/components/Buttons/CreateButton';
 import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import useWrestlerFilters from './hooks/useFilters';
+import WrestlerFilters from './components/WrestlerFilters';
 
 export default function List({ endpoint }) {
     const { wrestlerList, setWrestlerList } = useWrestler(endpoint);
-    const { wrestlerFilters, setShowFilters, changeNameFilters } = useWrestlerFilters({
-        wrestlersList: wrestlerList,
-        stateSetter: setWrestlerList,
-    });
-
     const { page } = useParams();
 
-    const wrestlersPerPage = 10;
+    const wrestlersPerPage = wrestlerList.wrestlersByPage;
     const currentPage = page || 1;
 
     const maxPages = Math.round(wrestlerList.list.length / wrestlersPerPage);
     const offset = (currentPage - 1) * wrestlersPerPage;
-    const sliced = Boolean(wrestlerFilters.hasFilters)
+    const sliced = Boolean(wrestlerList.hasFilters)
         ? wrestlerList.list.slice(0, wrestlersPerPage + offset)
         : wrestlerList.list.slice(offset, wrestlersPerPage + offset);
 
-    const filtersButtonText = Boolean(wrestlerFilters.show) ? 'Ocultar filtros' : 'Mostrar filtros';
+    const list = wrestlerList.pagination ? sliced : wrestlerList.list;
 
     return (
         <>
             <div className="w1 flex between column al-center gap">
                 <div className="w1 sticky sticky-filters">
-                    <button className="w90 filters" onClick={setShowFilters}>
-                        {filtersButtonText}
-                    </button>
-                    <NullableLoading condition={wrestlerFilters.show}>
-                        <div className="w90 filters-block">
-                            <div className="w1 flex center al-center filters-block__content">
-                                <div className="w90 flex column al-start gap-5 filters">
-                                    <label className="label">Nombre</label>
-
-                                    <div className="w1 flex start gap-smaller">
-                                        <input
-                                            className="w1"
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            value={wrestlerFilters.name}
-                                            onChange={ev => changeNameFilters(ev.target.value)}
-                                        />
-                                        <button className="unbutton" onClick={_ => changeNameFilters('')}>
-                                            X
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </NullableLoading>
+                    <WrestlerFilters wrestlerList={wrestlerList} setWrestlerList={setWrestlerList} />
                 </div>
 
                 <ConditionalLoading condition={!wrestlerList.loading} fallback={<ComponentSpinner />}>
                     <div className="w1 list-block overflow-y">
                         <div className="wrestlers-list items-listing">
-                            {sliced.map(wrestler => (
+                            {list.map(wrestler => (
                                 <WrestlerCard key={wrestler.id} wrestler={wrestler} />
                             ))}
                         </div>
@@ -71,15 +42,17 @@ export default function List({ endpoint }) {
 
                 <CreateButton endpoint={'wrestlers/create/new'} />
 
-                <div className="w1 pagination-block">
-                    <SimplePagination
-                        page={page}
-                        maxPages={maxPages}
-                        currentPage={currentPage}
-                        baseUrl={`/admin/wrestlers/${endpoint}`}
-                        goUp
-                    />
-                </div>
+                <NullableLoading condition={wrestlerList.pagination}>
+                    <div className="w1 pagination-block">
+                        <SimplePagination
+                            page={page}
+                            maxPages={maxPages}
+                            currentPage={currentPage}
+                            baseUrl={`/admin/wrestlers/${endpoint}`}
+                            goUp
+                        />
+                    </div>
+                </NullableLoading>
             </div>
         </>
     );
