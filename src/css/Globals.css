@@ -189,6 +189,11 @@ button.cta {
     font-weight: 500;
     text-transform: uppercase;
 }
+button.cta-secondary {
+    background-color: transparent;
+    color: #111010;
+    border: 1px solid #111010;
+}
 
 .btn.button.action-button {
     padding: 5px 10px;
@@ -207,6 +212,12 @@ button.btn.danger {
     background-color: #930a0a;
     color: #ffffff;
 }
+button.filters {
+    background-color: #fff;
+}
+body.dark-theme button.filters {
+    background-color: var(--dark2);
+}
 
 .wrestler-card__image {
     width: 25%;
@@ -224,11 +235,14 @@ img.rounded-preview-icon,
     left: 0;
     display: flex;
     flex-direction: column;
-    background-color: var(--dark);
+    background-color: transparent;
     border-radius: var(--borderRadius);
     align-items: center;
     padding: 6px 0;
     gap: 10px;
+}
+body.dark-theme .sticky-filters {
+    background-color: var(--dark);
 }
 .filters-block {
     border-radius: var(--borderRadius);
@@ -246,7 +260,7 @@ img.rounded-preview-icon,
     color: #ffffff;
 }
 .dark-theme .sticky-filters button {
-    background-color: var(--dark2);
+    /* background-color: var(--dark2); */
     color: #ffffff;
 }
 .boxed {
@@ -263,7 +277,7 @@ img.rounded-preview-icon,
 .dark-theme .boxed * {
     color: var(--light);
 }
-.dark-theme .boxed input, 
+.dark-theme .boxed input,
 .dark-theme .boxed select {
     background-color: var(--dark);
     color: #ffffff;
@@ -273,10 +287,10 @@ img.rounded-preview-icon,
     filter: invert(1);
 }
 
-input.date-input[type="date"] {
+input.date-input[type='date'] {
     position: relative;
 }
-input.date-input[type="date"]::-webkit-calendar-picker-indicator {
+input.date-input[type='date']::-webkit-calendar-picker-indicator {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -318,7 +332,9 @@ input.date-input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .pad,
 .padded,
-.spaced,
+.spaced {
+    padding: 20px;
+}
 .space-down {
     padding-bottom: 20px;
 }
@@ -326,7 +342,6 @@ input.date-input[type="date"]::-webkit-calendar-picker-indicator {
 .bounce {
     animation: bounceIn 0.3s ease;
 }
-
 
 /* SCROLL BAR CUSTOM STYLES */
 ::-webkit-scrollbar {

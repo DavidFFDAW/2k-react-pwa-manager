@@ -6,8 +6,8 @@ function Flex({ justify, align, direction, gap, className, style, children }) {
         smaller: 10,
         gap: 35,
     };
-    const justifyClass = justify ? `justify-${justify}` : 'justify-center';
-    const alignClass = align ? `align-${align}` : 'align-center';
+    const justifyClass = justify ? justify : 'center';
+    const alignClass = align ? `${align}` : 'center';
     const directionClass = direction || 'row';
 
     const customGap = gaps[gap] ? gaps[gap] : Number(gap);
