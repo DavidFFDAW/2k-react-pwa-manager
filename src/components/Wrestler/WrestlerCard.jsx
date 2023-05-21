@@ -15,7 +15,7 @@ export default function WrestlerCard({ wrestler }) {
                 <div className="w1 wrestler-center flex center al-center">
                     <div className="w90 flex start al-start gap boxed">
                         <div className="wrestler-card__image flex start al-center column">
-                            <img src={imageSrc} alt={wrestler.name} />
+                            <img src={imageSrc} alt={wrestler.name} width={512} height={512} />
                         </div>
                         <div className="w1 wrestler-card__info">
                             <h3 className="wrestler-card__name">{wrestler.name}</h3>

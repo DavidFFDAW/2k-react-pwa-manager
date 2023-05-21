@@ -5,6 +5,7 @@ import UpsertDatas, { UpsertDatasState, UpsertImages, UpsertTwitter } from './co
 export default function Upsert({ type }) {
     const { id } = useParams();
     const { formState, setFormState, sendForm, deleteWrestler } = useUpsert(type, id);
+    console.log(formState.loading);
 
     return (
         <>

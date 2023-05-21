@@ -18,21 +18,17 @@ export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = 
         <div className="w1 pagination flex between al-center">
             <div className="pagination-previous">
                 {showPrev ? (
-                    <button type="button" className="pagination-button" disabled={!showPrev} onClick={movePageToTop}>
-                        <Link to={`${baseUrl}/page/${pages.prev}`} className="page unlink">
-                            &lt;
-                        </Link>
-                    </button>
+                    <Link to={`${baseUrl}/page/${pages.prev}`} className="page pagination-button" onClick={movePageToTop}>
+                        &lt;
+                    </Link>
                 ) : null}
             </div>
 
             <div className="pagination-next">
                 {showNext ? (
-                    <button type="button" className="pagination-button" onClick={movePageToTop}>
-                        <Link to={`${baseUrl}/page/${pages.next}`} className="unlink">
-                            &gt;
-                        </Link>
-                    </button>
+                    <Link to={`${baseUrl}/page/${pages.next}`} className="page pagination-button" onClick={movePageToTop}>
+                        &gt;
+                    </Link>
                 ) : null}
             </div>
         </div>

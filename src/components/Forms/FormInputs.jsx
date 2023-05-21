@@ -1,3 +1,7 @@
+import { UnbuttonButton } from '../Buttons/Buttons';
+import { FlexStart } from '../Layouts/Flex';
+import { NullableLoading } from '../Loading/LoadingComponent';
+import { ComponentSpinner } from '../Spinner/Spinner';
 import './toggle.css';
 
 export default function UpsertInput({
@@ -18,15 +22,20 @@ export default function UpsertInput({
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
-            <input
-                className="w1"
-                maxLength={max || 100}
-                type={type || 'text'}
-                name={property}
-                required={required}
-                value={value}
-                onChange={change}
-            />
+            <div className="input-wrapper-container-div relative">
+                <input
+                    className="w1"
+                    maxLength={max || 100}
+                    type={type || 'text'}
+                    name={property}
+                    required={required}
+                    value={value}
+                    onChange={change}
+                />
+                <NullableLoading condition={formState.loading}>
+                    <ComponentSpinner className="input-loading-spinner" />
+                </NullableLoading>
+            </div>
         </div>
     );
 }
@@ -37,15 +46,22 @@ export function UpsertSelect({ children, label, property, formState, setFormStat
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
-            <select
-                className="w1 custom"
-                name={property}
-                value={value}
-                required={required}
-                onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
-            >
-                {children}
-            </select>
+
+            <div className="input-wrapper-container-div relative">
+                <select
+                    className="w1 custom"
+                    name={property}
+                    value={value}
+                    required={required}
+                    onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
+                >
+                    {children}
+                </select>
+
+                <NullableLoading condition={formState.loading}>
+                    <ComponentSpinner className="input-loading-spinner" />
+                </NullableLoading>
+            </div>
         </div>
     );
 }
@@ -92,6 +108,47 @@ export function UpsertDate({ min, max, label, property, formState, setFormState,
                 value={formState[`${property}`] || ''}
                 onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
             />
+        </div>
+    );
+}
+
+export function InputWithDeleteButton({ type, max, label, property, formState, setFormState, required = false }) {
+    const defaultChange = ev => setFormState({ ...formState, [property]: ev.target.value });
+    return (
+        <FlexStart align={'center'} gap="smaller">
+            <div className="w1 flex column gap-5">
+                <label className="label">{label}</label>
+                <div className="flex al-center gap-smaller">
+                    <input
+                        className="w1"
+                        maxLength={max || 100}
+                        type={type || 'text'}
+                        name={property}
+                        required={required}
+                        value={formState[`${property}`] || ''}
+                        onChange={defaultChange}
+                    />
+                    <UnbuttonButton text={<>&times;</>} onClick={_ => setFormState(prev => ({ ...prev, [property]: '' }))} />
+                </div>
+            </div>
+        </FlexStart>
+    );
+}
+
+export function CheckboxInput({ label, property, formState, defaultChecked, setFormState }) {
+    const checked = formState[`${property}`] || Boolean(defaultChecked);
+
+    return (
+        <div className="w1">
+            <label className="flex gap-5">
+                <input
+                    type="checkbox"
+                    name={property}
+                    checked={checked}
+                    onChange={_ => setFormState(previous => ({ ...previous, pagination: !previous.pagination }))}
+                />
+                {label}
+            </label>
         </div>
     );
 }

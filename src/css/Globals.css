@@ -22,6 +22,16 @@ body.dark-theme {
     background-color: #44475a;
     background-image: none;
 }
+.title.error {
+    width: 90%;
+    text-align: center;
+    text-emphasis: none;
+    color: #111010;
+    font-size: 20px;
+}
+body.dark-theme .title.error {
+    color: #f2f2f2;
+}
 .pointer {
     cursor: pointer;
 }
@@ -66,16 +76,9 @@ body.dark-theme {
     outline: none;
     cursor: pointer;
 }
-.pagination .pagination-button {
-    background-color: #f7f7f7;
-    color: #2f2f2f;
-}
-.pagination .pagination-button {
+body.dark-theme .pagination .pagination-button {
     background-color: var(--dark2);
-    color: #2f2f2f;
-}
-.pagination .pagination-button a {
-    color: #ffffff;
+    color: #fff;
 }
 /* .notistack-notification-popup {
     background-color: #fff !important;
@@ -323,9 +326,12 @@ input.date-input[type='date']::-webkit-calendar-picker-indicator {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 600;
     animation: appear 0.3s ease;
+}
+body.dark-theme .create-new-button {
+    background: var(--dark);
 }
 .create-new-button .unlink {
     color: #ffffff;

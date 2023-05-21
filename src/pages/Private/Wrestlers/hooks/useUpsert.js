@@ -6,10 +6,11 @@ import { WrestlerDataModel } from '~/constants/Wrestler';
 import useHttp from '~/hooks/useHttp';
 
 export default function useUpsert(type, id) {
+    const initialState = { ...WrestlerDataModel, loading: type === TYPES.UPDATE };
     const wrestlerListRoute = localStorage.getItem('previousLocation') || '/admin/wrestlers';
-    const { get, post, deleteReq } = useHttp();
     const navigate = useNavigate();
-    const [formState, setFormState] = React.useState(WrestlerDataModel);
+    const { get, post, deleteReq } = useHttp();
+    const [formState, setFormState] = React.useState(initialState);
 
     const getWrestlerSingleInformation = () => {
         return get(AppConfig.API_BASE_URL + `wrestlers/single/${id}`);
@@ -18,7 +19,11 @@ export default function useUpsert(type, id) {
     if (type === TYPES.UPDATE) {
         React.useEffect(() => {
             getWrestlerSingleInformation().then(wrestler => {
-                setFormState(wrestler);
+                setFormState(pr => ({
+                    ...pr,
+                    ...wrestler,
+                    loading: false,
+                }));
             });
         }, [id]);
     }

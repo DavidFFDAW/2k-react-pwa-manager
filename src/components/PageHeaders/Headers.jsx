@@ -11,13 +11,25 @@ export function AdminHeaders() {
         setShowMenu(previous => !previous);
     };
 
+    const closeMenu = _ => {
+        if (Boolean(showMenu)) {
+            setShowMenu(false);
+        }
+    };
+
     const navigate = useNavigate();
 
     return (
         <>
             <header className="sticky-header">
                 <div className="admin-header flex between al-center gap">
-                    <button className="unbutton" style={{ color: '#fff' }} role="button" type="button" onClick={_ => navigate(-1)}>
+                    <button
+                        className="unbutton"
+                        style={{ color: '#fff' }}
+                        role="button"
+                        type="button"
+                        onClick={_ => navigate(-1)}
+                    >
                         ←
                     </button>
                     <Link className="block" to={'/admin'}>
@@ -31,7 +43,7 @@ export function AdminHeaders() {
                 </div>
                 {showMenu && (
                     <div className="menu-content flex end al-center gap-smaller">
-                        <AdminMenuContent closeMenu={setMenu} />
+                        <AdminMenuContent closeMenu={closeMenu} />
                     </div>
                 )}
             </header>

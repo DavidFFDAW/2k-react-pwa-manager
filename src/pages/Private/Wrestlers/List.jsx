@@ -7,6 +7,7 @@ import { ConditionalLoading, NullableLoading } from '~/components/Loading/Loadin
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import useWrestlerFilters from './hooks/useFilters';
 import WrestlerFilters from './components/WrestlerFilters';
+import { FlexCenter } from '~/components/Layouts/Flex';
 
 export default function List({ endpoint }) {
     const { wrestlerList, setWrestlerList } = useWrestler(endpoint);
@@ -17,9 +18,10 @@ export default function List({ endpoint }) {
 
     const maxPages = Math.round(wrestlerList.list.length / wrestlersPerPage);
     const offset = (currentPage - 1) * wrestlersPerPage;
-    const sliced = Boolean(wrestlerList.hasFilters)
-        ? wrestlerList.list.slice(0, wrestlersPerPage + offset)
-        : wrestlerList.list.slice(offset, wrestlersPerPage + offset);
+    // const sliced = Boolean(wrestlerList.hasFilters)
+    //     ? wrestlerList.list.slice(0, wrestlersPerPage + offset)
+    //     : wrestlerList.list.slice(offset, wrestlersPerPage + offset);
+    const sliced = wrestlerList.list.slice(offset, wrestlersPerPage + offset);
 
     const list = wrestlerList.pagination ? sliced : wrestlerList.list;
 
@@ -30,12 +32,32 @@ export default function List({ endpoint }) {
                     <WrestlerFilters wrestlerList={wrestlerList} setWrestlerList={setWrestlerList} />
                 </div>
 
+                <NullableLoading condition={wrestlerList.pagination}>
+                    <div className="w1 pagination-block">
+                        <SimplePagination
+                            page={page}
+                            maxPages={maxPages}
+                            currentPage={currentPage}
+                            baseUrl={`/admin/wrestlers/${endpoint}`}
+                        />
+                    </div>
+                </NullableLoading>
+
                 <ConditionalLoading condition={!wrestlerList.loading} fallback={<ComponentSpinner />}>
                     <div className="w1 list-block overflow-y">
                         <div className="wrestlers-list items-listing">
-                            {list.map(wrestler => (
-                                <WrestlerCard key={wrestler.id} wrestler={wrestler} />
-                            ))}
+                            <ConditionalLoading
+                                condition={list.length > 0}
+                                fallback={
+                                    <FlexCenter>
+                                        <h2 className="title error">No se encontraron resultados para esta búsqueda</h2>
+                                    </FlexCenter>
+                                }
+                            >
+                                {list.map(wrestler => (
+                                    <WrestlerCard key={wrestler.id} wrestler={wrestler} />
+                                ))}
+                            </ConditionalLoading>
                         </div>
                     </div>
                 </ConditionalLoading>
