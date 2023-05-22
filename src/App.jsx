@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
-import { ErrorBoundary } from './components/ErrorBoundary';
+import Spinner from './components/Spinner/Spinner';
 import { UserProvider } from './contexts/user.context';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { SnackbarProvider } from 'notistack';
 import { Router } from './Router';
 import './css/Globals.css';
 import './css/MediaQueries.css';
-import Spinner from './components/Spinner/Spinner';
+import 'animate.css';
 
 function App() {
     return (
