@@ -15,7 +15,7 @@ export default function Spinner() {
 }
 
 export function ComponentSpinner({ className }) {
-    const css = className ? `w1 flex center ${className}` : 'w1 flex center';
+    const css = className ? `w1 flex center component-spinner-ch4478asdw ${className}` : 'w1 flex center component-spinner-ch4478asdw';
 
     return (
         <div className={css}>

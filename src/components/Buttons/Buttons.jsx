@@ -71,6 +71,18 @@ export function DangerButton({ text, type, onClick, disabled = false }) {
         />
     );
 }
+export function BlackButton({ text, type, onClick, disabled = false }) {
+    return (
+        <Button
+            disabled={disabled}
+            text={text}
+            type={type}
+            onClick={onClick}
+            className={'action-button black-color-action'}
+            alt="Action button black"
+        />
+    );
+}
 
 export function GreyButton({ text, type, onClick, disabled = false }) {
     return (
