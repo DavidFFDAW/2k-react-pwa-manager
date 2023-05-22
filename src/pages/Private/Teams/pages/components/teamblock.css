@@ -1,0 +1,48 @@
+.boxed.teams-boxed {
+    padding: 0;
+}
+
+header.team-block-header {
+    background: var(--dark2);
+    border-radius: var(--borderRadius) var(--borderRadius);
+    padding: 20px 25px;
+}
+
+header.team-block-header.active {
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+}
+
+section.team-members-block {
+    padding: 30px 20px;
+    background: #111010;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+}
+
+section.team-members-block .grid.team-members {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+section.team-members-block .grid.team-members .wrestler-team-member {
+    width: 20%;
+}
+
+section.team-members-block .grid.team-members .wrestler-card__image-card {
+    width: 100%;
+}
+
+section.team-members-block .grid.team-members .wrestler-card__image-card img {
+    max-width: 100%;
+    border-radius: 50%;
+    max-height: 140px;
+}

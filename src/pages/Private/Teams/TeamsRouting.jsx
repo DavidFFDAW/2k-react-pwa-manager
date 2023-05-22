@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import RoutesWithNotFound from '~/components/RoutesWithNotFound';
 
-const TeamsList = React.lazy(() => import('./pages/List'));
+const TeamsList = React.lazy(() => import('./pages/TeamsList'));
 // const TeamDetail = React.lazy(() => import('./pages/Detail'));
 // const UpsertPage = React.lazy(() => import('./pages/Upsert'));
 

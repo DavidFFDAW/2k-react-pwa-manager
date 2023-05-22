@@ -1,13 +1,23 @@
-import { useState } from 'react'
-import useAbortRequest from '~/hooks/useAbortRequest';
+import { useEffect, useState } from 'react'
 import useHttp from '~/hooks/useHttp';
 
 export default function useTeams() {
     const http = useHttp();
-    const aborter = useAbortRequest();
-    const [teams, setTeams] = useState([]);
+    const [teams, setTeams] = useState({
+        list: [],
+        loading: true
+    });
 
-    aborter.requestWithAbort(_ => http.APIGet('teams/members').then(setTeams));
+    useEffect(_ => {
+        http.APIGet('teams/members').then(teams => {
+            setTeams(p => ({ ...p, loading: false, list: teams }))
+        });
+
+        return _ => {
+            const abort = new AbortController();
+            abort.abort();
+        }
+    }, [])
 
     return {
         teams,
