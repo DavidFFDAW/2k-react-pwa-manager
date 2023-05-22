@@ -2,23 +2,34 @@
     .custom-totalpage-wallpaper {
         background-image: url('/cody.jpg');
     }
+
     .pagination .pagination-numbers button.pagination-button {
         padding: 0 4px;
         font-size: 12px;
     }
+
     .pagination .pagination-numbers button.pagination-button .unlink {
         color: blue;
     }
+
     a .fixed.btn.got-to-admin {
         position: fixed;
         bottom: 12px;
         right: 12px;
     }
+
     .reigns-team-create-row {
         flex-direction: column;
         gap: 10px;
     }
+
     .wrestler-card__image {
         width: 50%;
+    }
+
+    input,
+    textarea.custom,
+    select.custom {
+        font-size: .9em;
     }
 }
