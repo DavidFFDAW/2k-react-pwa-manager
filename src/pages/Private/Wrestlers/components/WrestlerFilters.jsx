@@ -1,9 +1,11 @@
 import React from 'react';
-import { ButtonCTA, ButtonSecondary } from '~/components/Buttons/Buttons';
+import { BlackButton, ButtonCTA, ButtonSecondary } from '~/components/Buttons/Buttons';
 import { FlexBetween, FlexStart } from '~/components/Layouts/Flex';
 import useWrestlerFilters from '../hooks/useFilters';
 import { NullableLoading } from '~/components/Loading/LoadingComponent';
 import { CheckboxInput, InputWithDeleteButton, UpsertSelect } from '~/components/Forms/FormInputs';
+import { ArrowDown, ArrowUp, FilterIcon } from '~/components/Icons/CommonIcons';
+import { navigateBottomPage, navigateTopPage } from '~/services/navigation.service';
 
 export default function WrestlerFilters({ wrestlerList, setWrestlerList }) {
     const { wrestlerFilters, setWrestlerFilters, setShowFilters, changeNameFilters, resetForm, submitFiltersForm } =
@@ -11,20 +13,32 @@ export default function WrestlerFilters({ wrestlerList, setWrestlerList }) {
             wrestlersList: wrestlerList,
             stateSetter: setWrestlerList,
         });
-    const filtersButtonText = Boolean(wrestlerFilters.show) ? 'Ocultar filtros' : 'Mostrar filtros';
 
-    console.log({
-        wrestlerList,
-    });
     return (
         <>
-            <button className="w90 filters" onClick={setShowFilters}>
-                {filtersButtonText}
-            </button>
+            <NullableLoading condition={!wrestlerFilters.show}>
+                <div className='w90 flex end gap-smaller'>
+                    <button className="filters" onClick={navigateBottomPage}>
+                        <ArrowDown w={20} h={25} />
+                    </button>
+                    <button className="filters" onClick={navigateTopPage}>
+                        <ArrowUp w={20} h={25} />
+                    </button>
+                    <button className="filters" onClick={setShowFilters}>
+                        <FilterIcon w={20} h={25} />
+                    </button>
+
+                </div>
+            </NullableLoading>
             <NullableLoading condition={wrestlerFilters.show}>
-                <form className="w90 filters-block padded" method="GET" onSubmit={submitFiltersForm}>
-                    <div className="w1 flex center column gap-small al-center filters-block__content">
-                        <div className="w1 flex column al-start gap-5 filters">
+                <form className="animate__animated animate__fadeIn w90 filters-block padded" method="GET" onSubmit={submitFiltersForm}>
+                    <header className='box filter-header buttons'>
+                        <BlackButton text={<>&times;</>} onClick={_ => setShowFilters(false)} />
+
+                    </header>
+
+                    <div className="w1 flex center column gap-small padded al-center filters-block__content">
+                        <div className="w1 flex column al-snBlackButtonart gap-5 filters">
                             <InputWithDeleteButton
                                 label={'Nombre'}
                                 type="text"
@@ -34,29 +48,44 @@ export default function WrestlerFilters({ wrestlerList, setWrestlerList }) {
                             />
                         </div>
 
-                        <FlexStart>
+                        <FlexStart align={'center'}>
                             <UpsertSelect
                                 label={'Género'}
                                 formState={wrestlerFilters}
                                 setFormState={setWrestlerFilters}
                                 property={'gender'}
                             >
-                                <option value="">--</option>
+                                <option value="">Todos</option>
                                 <option value="M">Hombre</option>
                                 <option value="F">Mujer</option>
                             </UpsertSelect>
+
                             <UpsertSelect
                                 label={'Marca'}
                                 formState={wrestlerFilters}
                                 setFormState={setWrestlerFilters}
                                 property={'brand'}
                             >
-                                <option value=""></option>
+                                <option value="">Todas</option>
                                 <option value="RAW">RAW</option>
                                 <option value="SD">SmackDown</option>
                                 <option value="AWL">AWL</option>
                             </UpsertSelect>
                         </FlexStart>
+
+                        <UpsertSelect
+                            label={'Resultados'}
+                            formState={wrestlerFilters}
+                            setFormState={setWrestlerFilters}
+                            property={'results_per_page'}
+                        >
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                        </UpsertSelect>
+
+
 
                         <CheckboxInput
                             label={'Mostrar los resultados con paginación'}
