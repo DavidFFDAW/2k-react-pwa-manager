@@ -49,6 +49,7 @@ export default function useDraft(debug) {
             name: selectedWrestler.name,
             image: selectedWrestler.image,
             championship: selectedWrestler.championship,
+            sex: selectedWrestler.sex,
         };
         const listAfterSmackDownSelection = draftedWrestlers.list.filter(wrestler => wrestler.id !== selectedID);
         const rawSelect = chooseRawWrestler(selectedWrestler, listAfterSmackDownSelection);
@@ -103,6 +104,7 @@ export default function useDraft(debug) {
             name: selectedWrestler.name,
             image: selectedWrestler.image,
             championship: selectedWrestler.championship,
+            sex: selectedWrestler.sex,
         };
 
         return {

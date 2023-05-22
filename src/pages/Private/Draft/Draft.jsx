@@ -4,6 +4,7 @@ import { DraftSelect, DraftBrandRoster, DraftButton, DraftDownloadButton } from 
 import DraftPicks from './components/DraftPicks';
 import useDraft from './useDraft';
 import './draft.css';
+import { NullableLoading } from '~/components/Loading/LoadingComponent';
 
 
 export default function Draft() {
@@ -11,9 +12,9 @@ export default function Draft() {
     const { draftedWrestlers, getTheID, chooseOwnerWrestler, hideCurrentRAW, hideCurrentSmackDown }
         = useDraft(false);
 
-    if (draftedWrestlers.loading) {
-        return <ComponentSpinner />;
-    }
+    // if (draftedWrestlers.loading) {
+    //     return <ComponentSpinner />;
+    // }
 
     return (
         <>
@@ -30,11 +31,11 @@ export default function Draft() {
                         <DraftSelect draftedWrestlers={draftedWrestlers} getTheID={getTheID} />
                         <DraftButton draftedWrestlers={draftedWrestlers} chooseOwnerWrestler={chooseOwnerWrestler} />
 
-                        {draftedWrestlers.list.length === 0 && (
+                        <NullableLoading condition={!draftedWrestlers.loading && draftedWrestlers.list.length === 0}>
                             <DraftDownloadButton
                                 draftedWrestlers={draftedWrestlers}
                             />
-                        )}
+                        </NullableLoading>
                     </div>
 
                     <div className="w90 boxed flex center al-center column gap wrestler-upsert-form">

@@ -1,4 +1,6 @@
 import CustomSelect from '~/components/CustomSelect/CustomSelect'
+import { FlexBetween } from '~/components/Layouts/Flex';
+import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent'
 
 export function DraftSelect({ draftedWrestlers, getTheID }) {
     return (
@@ -11,17 +13,19 @@ export function DraftSelect({ draftedWrestlers, getTheID }) {
                 />
             </div>
             <div className="w1 relative flex column al-center gap-small space-down">
-                {draftedWrestlers.list.length > 0 ? (
-                    <CustomSelect
-                        list={draftedWrestlers.list}
-                        nameProp={'name'}
-                        imageProp={'image'}
-                        getIdCallback={getTheID}
-                        deleteText={draftedWrestlers.selected}
-                    />
-                ) : (
-                    <p>No quedan luchadores que seleccionar</p>
-                )}
+                <ConditionalLoading condition={!draftedWrestlers.loading}>
+                    {draftedWrestlers.list.length > 0 ? (
+                        <CustomSelect
+                            list={draftedWrestlers.list}
+                            nameProp={'name'}
+                            imageProp={'image'}
+                            getIdCallback={getTheID}
+                            deleteText={draftedWrestlers.selected}
+                        />
+                    ) : (
+                        <p>No quedan luchadores que seleccionar</p>
+                    )}
+                </ConditionalLoading>
             </div>
         </>
     )
@@ -30,7 +34,7 @@ export function DraftSelect({ draftedWrestlers, getTheID }) {
 export function DraftButton({ draftedWrestlers, chooseOwnerWrestler }) {
     return (
         <>
-            {draftedWrestlers.list.length > 0 ? (
+            <NullableLoading condition={!draftedWrestlers.loading && draftedWrestlers.list.length > 0}>
                 <div className="flex end al-center">
                     <button
                         disabled={!Boolean(draftedWrestlers.smackdown_select.id)}
@@ -41,24 +45,40 @@ export function DraftButton({ draftedWrestlers, chooseOwnerWrestler }) {
                         Seleccionar
                     </button>
                 </div>
-            ) : null
-            }
+            </NullableLoading>
         </>
     )
 }
 
 export function DraftBrandRoster({ draftedWrestlers, brand, imgsrc }) {
+    const roster = draftedWrestlers[brand.toLowerCase()];
+    const maleRoster = roster.filter(item => item.sex === 'M');
+    const femaleRoster = roster.length - maleRoster.length;
+
     return (
         <div className="w1 brand-roster">
-            <header className="gap-small">
-                <span>{draftedWrestlers[brand.toLowerCase()].length}</span>
+            <header className="al-center gap-small">
                 <img src={imgsrc} alt="" />
             </header>
-            <div className="boxed flex center column al-start gap-small">
-                {draftedWrestlers[brand.toLowerCase()].map(wrestler => (
-                    <p key={wrestler.id}>{wrestler.name}</p>
-                ))}
-            </div>
+
+            <section className='w1 flex al-center center column padded'>
+                <FlexBetween align={'center'} gap={'small'}>
+                    <p>Hombres: </p>
+                    <span>{maleRoster.length}</span>
+                </FlexBetween>
+                <FlexBetween align={'center'} gap={'small'}>
+                    <p>Mujeres: </p>
+                    <span>{femaleRoster}</span>
+                </FlexBetween>
+            </section>
+
+            <NullableLoading condition={draftedWrestlers.raw.length > 0}>
+                <div className="boxed clear flex center column al-start gap-small">
+                    {draftedWrestlers[brand.toLowerCase()].map(wrestler => (
+                        <p key={wrestler.id}>{wrestler.name}</p>
+                    ))}
+                </div>
+            </NullableLoading>
         </div>
     )
 }
