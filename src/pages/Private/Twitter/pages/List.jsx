@@ -20,7 +20,7 @@ export default function TweetsList() {
                                     <ImagePreview image={tweet.wrestler_image} name={tweet.wrestler_name} maxW={100} maxH={100} />
                                     <div className="w1 flex column gap-smaller">
                                         <h1 style={{ fontSize: 24 }}>{tweet.wrestler_name}</h1>
-                                        <p style={{ fontSize: 14, wordBreak: 'break-all' }}>{tweet.message}</p>
+                                        <p style={{ fontSize: 14, wordBreak: 'break-word' }}>{tweet.message}</p>
                                         <p className="w1 flex end">{transformDate(tweet.created_at)}</p>
                                     </div>
                                 </div>

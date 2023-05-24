@@ -265,14 +265,15 @@ body.dark-theme button.filters {
 }
 
 .wrestler-card__image {
-    width: 25%;
+    width: 20%;
 }
 
 img.rounded-preview-icon,
 .wrestler-card__image img {
+    width: 110px;
     max-width: 100%;
-    height: auto;
     min-height: 95px;
+    height: 110px;
     object-fit: cover;
     border-radius: 50%;
 }
