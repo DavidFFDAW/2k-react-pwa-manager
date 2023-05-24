@@ -17,7 +17,7 @@ export default function TweetsList() {
                         return (
                             <Link to={`/admin/twitter/tweet/update/${tweet.id}`} key={tweet.id}>
                                 <div className="flex start al-start gap boxed" style={{ margin: '20px 0' }}>
-                                    <ImagePreview image={tweet.wrestler_image} name={tweet.wrestler_name} maxW={100} maxH={100} />
+                                    <ImagePreview image={tweet.wrestler_image} name={tweet.wrestler_name} px maxW={110} maxH={110} />
                                     <div className="w1 flex column gap-smaller">
                                         <h1 style={{ fontSize: 24 }}>{tweet.wrestler_name}</h1>
                                         <p style={{ fontSize: 14, wordBreak: 'break-word' }}>{tweet.message}</p>
