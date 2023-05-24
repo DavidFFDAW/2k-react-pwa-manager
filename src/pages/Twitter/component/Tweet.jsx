@@ -21,7 +21,7 @@ export default function Tweet({ tweet, link = true }) {
         <aside style={{ cursor: 'pointer' }} className="tweet" data-id={tweet.id} onClick={goToTweet}>
             <header className="tweet-header">
                 <div className="tweet-header-avatar">
-                    <img src={tweet.wrestler_image} alt="" />
+                    <img src={tweet.wrestler_image} alt={`${tweet.wrestler_name} twitter pfp`} />
                 </div>
                 <div className="tweet-header-name">
                     <div className="tweet-header-name-username">

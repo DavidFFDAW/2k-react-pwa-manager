@@ -125,14 +125,15 @@ body.dark-theme .twitter__module .tweet {
 }
 
 .twitter__module .tweet .tweet-header .tweet-header-avatar img {
-    max-width: 100%;
-    height: 100%;
+    /* max-width: 100%; */
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
 }
 
 .twitter__module .tweet .tweet-header .tweet-header-avatar {
-    width: 65px;
-    height: auto;
+    /* width: 65px; */
+    /* height: auto; */
     overflow: hidden;
     padding: 5px;
 }
