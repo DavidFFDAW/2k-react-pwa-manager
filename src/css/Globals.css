@@ -110,7 +110,7 @@ input,
 textarea.custom,
 select.custom {
     font-family: inherit;
-    font-size: 1.2em;
+    font-size: .8em;
     font-weight: 400;
     outline: none;
     border: none;

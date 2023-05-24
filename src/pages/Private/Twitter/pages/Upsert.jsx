@@ -5,7 +5,7 @@ import useGlobalWrestlers from '~/hooks/useGlobalWrestlers';
 import useTwitterFormState from './hooks/useTwitterFormState';
 
 export default function Upsert({ type, reply = false }) {
-    const { wrestlers } = useGlobalWrestlers('active');
+    const { wrestlers } = useGlobalWrestlers('all');
     const { formState, setFormState, getIdCallback, handleSubmitForm, handleDeleteTweet } = useTwitterFormState(type, reply);
     const buttonLayout = formState.id ? 'flex between' : 'flex end';
 
