@@ -14,16 +14,19 @@
     src: url(./assets/Chirp-Regular.woff2);
     font-weight: 400;
 }
+
 @font-face {
     font-family: 'TwitterChirp';
     src: url(./assets/Chirp-Bold.woff2);
     font-weight: 700;
 }
+
 @font-face {
     font-family: 'TwitterChirp';
     src: url(./assets/Chirp-Black.woff2);
     font-weight: 900;
 }
+
 @font-face {
     font-family: 'TwitterChirp';
     src: url(./assets/Chirp-Medium.woff2);
@@ -38,6 +41,7 @@
     font-family: 'TwitterChirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     text-decoration: none;
 }
+
 .twitter__module a {
     color: inherit;
     text-decoration: none;
@@ -80,6 +84,7 @@ body {
     width: 600px;
     margin: 0 auto;
 }
+
 body.dark-theme .twitter__module .cctt {
     color: var(--twitter-white);
 }
@@ -103,6 +108,7 @@ body.dark-theme .twitter__module .cctt {
     background: #fff;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
+
 body.dark-theme .twitter__module .tweet {
     background-color: var(--dark2);
     box-shadow: none;
@@ -117,6 +123,7 @@ body.dark-theme .twitter__module .tweet {
     gap: 10px;
     padding: 5px;
 }
+
 .twitter__module .tweet .tweet-header .tweet-header-avatar img {
     max-width: 100%;
     height: 100%;
@@ -129,6 +136,7 @@ body.dark-theme .twitter__module .tweet {
     overflow: hidden;
     padding: 5px;
 }
+
 .twitter__module .tweet .tweet-header-name {
     font-family: 'TwitterChirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
@@ -147,15 +155,18 @@ body.dark-theme .twitter__module .tweet {
     word-wrap: break-word;
     line-height: 20px;
 }
+
 .twitter__module .tweet .tweet-header-name .tweet-header-name-account .account {
     font-size: 15px;
     font-weight: 400;
     word-wrap: break-word;
     line-height: 20px;
 }
+
 body.dark-theme .twitter__module .tweet .tweet-header-name .tweet-header-name-account .account {
     color: #edf0f1;
 }
+
 .twitter__module .tweet .tweet-header-name .tweet-header-name-account .account::before {
     content: '@';
 }
@@ -173,6 +184,7 @@ body.dark-theme .twitter__module .tweet .tweet-header-name .tweet-header-name-ac
     /* gap: 5px; */
     padding: 0px;
 }
+
 .twitter__module .tweet .tweet-footer .tweet-footer-item {
     display: flex;
     justify-content: center;
@@ -180,6 +192,7 @@ body.dark-theme .twitter__module .tweet .tweet-header-name .tweet-header-name-ac
     gap: 10px;
     padding: 10px 20px;
 }
+
 .twitter__module .tweet .tweet-footer .tweet-footer-item .icon {
     min-width: 18px;
     height: 18px;
@@ -210,9 +223,11 @@ body.dark-theme .twitter__module .tweet .tweet-header-name .tweet-header-name-ac
         bottom: 12px;
         right: 12px;
     }
+
     .twitter__module .super-container {
         width: 100%;
     }
+
     .twitter__module .cctt {
         gap: 44px;
         width: 95%;
@@ -220,6 +235,7 @@ body.dark-theme .twitter__module .tweet .tweet-header-name .tweet-header-name-ac
         max-width: 100%;
         margin: 0;
     }
+
     .twitter__module .tweet {
         width: 100%;
     }
