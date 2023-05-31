@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-
-export function Boxed({ title, children }) {
+export function Boxed({ title, children, w }) {
+    const width = w ? Number(w) : 90;
     return (
-        <div className="w90 boxed space-down">
-            <h2 className="space-down">{title}</h2>
+        <div className="boxed space-down" style={{ width: `${width}%` }}>
+            {title && <h2 className="space-down">{title}</h2>}
             {children}
         </div>
-    )
+    );
 }
-

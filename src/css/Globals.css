@@ -110,7 +110,7 @@ input,
 textarea.custom,
 select.custom {
     font-family: inherit;
-    font-size: .8em;
+    font-size: 0.8em;
     font-weight: 400;
     outline: none;
     border: none;
@@ -122,7 +122,7 @@ select.custom {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
     box-shadow: none;
     padding: 0;
 }
@@ -236,7 +236,7 @@ button.cta-secondary {
 }
 
 .btn.button.action-button.black-color-action {
-    color: #FFF;
+    color: #fff;
     background-color: #111010;
 }
 
@@ -392,7 +392,7 @@ input.date-input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 body.dark-theme .create-new-button {
-    background: var(--dark);
+    background: var(--blue);
 }
 
 .create-new-button .unlink {
@@ -437,7 +437,6 @@ body.dark-theme .create-new-button {
     border: 20px solid #e0e0e0;
     border-top: 20px solid grey;
 }
-
 
 /* SCROLL BAR CUSTOM STYLES */
 ::-webkit-scrollbar {

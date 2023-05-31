@@ -3,9 +3,12 @@
 }
 
 header.team-block-header {
-    background: var(--dark2);
+    background: #d0d0d0;
     border-radius: var(--borderRadius) var(--borderRadius);
     padding: 20px 25px;
+}
+body.dark-theme header.team-block-header {
+    background: var(--dark2);
 }
 
 header.team-block-header.active {
@@ -14,11 +17,22 @@ header.team-block-header.active {
 
 section.team-members-block {
     padding: 30px 20px;
-    background: #111010;
+    background: #fff;
     outline: none;
     border: none;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+}
+body.dark-theme section.team-members-block {
+    background: #111010;
+}
+.teams-boxed .btn.button.action-button.default-action {
+    background: #111010;
+    color: #fff;
+}
+body.dark-theme .teams-boxed .btn.button.action-button.default-action {
+    background-color: #fff;
+    color: #111010;
 }
 
 section.team-members-block .grid.team-members {

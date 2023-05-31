@@ -16,12 +16,13 @@ body.dark-theme .custom-select-container .input {
     border: 1px solid var(--dark2);
     color: var(--light);
 }
-.open-list-icon, .close-list-icon {
+.open-list-icon,
+.close-list-icon {
     width: 100%;
     position: relative;
 }
 .open-list-icon::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -32,7 +33,7 @@ body.dark-theme .custom-select-container .input {
     border-top: 6px solid black;
 }
 .close-list-icon::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -48,7 +49,7 @@ body.dark-theme .open-list-icon::after {
 body.dark-theme .close-list-icon::after {
     border-bottom: 6px solid var(--light);
 }
-    
+
 .custom-select-container .btn-list {
     width: 50px;
     height: 40px;
@@ -73,6 +74,7 @@ body.dark-theme .custom-select-container .btn-list {
     width: 100%;
     position: absolute;
     top: 100%;
+    min-height: 10vh;
     max-height: 50vh;
     overflow-y: scroll !important;
     overflow-x: hidden;
