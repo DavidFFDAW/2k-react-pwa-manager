@@ -1,7 +1,8 @@
 import React from 'react';
-import { DangerButton } from '~/components/Buttons/Buttons';
+import { ButtonSecondary, DangerButton } from '~/components/Buttons/Buttons';
 import CustomSelect from '~/components/CustomSelect/CustomSelect';
 import UpsertInput from '~/components/Forms/FormInputs';
+import { FlexEnd } from '~/components/Layouts/Flex';
 import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import ScrollableArea from '~/components/Scrollable/ScrollableArea';
 
@@ -57,7 +58,7 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
 
     return (
         <>
-            <div className="w1 flex between al-center gap reigns-team-create-row spaced">
+            <div className="w1 flex between al-center gap reigns-team-create-row down">
                 <UpsertInput
                     type={'text'}
                     label={'Nombre de equipo'}
@@ -69,31 +70,23 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
                     }
                     required={true}
                 />
-                {/* <UpsertInput
-                    type={'number'}
-                    label={'Media de equipo'}
-                    name={'number'}
-                    property={'overall'}
-                    formState={form.createTeam}
-                    onChangeCallback={ev =>
-                        setFormState(p => ({ ...p, createTeam: { ...p.createTeam, overall: ev.target.value } }))
-                    }
-                    required={true}
-                /> */}
             </div>
 
             <div className="w1 flex between al-center column gap-smaller team-members-list-container">
-                <ScrollableArea height={200} title={'Miembros de equipo'}>
+                <ScrollableArea height={115} title={'Miembros de equipo'}>
                     <MembersList form={form} setFormState={setFormState} />
                 </ScrollableArea>
             </div>
 
-            <ConditionalLoading condition={form.createTeam.members.length < 5} fallback={
-                <div className="w1 flex center al-center">
-                    <p>Los equipos no deben tener más de 5 miembros</p>
-                </div>
-            }>
-                <div className="w1 flex center al-center column gap">
+            <ConditionalLoading
+                condition={form.createTeam.members.length < 5}
+                fallback={
+                    <div className="w1 flex center al-center">
+                        <p>Los equipos no deben tener más de 5 miembros</p>
+                    </div>
+                }
+            >
+                <div className="w1 flex start al-center gap-smaller updown">
                     <CustomSelect
                         nameProp={'name'}
                         imageProp={'image'}
@@ -106,6 +99,12 @@ export default function CreateTeamManually({ form, setFormState, wrestlers }) {
                     </button>
                 </div>
             </ConditionalLoading>
+            <FlexEnd>
+                <ButtonSecondary
+                    text={'Crear equipo'}
+                    onClick={_ => setFormState(pr => ({ ...pr, teamsModal: !pr.teamsModal }))}
+                />
+            </FlexEnd>
         </>
     );
 }

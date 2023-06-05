@@ -22,6 +22,7 @@ export default function useCreateReign() {
         isCurrent: true,
         end: '',
         today: new Date().toISOString().split('T')[0],
+        teamsModal: false,
     });
     const [datas, setDatas] = useState({
         loading: true,
@@ -51,11 +52,15 @@ export default function useCreateReign() {
         const typeCaps = type.charAt(0).toUpperCase() + type.slice(1);
         const key = `selected${typeCaps}`;
 
+        console.log({
+            typeCaps,
+            key,
+        });
+
         const isChampionship = type === ITEMS.CHAMPIONSHIP;
         const chp = isChampionship ? datas.championships.find(item => item.id === id) : {};
         const wrestlersGender = isChampionship
             ? datas.originalWrestlers.filter(wr => {
-                  console.log({ wr, chp });
                   return wr.sex === chp.gender;
               })
             : datas.originalWrestlers;
@@ -77,15 +82,24 @@ export default function useCreateReign() {
             isTagTeam: Boolean(datas.selectedChampionship.tag),
             championshipID: datas.selectedChampionship.id,
             wrestlerID: datas.selectedWrestler.id,
-            teamID: datas.selectedWrestler.id,
-            teamCreate: {
-                ...state,
-            },
+            teamID: datas.selectedTeam.id,
         };
-        console.log(payload);
+        console.log('Datos formulario');
+        console.log({
+            datas,
+            state,
+            payload,
+        });
         // http.APIPost(endpoint, payload).then(res => {
         //     console.log(res);
         // });
+    };
+
+    const toggleTeamManager = _ => {
+        setFormState(previous => ({
+            ...previous,
+            teamsModal: !previous.teamsModal,
+        }));
     };
 
     return {
@@ -93,6 +107,7 @@ export default function useCreateReign() {
         form: state,
         submitForm: submitForm,
         setFormState: setFormState,
+        toggleTeamManager: toggleTeamManager,
         getItemID: getItemID,
     };
 }

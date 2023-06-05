@@ -7,12 +7,13 @@ import { UpsertDate, UpsertToggle } from '~/components/Forms/FormInputs';
 import { FlexCenter } from '~/components/Layouts/Flex';
 import { LengthLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import { ButtonCTA } from '~/components/Buttons/Buttons';
+import Dialog from '~/components/Modal/Dialog';
 
 export default function Create() {
-    const { createDatas, form, setFormState, getItemID, submitForm } = useCreateReign();
+    const { createDatas, form, setFormState, getItemID, submitForm, toggleTeamManager } = useCreateReign();
     const isTagTeam = Boolean(createDatas.selectedChampionship.tag);
 
-    const CustomSelectChampions =
+    const CustomSelectChampions = (
         <LengthLoading list={createDatas.championships}>
             <CustomSelect
                 zindex={12}
@@ -22,9 +23,9 @@ export default function Create() {
                 getIdCallback={id => getItemID(id, ITEMS.CHAMPIONSHIP)}
             />
         </LengthLoading>
+    );
 
-
-    const CustomSelectWrestlers =
+    const CustomSelectWrestlers = (
         <LengthLoading list={createDatas.wrestlers}>
             <CustomSelect
                 zindex={10}
@@ -34,6 +35,7 @@ export default function Create() {
                 getIdCallback={id => getItemID(id, ITEMS.WRESTLER)}
             />
         </LengthLoading>
+    );
 
     return (
         <>
@@ -56,6 +58,24 @@ export default function Create() {
                     </Boxed>
                 </NullableLoading>
 
+                <NullableLoading condition={isTagTeam}>
+                    <Boxed title={'Equipos'}>
+                        <FlexCenter justify={'center'} align={'start'} gap={'small'}>
+                            <ButtonCTA text={'Gestionar equipos'} type={'button'} onClick={toggleTeamManager}></ButtonCTA>
+                        </FlexCenter>
+                    </Boxed>
+                </NullableLoading>
+
+                <NullableLoading condition={isTagTeam && form.teamsModal}>
+                    <Dialog visible={form.teamsModal} toggleVisibility={toggleTeamManager}>
+                        <TeamPanel
+                            createDatas={createDatas}
+                            form={form}
+                            setFormState={setFormState}
+                            getTeamID={id => getItemID(id, ITEMS.TEAM)}
+                        />
+                    </Dialog>
+                </NullableLoading>
 
                 <Boxed title={'Datos del reinado'}>
                     <FlexCenter justify={'center'} align={'start'} direction={'row'} className={'spaced'}>
@@ -76,7 +96,6 @@ export default function Create() {
                         />
                     </FlexCenter>
 
-
                     <NullableLoading condition={!form.isCurrent}>
                         <UpsertDate
                             min={form.start}
@@ -89,16 +108,6 @@ export default function Create() {
                         />
                     </NullableLoading>
                 </Boxed>
-
-                <NullableLoading condition={isTagTeam}>
-                    <TeamPanel
-                        createDatas={createDatas}
-                        form={form}
-                        setFormState={setFormState}
-                        getTeamID={id => getItemID(id, ITEMS.TEAM)}
-                    />
-                </NullableLoading>
-
 
                 <div className="w90 flex end al-center gap">
                     <ButtonCTA type={'submit'} disabled={createDatas.loading} text={'Crear'} />

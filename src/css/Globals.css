@@ -51,6 +51,51 @@ body.dark-theme .title.error {
     margin: 0 auto;
     padding: 20px 0;
 }
+.updown {
+    padding: 10px 0;
+}
+dialog.dialog-modal {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    z-index: 100;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 50%;
+}
+dialog.dialog-modal .dialog-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: #ebebeb;
+    border-radius: 10px 10px 0 0;
+    padding: 0;
+}
+dialog.dialog-modal .dialog-header .dialog-close-button {
+    background-color: #b32626;
+    border-radius: 0 10px 0 0;
+    color: #fff;
+    outline: none;
+}
+dialog.dialog-modal .dialog-content {
+    padding-top: 15px;
+    margin-top: 40px;
+}
+.background-action-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+}
 
 .custom-totalpage-wallpaper {
     position: absolute;
@@ -408,6 +453,9 @@ body.dark-theme .create-new-button {
 .space-down {
     padding-bottom: 20px;
 }
+.down {
+    margin-top: 20px;
+}
 
 .bounce {
     animation: bounceIn 0.3s ease;
@@ -458,6 +506,21 @@ body.dark-theme ::-webkit-scrollbar-track {
 
 body.dark-theme ::-webkit-scrollbar-thumb {
     background: var(--blue);
+}
+
+dialog[open] {
+    animation: show 0.4s ease normal;
+}
+.reigns-teams-panel {
+    min-height: 150px;
+}
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* ANIMATIONS */

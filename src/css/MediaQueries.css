@@ -22,6 +22,9 @@
         flex-direction: column;
         gap: 10px;
     }
+    dialog.dialog-modal {
+        min-width: 90%;
+    }
 
     .wrestler-card__image {
         width: 50%;
@@ -30,6 +33,6 @@
     input,
     textarea.custom,
     select.custom {
-        font-size: .9em;
+        font-size: 0.9em;
     }
 }
