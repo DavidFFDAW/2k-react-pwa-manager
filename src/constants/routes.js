@@ -13,5 +13,6 @@ export const PrivateRoutes = {
     WRESTLER: 'wrestlers',
     TWITTER: 'twitter',
     GALLERY: 'gallery',
+    DRAFT: 'draft',
     SINGLE_NEW: 'news/report/:id',
 };
