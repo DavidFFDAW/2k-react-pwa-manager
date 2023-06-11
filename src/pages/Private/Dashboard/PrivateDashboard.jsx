@@ -1,25 +1,17 @@
 import { PageBackground } from '~/components/Background/Background';
-import { makePrivateRoute } from '~/utilities/private.route.utility';
-import { PrivateRoutes } from '~/constants/routes';
-import {
-    WWEChampionship,
-    BlogIcon,
-    WrestlersIcon,
-    TeamsIcon,
-    UserIcon,
-    TwitterIcon,
-    DraftIcon,
-} from '~/components/Icons/DashboardIcons';
 import HomeLink from '~/components/HomeLink/HomeLink';
+import { AdminMenu } from '~/constants/Menus';
 
 export default function Dashboard() {
     return (
         <>
             <PageBackground>
-                <div className="minh1v flex end column al-center">
+                <div className="dashboard-home flex end column al-center">
                     <div className="home-spas-links">
-                        {/* <img src="/icons/icon-128x128.png" alt="" /> */}
-                        <HomeLink icon={<BlogIcon />} href={makePrivateRoute(PrivateRoutes.NEWS)} text="Blog" />
+                        {AdminMenu.map((item, index) => {
+                            return <HomeLink icon={<item.icon />} text={item.name} href={item.url} key={index} />;
+                        })}
+                        {/* <HomeLink icon={<BlogIcon />} href={makePrivateRoute(PrivateRoutes.NEWS)} text="Blog" />
                         <HomeLink
                             icon={<WrestlersIcon />}
                             href={makePrivateRoute(PrivateRoutes.WRESTLER)}
@@ -33,7 +25,7 @@ export default function Dashboard() {
                         <HomeLink icon={<TeamsIcon />} href={makePrivateRoute(PrivateRoutes.TEAMS)} text="Teams" />
                         <HomeLink icon={<UserIcon />} href={makePrivateRoute(PrivateRoutes.USER)} text="User" />
                         <HomeLink icon={<TwitterIcon />} href={makePrivateRoute(PrivateRoutes.TWITTER)} text="Twitter" />
-                        <HomeLink icon={<DraftIcon />} href={makePrivateRoute('draft')} text="Draft" />
+                        <HomeLink icon={<DraftIcon />} href={makePrivateRoute('draft')} text="Draft" /> */}
                     </div>
                 </div>
             </PageBackground>

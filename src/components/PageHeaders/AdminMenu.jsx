@@ -3,6 +3,7 @@ import { useAuth } from '~/hooks/useAuth';
 import HeaderLink from './MenuLink';
 import { UpsertToggle } from '../Forms/FormInputs';
 import { useEffect, useState } from 'react';
+import { HeaderMenu } from '~/constants/Menus';
 
 const themes = {
     LIGHT: 'light-theme',
@@ -35,34 +36,31 @@ export function AdminMenuContent({ closeMenu }) {
         <>
             <ul className="list-menu">
                 <li>
-                    <span className="super-menu-item">Público</span>
+                    <Link to={'/'} className="super-menu-item" onClick={closeMenu}>
+                        Público
+                    </Link>
                     <ul className="submenu">
-                        <HeaderLink href={'/'} closeMenu={closeMenu}>
-                            Public Menú
-                        </HeaderLink>
-                        <HeaderLink href={'/twitter'} closeMenu={closeMenu}>
-                            Twitter
-                        </HeaderLink>
+                        {HeaderMenu.public.map((item, indx) => {
+                            return (
+                                <HeaderLink key={indx} href={item.url} closeMenu={closeMenu}>
+                                    {item.name}
+                                </HeaderLink>
+                            );
+                        })}
                     </ul>
                 </li>
                 <li>
-                    <span className="super-menu-item">Administrador</span>
+                    <Link to={'/admin'} className="super-menu-item" onClick={closeMenu}>
+                        Administrador
+                    </Link>
                     <ul className="submenu">
-                        <HeaderLink href={'/admin'} closeMenu={closeMenu}>
-                            Administrador
-                        </HeaderLink>
-                        <HeaderLink href={'/admin/blog'} closeMenu={closeMenu}>
-                            Blog
-                        </HeaderLink>
-                        <HeaderLink href={'/admin/wrestlers/all/page/1'} closeMenu={closeMenu}>
-                            Wrestlers
-                        </HeaderLink>
-                        <HeaderLink href={'/admin/wrestlers/active/page/1'} closeMenu={closeMenu}>
-                            Active Wrestlers
-                        </HeaderLink>
-                        <HeaderLink href={'/admin/twitter'} closeMenu={closeMenu}>
-                            Twitter Panel
-                        </HeaderLink>
+                        {HeaderMenu.admin.map((item, indx) => {
+                            return (
+                                <HeaderLink key={indx} href={item.url} closeMenu={closeMenu}>
+                                    {item.name}
+                                </HeaderLink>
+                            );
+                        })}
                     </ul>
                 </li>
                 <li style={{ marginTop: 20 }} className="logout">
