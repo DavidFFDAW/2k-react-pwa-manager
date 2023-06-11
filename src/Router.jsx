@@ -28,7 +28,7 @@ export function Router() {
         <>
             <BrowserRouter>
                 {Headers}
-                <main className='responsive-lockup' style={{ minHeight: '99vh' }}>
+                <main className="responsive-lockup">
                     <RoutesWithNotFound>
                         <Route path="/" element={<HomeDashboard />} />
                         <Route path={PublicRoutes.REGISTER} element={<Login />} />
