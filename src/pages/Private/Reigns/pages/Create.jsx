@@ -10,7 +10,7 @@ import { ButtonCTA } from '~/components/Buttons/Buttons';
 import Dialog from '~/components/Modal/Dialog';
 
 export default function Create() {
-    const { createDatas, form, setFormState, getItemID, submitForm, toggleTeamManager } = useCreateReign();
+    const { createDatas, form, functions } = useCreateReign();
     const isTagTeam = Boolean(createDatas.selectedChampionship.tag);
 
     const CustomSelectChampions = (
@@ -20,7 +20,7 @@ export default function Create() {
                 nameProp={'name'}
                 imageProp={'image'}
                 list={createDatas.championships}
-                getIdCallback={id => getItemID(id, ITEMS.CHAMPIONSHIP)}
+                getIdCallback={id => functions.getItemID(id, ITEMS.CHAMPIONSHIP)}
             />
         </LengthLoading>
     );
@@ -32,7 +32,7 @@ export default function Create() {
                 nameProp={'name'}
                 imageProp={'image'}
                 list={createDatas.wrestlers}
-                getIdCallback={id => getItemID(id, ITEMS.WRESTLER)}
+                getIdCallback={id => functions.getItemID(id, ITEMS.WRESTLER)}
             />
         </LengthLoading>
     );
@@ -42,7 +42,7 @@ export default function Create() {
             <form
                 method="POST"
                 className="flex center al-center column gap wrestler-upsert-form space-down"
-                onSubmit={submitForm}
+                onSubmit={functions.submitForm}
             >
                 <Boxed title={'Título'}>
                     <FlexCenter justify={'center'} align={'start'} gap={'small'}>
@@ -61,17 +61,21 @@ export default function Create() {
                 <NullableLoading condition={isTagTeam}>
                     <Boxed title={'Equipos'}>
                         <FlexCenter justify={'center'} align={'start'} gap={'small'}>
-                            <ButtonCTA text={'Gestionar equipos'} type={'button'} onClick={toggleTeamManager}></ButtonCTA>
+                            <ButtonCTA
+                                text={'Gestionar equipos'}
+                                type={'button'}
+                                onClick={functions.toggleTeamManager}
+                            ></ButtonCTA>
                         </FlexCenter>
                     </Boxed>
                 </NullableLoading>
 
                 <NullableLoading condition={isTagTeam && form.teamsModal}>
-                    <Dialog visible={form.teamsModal} toggleVisibility={toggleTeamManager}>
+                    <Dialog visible={form.teamsModal} toggleVisibility={functions.toggleTeamManager}>
                         <TeamPanel
                             createDatas={createDatas}
                             form={form}
-                            setFormState={setFormState}
+                            setFormState={functions.setFormState}
                             getTeamID={id => getItemID(id, ITEMS.TEAM)}
                         />
                     </Dialog>
@@ -81,7 +85,7 @@ export default function Create() {
                     <FlexCenter justify={'center'} align={'start'} direction={'row'} className={'spaced'}>
                         <div>
                             <UpsertToggle
-                                toggleCallback={_ => setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))}
+                                toggleCallback={_ => functions.setFormState(p => ({ ...p, isCurrent: !p.isCurrent }))}
                                 label={'Anterior'}
                             />
                         </div>
@@ -92,7 +96,7 @@ export default function Create() {
                             label={'Fecha Inicio'}
                             property={'start'}
                             formState={form}
-                            setFormState={setFormState}
+                            setFormState={functions.setFormState}
                         />
                     </FlexCenter>
 
@@ -104,7 +108,7 @@ export default function Create() {
                             label={'Fecha Fin'}
                             property={'end'}
                             formState={form}
-                            setFormState={setFormState}
+                            setFormState={functions.setFormState}
                         />
                     </NullableLoading>
                 </Boxed>

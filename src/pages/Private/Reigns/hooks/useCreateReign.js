@@ -105,9 +105,11 @@ export default function useCreateReign() {
     return {
         createDatas: datas,
         form: state,
-        submitForm: submitForm,
-        setFormState: setFormState,
-        toggleTeamManager: toggleTeamManager,
-        getItemID: getItemID,
+        functions: {
+            submitForm: submitForm,
+            setFormState: setFormState,
+            toggleTeamManager: toggleTeamManager,
+            getItemID: getItemID,
+        },
     };
 }
