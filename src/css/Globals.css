@@ -74,6 +74,7 @@ dialog.dialog-modal .dialog-header {
     top: 0;
     left: 0;
     width: 100%;
+    height: 30px;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -82,14 +83,17 @@ dialog.dialog-modal .dialog-header {
     padding: 0;
 }
 dialog.dialog-modal .dialog-header .dialog-close-button {
+    height: 100%;
+    padding: 0;
+    width: 6%;
     background-color: #b32626;
     border-radius: 0 10px 0 0;
     color: #fff;
     outline: none;
 }
 dialog.dialog-modal .dialog-content {
-    padding-top: 15px;
-    margin-top: 40px;
+    padding: 10px 0;
+    margin-top: 20px;
 }
 .background-action-block {
     position: fixed;
@@ -141,6 +145,75 @@ dialog.dialog-modal .dialog-content {
     font-weight: 700;
     outline: none;
     cursor: pointer;
+}
+
+.actions-option-group .three-dots-actions {
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    padding: 10px 10px;
+    background-color: #fff;
+    box-shadow: var(--shadows);
+}
+.actions-option-group .three-dots-actions.active {
+    border-radius: 50% 50% 0 0;
+    background-color: #fff;
+    box-shadow: var(--shadows);
+}
+.actions-option-group .three-dots-actions svg {
+    width: 22px;
+    height: 22px;
+}
+.actions-option-group .actions-group-actions-list .action-link.delete-action h4.action-text {
+    color: #d80000;
+}
+.actions-option-group .actions-group-actions-list h4.action-text {
+    font-weight: 400;
+    color: #111010;
+}
+.actions-option-group .actions-group-actions-list {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 250px;
+    background: #fff;
+    box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1), -4px 5px 8px rgba(0, 0, 0, 0.1);
+    border-radius: var(--borderRadius);
+    border-top-right-radius: 0;
+    z-index: 10;
+}
+.actions-option-group .actions-group-actions-list .action-link {
+    padding: 5px 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.actions-option-group .actions-group-actions-list .action-link:last-child {
+    padding: 8px 10px;
+    border: none;
+}
+.actions-option-group .actions-group-actions-list .action-link:hover {
+    background: #eee;
+}
+.actions-option-group .icon-wrapper .action-icon.customs-icons {
+    width: 22px;
+    height: 22px;
+}
+.actions-option-group .actions-group-actions-list .action-link:hover .icon-wrapper {
+    background-color: #fff;
+}
+.actions-option-group .icon-wrapper {
+    padding: 5px;
+    border-radius: 50%;
+    background: #deffec;
+}
+.actions-option-group .delete-action .icon-wrapper {
+    background: #ffcccc;
 }
 
 body.dark-theme .pagination .pagination-button {
@@ -318,8 +391,8 @@ button.cta-secondary {
 }
 
 .btn.button.action-button.danger-action {
-    color: #fff;
-    background: #b32626;
+    color: #d80000;
+    background: #ffcccc;
 }
 
 .btn.button.action-button.default-action {

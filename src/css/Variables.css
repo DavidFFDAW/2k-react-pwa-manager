@@ -6,4 +6,5 @@
     --blue: #6272a4;
     --black: #2d2d2d;
     --borderRadius: 10px;
+    --shadows: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
