@@ -5,7 +5,6 @@ import WrestlerCard from '~/components/Wrestler/WrestlerCard';
 import CreateButton from '~/components/Buttons/CreateButton';
 import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
-import useWrestlerFilters from './hooks/useFilters';
 import WrestlerFilters from './components/WrestlerFilters';
 import { FlexCenter } from '~/components/Layouts/Flex';
 

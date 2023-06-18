@@ -1,4 +1,5 @@
 export class AppConfig {
+    static DEXIE_NAME = 'ww2kreactpwacache';
     static VERSION = '1.2.0';
     static API_BASE_URL = 'https://global-api-nu.vercel.app/2k/';
     static USER_KEY = 'react-champions-pwa-manager-user';
