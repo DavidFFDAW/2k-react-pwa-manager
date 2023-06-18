@@ -1,15 +1,18 @@
 import React from 'react';
-import useTwitter from '~/hooks/useTwitter';
+import useTwitter, { TW_TYPES } from '~/hooks/useTwitter';
 import { transformDate } from '~/utilities/date.normalizer.utility';
-import { Link } from 'react-router-dom';
 import TwitterCreateButton from '~/components/Twitter/TwitterCreateButton';
 import ImagePreview from '~/components/Forms/ImagePreview';
 import Actions from '~/components/ListOptions/ActionOptions';
-import { CreateIcon, EditIcon, EyeIcon } from '~/components/Icons/CommonIcons';
-import { FlexEnd } from '~/components/Layouts/Flex';
+import { CreateIcon, EditIcon } from '~/components/Icons/CommonIcons';
+import { FlexBetween } from '~/components/Layouts/Flex';
+import { NullableLoading } from '~/components/Loading/LoadingComponent';
+import Spinner from '~/components/Spinner/Spinner';
 
 export default function TweetsList() {
-    const { tweets } = useTwitter();
+    const { loading, tweets, stateSetter } = useTwitter(TW_TYPES.ADMIN);
+
+    if (loading) return <Spinner />;
 
     return (
         <>
@@ -28,13 +31,21 @@ export default function TweetsList() {
                                         maxH={110}
                                     />
                                     <div className="w1 flex column gap-smaller">
-                                        <h1 style={{ fontSize: 24 }}>{tweet.wrestler_name}</h1>
-                                        <p style={{ fontSize: 14, wordBreak: 'break-word' }}>{tweet.message}</p>
-                                        <p className="w1 flex end">{transformDate(tweet.created_at)}</p>
-                                        <FlexEnd>
+                                        <FlexBetween>
+                                            <div>
+                                                <NullableLoading condition={Boolean(tweet.reply_to)}>
+                                                    Es respuesta
+                                                </NullableLoading>
+                                            </div>
                                             <Actions
+                                                stateUpdaterCallback={_ =>
+                                                    stateSetter(previous => ({
+                                                        ...previous,
+                                                        tweets: previous.tweets.filter(item => item.id !== tweet.id),
+                                                    }))
+                                                }
                                                 deleteText={'Borrar tweet'}
-                                                deleteEndpoint={'adsa'}
+                                                deleteEndpoint={`twitter/tweet/delete/${tweet.id}`}
                                                 options={[
                                                     {
                                                         href: `/admin/twitter/tweet/update/${tweet.id}`,
@@ -42,13 +53,21 @@ export default function TweetsList() {
                                                         text: 'Editar tweet',
                                                     },
                                                     {
-                                                        href: `/admin/twitter/tweet/update/${tweet.id}`,
+                                                        href: `/admin/wrestlers/update/${tweet.author_id}`,
+                                                        icon: EditIcon,
+                                                        text: `Editar ${tweet.wrestler_name}`,
+                                                    },
+                                                    {
+                                                        href: `/admin/twitter/tweet/create/reply/tweet/${tweet.id}`,
                                                         icon: CreateIcon,
                                                         text: 'Crear comentario',
                                                     },
                                                 ]}
                                             />
-                                        </FlexEnd>
+                                        </FlexBetween>
+                                        <h1 style={{ fontSize: 24 }}>{tweet.wrestler_name}</h1>
+                                        <p style={{ fontSize: 14, wordBreak: 'break-word' }}>{tweet.message}</p>
+                                        <p className="w1 flex end">{transformDate(tweet.created_at)}</p>
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { DotsIcon, TrashIcon } from '../Icons/CommonIcons';
 import { DialogWithFooter } from '../Modal/Dialog';
 import { DangerButton } from '../Buttons/Buttons';
+import useHttp from '~/hooks/useHttp';
 
 function ActionOption({ item, toggler }) {
     return (
@@ -18,16 +19,17 @@ function ActionOption({ item, toggler }) {
     );
 }
 
-function DeleteAction({ text, endpoint, toggler }) {
+function DeleteAction({ text, endpoint, toggler, stateUpdaterCallback, deleteId }) {
+    const http = useHttp();
     const [showModal, setModal] = useState(false);
     const toggleModal = _ => setModal(pr => !pr);
     const deleteItem = _ => {
         toggleModal();
-        console.log('Borrando Item', endpoint);
-        toggler();
-        /**
-         * codigo de ejecucion de borrado por peticion http
-         */
+        http.APIDelete(endpoint, {
+            success: 'Se ha borrado correctamente',
+        })
+            .then(stateUpdaterCallback)
+            .then(toggler);
     };
 
     const footer = <DangerButton type={'button'} text={'Borrar'} onClick={deleteItem} />;
@@ -50,7 +52,7 @@ function DeleteAction({ text, endpoint, toggler }) {
     );
 }
 
-export default function Actions({ deleteText, deleteEndpoint, options }) {
+export default function Actions({ deleteText, deleteEndpoint, options, stateUpdaterCallback }) {
     const [showOptions, setShowOptions] = useState(false);
     const toggleShowOpts = _ => setShowOptions(show => !show);
     const hasOptions = options && options.length > 0;
@@ -69,13 +71,18 @@ export default function Actions({ deleteText, deleteEndpoint, options }) {
                     <DotsIcon />
                 </button>
                 <NullableLoading condition={showOptions}>
-                    <div className="actions-group-actions-list">
+                    <div className="actions-group-actions-list animate__animated animate__fadeIn animate__faster">
                         {options.map((item, inx) => {
                             return <ActionOption key={inx} item={item} toggler={toggleShowOpts} />;
                         })}
 
                         <NullableLoading condition={hasDelete}>
-                            <DeleteAction text={deleteText} endpoint={deleteEndpoint} toggler={toggleShowOpts} />
+                            <DeleteAction
+                                text={deleteText}
+                                endpoint={deleteEndpoint}
+                                toggler={toggleShowOpts}
+                                stateUpdaterCallback={stateUpdaterCallback}
+                            />
                         </NullableLoading>
                     </div>
                 </NullableLoading>
