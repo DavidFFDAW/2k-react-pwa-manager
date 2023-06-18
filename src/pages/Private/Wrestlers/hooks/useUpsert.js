@@ -8,12 +8,12 @@ import useHttp from '~/hooks/useHttp';
 export default function useUpsert(type, id) {
     const initialState = { ...WrestlerDataModel, loading: type === TYPES.UPDATE };
     const wrestlerListRoute = localStorage.getItem('previousLocation') || '/admin/wrestlers';
+    const http = useHttp();
     const navigate = useNavigate();
-    const { get, post, deleteReq } = useHttp();
     const [formState, setFormState] = React.useState(initialState);
 
     const getWrestlerSingleInformation = () => {
-        return get(AppConfig.API_BASE_URL + `wrestlers/single/${id}`);
+        return http.APIGet(`wrestlers/single/${id}`);
     };
 
     if (type === TYPES.UPDATE) {
@@ -30,7 +30,8 @@ export default function useUpsert(type, id) {
 
     const sendForm = ev => {
         ev.preventDefault();
-        post(`${AppConfig.API_BASE_URL}wrestlers/upsert`, formState).then(d => {
+        console.log(JSON.stringify(formState));
+        http.APIPost('wrestlers/upsert', formState, true).then(d => {
             navigate(wrestlerListRoute);
         });
     };
@@ -39,8 +40,8 @@ export default function useUpsert(type, id) {
         const { id, name } = formState;
 
         if (confirm(`¿ Seguro que quieres borrar ${name} ?`)) {
-            deleteReq(`${AppConfig.API_BASE_URL}wrestlers/delete/${id}`).then(d => {
-                console.log(d);
+            http.APIDelete(`wrestlers/delete/${id}`, { message: 'Luchador borrado correctamente' }).then(d => {
+                // console.log(d);
                 navigate(wrestlerListRoute);
             });
         }
