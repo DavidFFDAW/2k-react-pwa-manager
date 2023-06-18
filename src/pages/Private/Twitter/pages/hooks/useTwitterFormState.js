@@ -17,7 +17,7 @@ export default function useTwitterFormState(type, isReply) {
     const initialTwitterFormState = {
         [authorKey]: '',
         message: '',
-        device: '',
+        device: 'Android',
         likes: getTwitterRandomNumber(),
         retweets: getTwitterRandomNumber(),
         comments: getTwitterRandomNumber(),
