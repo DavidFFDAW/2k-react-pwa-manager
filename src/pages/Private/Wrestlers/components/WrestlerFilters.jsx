@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlackButton, ButtonCTA, ButtonSecondary } from '~/components/Buttons/Buttons';
-import { FlexBetween, FlexStart } from '~/components/Layouts/Flex';
+import { FlexBetween, FlexCenter, FlexStart } from '~/components/Layouts/Flex';
 import useWrestlerFilters from '../hooks/useFilters';
 import { NullableLoading } from '~/components/Loading/LoadingComponent';
 import { CheckboxInput, InputWithDeleteButton, UpsertSelect } from '~/components/Forms/FormInputs';
@@ -17,7 +17,7 @@ export default function WrestlerFilters({ wrestlerList, setWrestlerList }) {
     return (
         <>
             <NullableLoading condition={!wrestlerFilters.show}>
-                <div className='w90 flex end gap-smaller'>
+                <div className="w90 flex end gap-smaller">
                     <button className="filters" onClick={navigateBottomPage}>
                         <ArrowDown w={20} h={25} />
                     </button>
@@ -27,14 +27,16 @@ export default function WrestlerFilters({ wrestlerList, setWrestlerList }) {
                     <button className="filters" onClick={setShowFilters}>
                         <FilterIcon w={20} h={25} />
                     </button>
-
                 </div>
             </NullableLoading>
             <NullableLoading condition={wrestlerFilters.show}>
-                <form className="animate__animated animate__fadeIn w90 filters-block padded" method="GET" onSubmit={submitFiltersForm}>
-                    <header className='box filter-header buttons'>
+                <form
+                    className="animate__animated animate__fadeIn w90 filters-block padded"
+                    method="GET"
+                    onSubmit={submitFiltersForm}
+                >
+                    <header className="box filter-header buttons">
                         <BlackButton text={<>&times;</>} onClick={_ => setShowFilters(false)} />
-
                     </header>
 
                     <div className="w1 flex center column gap-small padded al-center filters-block__content">
@@ -73,19 +75,31 @@ export default function WrestlerFilters({ wrestlerList, setWrestlerList }) {
                             </UpsertSelect>
                         </FlexStart>
 
-                        <UpsertSelect
-                            label={'Resultados'}
-                            formState={wrestlerFilters}
-                            setFormState={setWrestlerFilters}
-                            property={'results_per_page'}
-                        >
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </UpsertSelect>
-
-
+                        <FlexCenter align={'center'}>
+                            <UpsertSelect
+                                label={'Resultados'}
+                                formState={wrestlerFilters}
+                                setFormState={setWrestlerFilters}
+                                property={'results_per_page'}
+                            >
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </UpsertSelect>
+                            <UpsertSelect
+                                label={'Status'}
+                                formState={wrestlerFilters}
+                                setFormState={setWrestlerFilters}
+                                property={'status'}
+                            >
+                                <option value="active">En activo</option>
+                                <option value="manager">Manager</option>
+                                <option value="released">Despedidos</option>
+                                <option value="semi-active">Semi en activo</option>
+                                <option value="retired">Retirado</option>
+                            </UpsertSelect>
+                        </FlexCenter>
 
                         <CheckboxInput
                             label={'Mostrar los resultados con paginación'}

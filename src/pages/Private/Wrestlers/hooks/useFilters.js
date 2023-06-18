@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function useWrestlerFilters({ wrestlersList, stateSetter }) {
     const navigate = useNavigate();
+    const { page } = useParams();
+
     const initialState = {
         name: '',
         show: false,
         pagination: true,
         gender: false,
         brand: false,
-        results_per_page: 10
+        results_per_page: 10,
+        status: 'active',
     };
     const [wrestlerFilters, setWrestlerFilters] = useState(initialState);
 
@@ -21,18 +24,18 @@ export default function useWrestlerFilters({ wrestlersList, stateSetter }) {
         setWrestlerFilters(filters => ({ ...filters, name, hasFilters: Boolean(name) }));
     };
 
+    const filters = originalArray => {
+        const { name, brand, gender, status } = wrestlerFilters;
 
-    const filters = (originalArray) => {
-        const { name, brand, gender } = wrestlerFilters;
-
-        return originalArray.filter(item => { 
+        return originalArray.filter(item => {
             const nameFilter = Boolean(name) ? item.name.toLowerCase().includes(name.toLowerCase()) : true;
             const brandFilter = Boolean(brand) ? item.brand.includes(brand) : true;
             const genderFilter = Boolean(gender) ? item.sex === gender : true;
+            const statusFilter = item.status.toLowerCase() === status.toLowerCase();
 
-            return nameFilter && brandFilter && genderFilter;
+            return nameFilter && brandFilter && genderFilter && statusFilter;
         });
-    }
+    };
 
     const setFilteredWrestlerList = name => {
         const { show } = wrestlerFilters;
@@ -44,7 +47,13 @@ export default function useWrestlerFilters({ wrestlersList, stateSetter }) {
         //     .filter(wrestler => show && wrestler.name.toLowerCase().includes(name.toLowerCase()))
         //     .filter(wrestler => wrestler.sex === wrestlerFilters.gender)
         //     .filter(wrestler => wrestler.brand === wrestlerFilters.brand);
-        stateSetter(prev => ({ ...prev, list: filteredList, hasFilters: true, pagination: wrestlerFilters.pagination, wrestlersByPage: Number(wrestlerFilters.results_per_page) }));
+        stateSetter(prev => ({
+            ...prev,
+            list: filteredList,
+            hasFilters: true,
+            pagination: wrestlerFilters.pagination,
+            wrestlersByPage: Number(wrestlerFilters.results_per_page),
+        }));
     };
 
     const resetForm = _ => {
@@ -55,9 +64,16 @@ export default function useWrestlerFilters({ wrestlersList, stateSetter }) {
             pagination: true,
             gender: false,
             brand: false,
-            results_per_page: 10
+            results_per_page: 10,
+            status: 'active',
         }));
-        stateSetter(pr => ({ ...pr, list: pr.original, hasFilters: false, pagination: wrestlerFilters.pagination, wrestlersByPage: Number(wrestlerFilters.results_per_page) }));
+        stateSetter(pr => ({
+            ...pr,
+            list: pr.original,
+            hasFilters: false,
+            pagination: wrestlerFilters.pagination,
+            wrestlersByPage: Number(wrestlerFilters.results_per_page),
+        }));
     };
 
     const submitFiltersForm = e => {
@@ -65,7 +81,10 @@ export default function useWrestlerFilters({ wrestlersList, stateSetter }) {
 
         changeNameFilters(wrestlerFilters.name);
         setFilteredWrestlerList(wrestlerFilters.name);
-        navigate('/admin/wrestlers/active/page/1');
+
+        if (page && page != 1) {
+            navigate('/admin/wrestlers/page/1');
+        }
     };
 
     return {
