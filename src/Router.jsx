@@ -6,6 +6,7 @@ import { PrivateRoutes, PublicRoutes } from './constants/routes';
 import HomeDashboard from './pages/Home/Home';
 import { useUserStorage } from './contexts/user.context';
 import { AdminHeaders } from './components/PageHeaders/Headers';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
@@ -28,22 +29,24 @@ export function Router() {
         <>
             <BrowserRouter>
                 {Headers}
-                <main className="responsive-lockup">
-                    <RoutesWithNotFound>
-                        <Route path="/" element={<HomeDashboard />} />
-                        <Route path={PublicRoutes.REGISTER} element={<Login />} />
+                <ErrorBoundary>
+                    <main className="responsive-lockup">
+                        <RoutesWithNotFound>
+                            <Route path="/" element={<HomeDashboard />} />
+                            <Route path={PublicRoutes.REGISTER} element={<Login />} />
 
-                        <Route element={<LoginAuthGuard />}>
-                            <Route path={PublicRoutes.LOGIN} element={<Login />} />
-                        </Route>
+                            <Route element={<LoginAuthGuard />}>
+                                <Route path={PublicRoutes.LOGIN} element={<Login />} />
+                            </Route>
 
-                        <Route path={'/twitter/*'} element={<TwitterRouting />} />
+                            <Route path={'/twitter/*'} element={<TwitterRouting />} />
 
-                        <Route element={<AuthGuard privateValidation={true} />}>
-                            <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
-                        </Route>
-                    </RoutesWithNotFound>
-                </main>
+                            <Route element={<AuthGuard privateValidation={true} />}>
+                                <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
+                            </Route>
+                        </RoutesWithNotFound>
+                    </main>
+                </ErrorBoundary>
             </BrowserRouter>
         </>
     );
