@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = false }) {
     const pages = {
-        next: Number(page) + 1,
-        prev: Number(page) - 1,
+        next: Number(currentPage) + 1,
+        prev: Number(currentPage) - 1,
     };
     const showPrev = currentPage > 1;
     const showNext = currentPage < maxPages;

@@ -37,7 +37,7 @@ export default function List({ endpoint }) {
                             page={page}
                             maxPages={maxPages}
                             currentPage={currentPage}
-                            baseUrl={`/admin/wrestlers/${endpoint}`}
+                            baseUrl={`/admin/wrestlers`}
                         />
                     </div>
                 </NullableLoading>
@@ -69,7 +69,7 @@ export default function List({ endpoint }) {
                             page={page}
                             maxPages={maxPages}
                             currentPage={currentPage}
-                            baseUrl={`/admin/wrestlers/${endpoint}`}
+                            baseUrl={`/admin/wrestlers`}
                             goUp
                         />
                     </div>
