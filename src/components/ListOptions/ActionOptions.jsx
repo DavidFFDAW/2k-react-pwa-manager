@@ -9,8 +9,8 @@ import useHttp from '~/hooks/useHttp';
 export const ActionTypes = {
     BUTTON: 'button',
     DEFAULT: 'default',
-    LINK: 'link'
-}
+    LINK: 'link',
+};
 
 function ActionOption({ item, toggler }) {
     return (
@@ -60,11 +60,14 @@ function DeleteAction({ text, endpoint, toggler, stateUpdaterCallback, deleteId 
 
 export function ActionOptionButton({ item, toggler }) {
     const executeCallback = _ => {
+        console.log({
+            item,
+        });
         if (item.callback) {
             item.callback();
         }
         toggler();
-    }
+    };
 
     return (
         <div className="flex start al-center gap-small action-link delete-action" onClick={executeCallback}>

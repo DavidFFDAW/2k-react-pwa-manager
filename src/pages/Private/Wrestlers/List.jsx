@@ -1,15 +1,14 @@
 import { useParams } from 'react-router-dom';
 import useWrestler from './hooks/useWrestler';
 import { SimplePagination } from '~/components/Pagination/Pagination';
-import WrestlerCard from '~/components/Wrestler/WrestlerCard';
+import WrestlerCard from '~/pages/Private/Wrestlers/components/WrestlerCard';
 import CreateButton from '~/components/Buttons/CreateButton';
 import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import WrestlerFilters from './components/WrestlerFilters';
-import { FlexCenter } from '~/components/Layouts/Flex';
 
 export default function List({ endpoint }) {
-    const { wrestlerList, setWrestlerList } = useWrestler(endpoint);
+    const { wrestlerList, setWrestlerList, hire, release } = useWrestler(endpoint);
     const { page } = useParams();
 
     const wrestlersPerPage = wrestlerList.wrestlersByPage;
@@ -45,18 +44,20 @@ export default function List({ endpoint }) {
                 <ConditionalLoading condition={!wrestlerList.loading} fallback={<ComponentSpinner />}>
                     <div className="w1 list-block overflow-y">
                         <div className="wrestlers-list items-listing">
-                            <ConditionalLoading
-                                condition={list.length > 0}
-                                fallback={
-                                    <FlexCenter>
-                                        <h2 className="title error">No se encontraron resultados para esta búsqueda</h2>
-                                    </FlexCenter>
-                                }
-                            >
+                            <NullableLoading condition={wrestlerList.hasFilters && list.length <= 0}>
+                                No se han encontrado resultados con estos criterios de busqueda
+                            </NullableLoading>
+
+                            <NullableLoading condition={list.length > 0}>
                                 {list.map(wrestler => (
-                                    <WrestlerCard key={wrestler.id} wrestler={wrestler} />
+                                    <WrestlerCard
+                                        key={wrestler.id}
+                                        wrestler={wrestler}
+                                        hire={hire}
+                                        release={release}
+                                    />
                                 ))}
-                            </ConditionalLoading>
+                            </NullableLoading>
                         </div>
                     </div>
                 </ConditionalLoading>
