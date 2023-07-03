@@ -6,6 +6,12 @@ import { DialogWithFooter } from '../Modal/Dialog';
 import { DangerButton } from '../Buttons/Buttons';
 import useHttp from '~/hooks/useHttp';
 
+export const ActionTypes = {
+    BUTTON: 'button',
+    DEFAULT: 'default',
+    LINK: 'link'
+}
+
 function ActionOption({ item, toggler }) {
     return (
         <Link className="flex start al-center gap-small action-link" to={item.href} onClick={toggler}>
@@ -52,6 +58,26 @@ function DeleteAction({ text, endpoint, toggler, stateUpdaterCallback, deleteId 
     );
 }
 
+export function ActionOptionButton({ item, toggler }) {
+    const executeCallback = _ => {
+        if (item.callback) {
+            item.callback();
+        }
+        toggler();
+    }
+
+    return (
+        <div className="flex start al-center gap-small action-link delete-action" onClick={executeCallback}>
+            <NullableLoading condition={item.icon}>
+                <div className="icon-wrapper">
+                    <item.icon />
+                </div>
+            </NullableLoading>
+            <h4 className="action-text">{item.text}</h4>
+        </div>
+    );
+}
+
 export default function Actions({ deleteText, deleteEndpoint, options, stateUpdaterCallback }) {
     const [showOptions, setShowOptions] = useState(false);
     const toggleShowOpts = _ => setShowOptions(show => !show);
@@ -73,6 +99,9 @@ export default function Actions({ deleteText, deleteEndpoint, options, stateUpda
                 <NullableLoading condition={showOptions}>
                     <div className="actions-group-actions-list animate__animated animate__fadeIn animate__faster">
                         {options.map((item, inx) => {
+                            if (item.type && item.type.trim().toLowerCase() === ActionTypes.BUTTON) {
+                                return <ActionOptionButton key={inx} item={item} toggler={toggleShowOpts} />;
+                            }
                             return <ActionOption key={inx} item={item} toggler={toggleShowOpts} />;
                         })}
 
