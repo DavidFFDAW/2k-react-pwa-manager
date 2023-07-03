@@ -2,6 +2,7 @@ import { enqueueSnackbar } from 'notistack';
 import React from 'react';
 import { AppConfig } from '~/AppConfig';
 import { database } from '~/database';
+import { Wrestler } from '~/models/wrestler.model';
 import http from '~/services/http.service';
 
 export default function useWrestler(endpoint) {
@@ -16,6 +17,8 @@ export default function useWrestler(endpoint) {
     });
 
     const getWrestlers = () => {
+        // console.log(Wrestler(setWrestlerList).getWrestlers());
+
         return http.get(AppConfig.API_BASE_URL + 'wrestlers/all').then(response => {
             if (!response.ok) {
                 return enqueueSnackbar(response.content.message, { variant: 'error' });
