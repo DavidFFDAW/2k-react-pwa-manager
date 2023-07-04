@@ -1,5 +1,4 @@
-import Actions, { ActionTypes } from '../../../../components/ListOptions/ActionOptions';
-import { CreateIcon, EditIcon, HireIcon, ReleaseIcon } from '../../../../components/Icons/CommonIcons';
+import WrestlerActions from './WrestlerActions';
 
 export default function WrestlerCard({ wrestler, hire, release }) {
     const imageSrc = wrestler.image || '/noimage.jpg';
@@ -19,26 +18,7 @@ export default function WrestlerCard({ wrestler, hire, release }) {
                             <p>{wrestler.finisher}</p>
                             <p>{wrestler.status}</p>
                         </div>
-                        <Actions
-                            options={[
-                                {
-                                    href: `/admin/wrestlers/update/${wrestler.id}`,
-                                    icon: EditIcon,
-                                    text: `Editar ${wrestler.name}`,
-                                },
-                                {
-                                    href: '/admin/wrestlers/create/new',
-                                    icon: CreateIcon,
-                                    text: 'Crear nuevo luchador',
-                                },
-                                {
-                                    type: ActionTypes.BUTTON,
-                                    icon: isReleased ? HireIcon : ReleaseIcon,
-                                    text: isReleased ? 'Contratar' : 'Despedir',
-                                    callback: _ => (isReleased ? hire : release)(wrestler.id),
-                                },
-                            ]}
-                        />
+                        <WrestlerActions wrestler={wrestler} hire={hire} release={release} isReleased={isReleased} />
                     </div>
                 </div>
             </div>
