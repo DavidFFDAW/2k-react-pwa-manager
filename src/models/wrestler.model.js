@@ -2,13 +2,26 @@ import { database } from '~/database';
 import { ApiModel } from './api.model';
 
 export const Wrestler = stateUpdater => {
+    const updateWrestlerStatus = (id, status) => {
+        database.wrestlers.update(id, { status });
+
+        ApiModel.put('wrestler/status/change', { id, status }).then(r => {
+            stateUpdater(previous => {
+                return {
+                    ...previous,
+                    list: previous.list.filter(wrestler => wrestler.id !== id),
+                };
+            });
+        });
+    };
+
     return {
         hire: id => {
-            database.wrestlers.update(id, { status: 'active' });
+            updateWrestlerStatus(id, 'active');
         },
 
         release: id => {
-            database.wrestlers.update(id, { status: 'released' });
+            updateWrestlerStatus(id, 'released');
         },
 
         getActiveWrestlers: _ => {
@@ -17,7 +30,9 @@ export const Wrestler = stateUpdater => {
                 .filter(wr => wr.status === 'active')
                 .toArray();
             const api = ApiModel.get('wrestlers/all');
-            cache.then(stateUpdater);
+            cache.then(cached => {
+                stateUpdater(pr => ({ ...pr, list: cached }));
+            });
 
             return {
                 cache,

@@ -12,7 +12,7 @@ function App() {
         <Suspense fallback={<Spinner />}>
             <SnackbarProvider
                 autoHideDuration={4000}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
                 className="notistack-notification-popup"
                 maxSnack={3}
                 dense={true}

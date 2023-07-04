@@ -10,8 +10,8 @@ export default function useWrestler(endpoint) {
         pagination: true,
         wrestlersByPage: 10,
     });
-    const updater = data => setWrestlerList(p => ({ ...p, list: data, original: data, loading: false }));
-    const wrestlerModel = Wrestler(updater);
+    // const updater = data => setWrestlerList;
+    const wrestlerModel = Wrestler(setWrestlerList);
 
     React.useEffect(() => {
         const { api } = wrestlerModel.getActiveWrestlers();

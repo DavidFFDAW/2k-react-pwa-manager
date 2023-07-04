@@ -9,6 +9,7 @@ const ReignsRouting = lazy(() => import('./Reigns/ReignsRouting'));
 const TeamsRouting = lazy(() => import('./Teams/TeamsRouting'));
 const TwitterAdminComponent = lazy(() => import('./Twitter/TwitterAdminRouting'));
 const Draft = lazy(() => import('./Draft/Draft'));
+const TestElement = lazy(() => import('./TestPage'));
 
 function PrivateRoutingModule() {
     return (
@@ -21,6 +22,7 @@ function PrivateRoutingModule() {
                 <Route path={PrivateRoutes.TEAMS + '/*'} element={<TeamsRouting />}></Route>
                 <Route path={PrivateRoutes.TWITTER + '/*'} element={<TwitterAdminComponent />}></Route>
                 <Route path={'/draft'} element={<Draft />}></Route>
+                <Route path={'/test'} element={<TestElement />}></Route>
             </RoutesWithNotFound>
         </>
     );
