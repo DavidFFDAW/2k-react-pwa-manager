@@ -3,7 +3,7 @@ import useTwitter, { TW_TYPES } from '~/hooks/useTwitter';
 import { transformDate } from '~/utilities/date.normalizer.utility';
 import TwitterCreateButton from '~/components/Twitter/TwitterCreateButton';
 import ImagePreview from '~/components/Forms/ImagePreview';
-import Actions from '~/components/ListOptions/ActionOptions';
+import Actions from '~/components/ListOptions/Actions';
 import { CreateIcon, EditIcon } from '~/components/Icons/CommonIcons';
 import { FlexBetween } from '~/components/Layouts/Flex';
 import { NullableLoading } from '~/components/Loading/LoadingComponent';
