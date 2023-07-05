@@ -5,7 +5,7 @@ export const Wrestler = stateUpdater => {
     const updateWrestlerStatus = (id, status) => {
         database.wrestlers.update(id, { status });
 
-        ApiModel.put('wrestler/status/change', { id, status }).then(r => {
+        ApiModel.put('wrestlers/status/change', { id, status }).then(_ => {
             stateUpdater(previous => {
                 return {
                     ...previous,
