@@ -7,8 +7,9 @@ header.team-block-header {
     border-radius: var(--borderRadius) var(--borderRadius);
     padding: 20px 25px;
 }
+
 body.dark-theme header.team-block-header {
-    background: var(--dark2);
+    background: var(--darker);
 }
 
 header.team-block-header.active {
@@ -23,13 +24,16 @@ section.team-members-block {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 0 0 var(--borderRadius) var(--borderRadius);
 }
+
 body.dark-theme section.team-members-block {
     background: #111010;
 }
+
 .teams-boxed .btn.button.action-button.default-action {
     background: #111010;
     color: #fff;
 }
+
 body.dark-theme .teams-boxed .btn.button.action-button.default-action {
     background-color: #fff;
     color: #111010;
