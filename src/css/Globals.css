@@ -358,6 +358,7 @@ img.rounded-preview-icon,
     align-items: center;
     padding: 6px 0;
     gap: 10px;
+    z-index: 12;
 }
 
 .filters-block {
