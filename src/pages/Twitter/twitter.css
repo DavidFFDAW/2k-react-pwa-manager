@@ -85,6 +85,10 @@ body {
     margin: 0 auto;
 }
 
+body.dark-theme .twitter__module {
+    background-color: var(--dark);
+}
+
 body.dark-theme .twitter__module .cctt {
     color: var(--twitter-white);
 }
@@ -110,7 +114,7 @@ body.dark-theme .twitter__module .cctt {
 }
 
 body.dark-theme .twitter__module .tweet {
-    background-color: var(--dark2);
+    background-color: var(--darker);
     box-shadow: none;
     border: none;
 }

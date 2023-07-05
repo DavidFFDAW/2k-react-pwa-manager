@@ -20,6 +20,8 @@ export function Router() {
     useEffect(() => {
         const body = document.body;
         body.classList.add(storedUser.theme);
+        document.documentElement.setAttribute("class", storedUser.theme);
+
         return () => {
             body.classList.remove(storedUser.theme);
         };

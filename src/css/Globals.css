@@ -14,28 +14,19 @@ a {
 }
 
 body {
-    background-color: #ebebeb;
+    background-color: var(--page-background);
     /* background-image: radial-gradient(rgba(0, 0, 0, 0.2) 1px, transparent 1px),
         radial-gradient(rgba(0, 0, 0, 0.6) 1px, transparent 1px);
     background-position: 0 0, 25px 25px;
     background-size: 50px 50px; */
 }
 
-body.dark-theme {
-    background-color: #44475a;
-    background-image: none;
-}
-
 .title.error {
     width: 90%;
     text-align: center;
     text-emphasis: none;
-    color: #111010;
+    color: var(--title-color);
     font-size: 20px;
-}
-
-body.dark-theme .title.error {
-    color: #f2f2f2;
 }
 
 .pointer {
@@ -47,17 +38,17 @@ body.dark-theme .title.error {
 }
 
 .responsive-lockup {
-    /* max-width: 798px; */
-    /* margin: 0 auto; */
-    /* padding: 20px 0; */
     min-height: 99vh;
 }
-.responsive-lockup > * {
+
+.responsive-lockup>* {
     padding: 20px 0;
 }
+
 .updown {
     padding: 10px 0;
 }
+
 dialog.dialog-modal {
     border: none;
     outline: none;
@@ -69,6 +60,7 @@ dialog.dialog-modal {
     transform: translate(-50%, -50%);
     min-width: 50%;
 }
+
 dialog.dialog-modal .dialog-header {
     position: absolute;
     top: 0;
@@ -78,10 +70,11 @@ dialog.dialog-modal .dialog-header {
     display: flex;
     justify-content: end;
     align-items: center;
-    background-color: #ebebeb;
+    background-color: var(--dialog-background);
     border-radius: 10px 10px 0 0;
     padding: 0;
 }
+
 dialog.dialog-modal .dialog-header .dialog-close-button {
     height: 100%;
     padding: 0;
@@ -91,10 +84,12 @@ dialog.dialog-modal .dialog-header .dialog-close-button {
     color: #fff;
     outline: none;
 }
+
 dialog.dialog-modal .dialog-content {
     padding: 10px 0;
     margin-top: 20px;
 }
+
 .background-action-block {
     position: fixed;
     top: 0;
@@ -104,6 +99,7 @@ dialog.dialog-modal .dialog-content {
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 99;
 }
+
 .dashboard-home {
     min-height: 85vh;
 }
@@ -116,9 +112,11 @@ dialog.dialog-modal .dialog-content {
     min-height: 99vh;
     z-index: 0;
 }
+
 .custom-totalpage-wallpaper.default {
     background-image: url('/roman.jpg');
 }
+
 .custom-totalpage-wallpaper.principal {
     background-image: url('/owens.jpg');
 }
@@ -136,8 +134,8 @@ dialog.dialog-modal .dialog-content {
 }
 
 .pagination .pagination-button {
-    background-color: #676767;
-    color: #ffffff;
+    background-color: var(--pagination-background);
+    color: var(--pagination-color);
     border: none;
     border-radius: 50%;
     padding: 10px 15px;
@@ -147,24 +145,15 @@ dialog.dialog-modal .dialog-content {
     cursor: pointer;
 }
 
-body.dark-theme .pagination .pagination-button {
-    background-color: var(--dark2);
-    color: #fff;
-}
-
 .danger-alert-popup {
-    background-color: #d32f2f;
+    background-color: var(--danger-red);
 }
 
-/* .notistack-notification-popup {
-    background-color: #fff !important;
-    color: #2f2f2f !important;
-} */
 
 label.label {
     font-size: 0.8em;
     font-weight: 500;
-    color: #2f2f2f;
+    color: var(--label);
     text-transform: uppercase;
 }
 
@@ -178,10 +167,10 @@ select.custom {
     border: none;
     border-radius: 5px;
     padding: 10px 1.2em;
-    background-color: #ffffff;
-    color: #2d2d2d;
+    background-color: var(--input-bg);
+    color: var(--input-color);
     cursor: pointer;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadows);
 }
 
 input[type='checkbox'] {
@@ -191,8 +180,8 @@ input[type='checkbox'] {
 
 input.app-custom-input {
     padding: 10px 15px;
-    background-color: #fff;
-    color: #2f2f2f;
+    background-color: var(--input-bg);
+    color: var(--input-color);
     border: none;
     border-radius: 2px;
     outline: none;
@@ -253,6 +242,7 @@ input.app-custom-input.nradius {
     align-items: center;
     gap: 10px;
 }
+
 .home-spas-links .home-links {
     display: flex;
     justify-content: center;
@@ -263,10 +253,6 @@ input.app-custom-input.nradius {
     min-height: 50px;
     max-height: 153px;
     padding: 35px;
-}
-
-.home-spas-links .home-links a.block {
-    /* display: inline; */
 }
 
 .home-links .link {
@@ -297,6 +283,7 @@ button.unbutton {
     cursor: pointer;
     outline: none;
     border: none;
+    color: var(--blackwhite);
 }
 
 button.nradius {
@@ -312,8 +299,8 @@ button.cta {
 
 button.cta-secondary {
     background-color: transparent;
-    color: #111010;
-    border: 1px solid #111010;
+    color: var(--blackwhite);
+    border: 1px solid var(--blackwhite);
 }
 
 .btn.button.action-button {
@@ -342,11 +329,9 @@ button.btn.danger {
 
 button.filters {
     padding: 5px 15px;
-    background-color: #fff;
-}
-
-body.dark-theme button.filters {
-    background-color: var(--dark2);
+    background-color: var(--main-background);
+    color: var(--main-color);
+    fill: var(--main-color);
 }
 
 .wrestler-card__image {
@@ -368,15 +353,11 @@ img.rounded-preview-icon,
     left: 0;
     display: flex;
     flex-direction: column;
-    background-color: #eee;
+    background-color: transparent;
     border-radius: var(--borderRadius);
     align-items: center;
     padding: 6px 0;
     gap: 10px;
-}
-
-body.dark-theme .sticky-filters {
-    background-color: var(--dark);
 }
 
 .filters-block {
@@ -390,19 +371,10 @@ body.dark-theme .sticky-filters {
     background-color: #282a36;
 }
 
-.dark-theme .filters-block label {
-    color: #ffffff;
+.filters-block label {
+    color: var(--blackwhite);
 }
 
-.dark-theme .filters-block input {
-    background-color: var(--dark);
-    color: #ffffff;
-}
-
-.dark-theme .sticky-filters button {
-    /* background-color: var(--dark2); */
-    color: #ffffff;
-}
 
 .boxed {
     padding: 20px;
@@ -416,19 +388,8 @@ body.dark-theme .sticky-filters {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.dark-theme .boxed * {
-    color: var(--light);
-}
-
-.dark-theme .boxed input,
-.dark-theme .boxed select {
-    background-color: var(--dark);
-    color: #ffffff;
-}
-
-.dark-theme input::-webkit-calendar-picker-indicator,
-.dark-theme .boxed input::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+.boxed * {
+    color: var(--blackwhite);
 }
 
 input.date-input[type='date'] {
@@ -493,6 +454,7 @@ body.dark-theme .create-new-button {
 .space-down {
     padding-bottom: 20px;
 }
+
 .down {
     margin-top: 20px;
 }
@@ -541,7 +503,7 @@ body.dark-theme .create-new-button {
 }
 
 body.dark-theme ::-webkit-scrollbar-track {
-    background: var(--dark2);
+    background: var(--darker);
 }
 
 body.dark-theme ::-webkit-scrollbar-thumb {
@@ -551,6 +513,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 dialog[open] {
     animation: show 0.4s ease normal;
 }
+
 .reigns-teams-panel {
     min-height: 150px;
 }
@@ -558,6 +521,7 @@ dialog[open] {
 .svg.customs-svg path {
     fill: #858585 !important;
 }
+
 .svg.customs-svg {
     width: 50px;
     height: 40px;
@@ -567,6 +531,7 @@ dialog[open] {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
