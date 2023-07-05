@@ -81,6 +81,7 @@ export default function useWrestlerFilters({ wrestlersList, stateSetter }) {
 
         changeNameFilters(wrestlerFilters.name);
         setFilteredWrestlerList(wrestlerFilters.name);
+        setShowFilters();
 
         if (page && page != 1) {
             navigate('/admin/wrestlers/page/1');
