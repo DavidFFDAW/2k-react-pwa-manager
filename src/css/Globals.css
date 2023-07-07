@@ -58,6 +58,7 @@ dialog.dialog-modal {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: var(--dialog-background);
     min-width: 50%;
 }
 
@@ -70,7 +71,7 @@ dialog.dialog-modal .dialog-header {
     display: flex;
     justify-content: end;
     align-items: center;
-    background-color: var(--dialog-background);
+    background-color: var(--dialog-header);
     border-radius: 10px 10px 0 0;
     padding: 0;
 }
@@ -88,6 +89,10 @@ dialog.dialog-modal .dialog-header .dialog-close-button {
 dialog.dialog-modal .dialog-content {
     padding: 10px 0;
     margin-top: 20px;
+}
+
+dialog[open] {
+    animation: show 0.4s ease normal;
 }
 
 .background-action-block {
@@ -509,10 +514,6 @@ body.dark-theme ::-webkit-scrollbar-track {
 
 body.dark-theme ::-webkit-scrollbar-thumb {
     background: var(--blue);
-}
-
-dialog[open] {
-    animation: show 0.4s ease normal;
 }
 
 .reigns-teams-panel {

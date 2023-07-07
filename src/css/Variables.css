@@ -20,7 +20,8 @@
 
 
     --title-color: #111010;
-    --dialog-background: #ebebeb;
+    --dialog-background: #ffffff;
+    --dialog-header: #ebebeb;
 
     --pagination-color: #676767;
     --pagination-background: #ffffff;
@@ -44,7 +45,8 @@ html.dark-theme {
     --blue: #6272a4;
 
     --title-color: #f2f2f2;
-    --dialog-background: #ebebeb;
+    --dialog-background: var(--darker);
+    --dialog-header: #6272a4;
 
     --pagination-color: #ffffff;
     --pagination-background: #282a36;

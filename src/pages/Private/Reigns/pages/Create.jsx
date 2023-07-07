@@ -76,7 +76,7 @@ export default function Create() {
                             createDatas={createDatas}
                             form={form}
                             setFormState={functions.setFormState}
-                            getTeamID={id => getItemID(id, ITEMS.TEAM)}
+                            getTeamID={id => functions.getItemID(id, ITEMS.TEAM)}
                         />
                     </Dialog>
                 </NullableLoading>
