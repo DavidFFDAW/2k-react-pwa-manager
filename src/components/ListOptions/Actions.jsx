@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { NullableLoading } from '../Loading/LoadingComponent';
 import { DotsIcon } from '../Icons/CommonIcons';
 import { ActionOptionButton } from './ActionOptionButtons';
 import { ActionOption } from './ActionOption';
 import { DeleteAction } from './DeleteAction';
+import useClickOutside from '~/hooks/useClickOutside';
 import './actions.css';
 
 export const ActionTypes = {
@@ -22,14 +23,19 @@ export const ColorTypes = {
 };
 
 export default function Actions({ deleteText, deleteEndpoint, options, stateUpdaterCallback }) {
+    const ref = useRef(null);
     const [showOptions, setShowOptions] = useState(false);
     const toggleShowOpts = _ => setShowOptions(show => !show);
     const hasOptions = options && options.length > 0;
     const hasDelete = Boolean(deleteEndpoint) && deleteEndpoint.length > 0;
 
+    useClickOutside(ref, _ => {
+        setShowOptions(false);
+    });
+
     return (
         <NullableLoading condition={hasOptions}>
-            <div className="actions-option-group relative">
+            <div className="actions-option-group relative" ref={ref}>
                 <button
                     className={`three-dots-actions ${showOptions ? 'active' : 'normal'}`}
                     role="button"
