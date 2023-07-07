@@ -35,6 +35,16 @@ export const AdminMenu = [
         name: 'BLOG',
         url: makePrivateRoute(PrivateRoutes.NEWS),
         icon: BlogIcon,
+        submenu: [
+            {
+                label: 'Listado',
+                href: makePrivateRoute(PrivateRoutes.NEWS),
+            },
+            {
+                label: 'Nuevo post',
+                href: makePrivateRoute(PrivateRoutes.NEWS),
+            },
+        ]
     },
     {
         name: 'WRESTLERS',

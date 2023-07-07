@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/useAuth';
-import HeaderLink from './MenuLink';
+import HeaderLink, { HeaderLinkWithSubmenu } from './MenuLink';
 import { UpsertToggle } from '../Forms/FormInputs';
 import { useEffect, useState } from 'react';
 import { HeaderMenu } from '~/constants/Menus';
@@ -55,6 +55,10 @@ export function AdminMenuContent({ closeMenu }) {
                     </Link>
                     <ul className="submenu">
                         {HeaderMenu.admin.map((item, indx) => {
+                            if (item.submenu) {
+                                return <HeaderLinkWithSubmenu key={indx} href={item.url} closeMenu={closeMenu} item={item} />
+                            }
+
                             return (
                                 <HeaderLink key={indx} href={item.url} closeMenu={closeMenu}>
                                     {item.name}

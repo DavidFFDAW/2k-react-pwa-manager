@@ -93,6 +93,13 @@ header .menu-content ul.list-menu li ul.submenu li a.unlink {
     color: #363636;
 }
 
+header .menu-content ul.header-submenu.submenu-items.submenu-active {
+    display: block;
+}
+header .menu-content ul.header-submenu.submenu-items.submenu-hidden {
+    display: none;
+}
+
 header .logout .logout-link {
     font-weight: 700;
     color: #363636;
