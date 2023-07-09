@@ -9,10 +9,10 @@ export const PrivateRoutes = {
     USER: 'user/me',
     TEAMS: 'teams',
     CHAMPIONS: 'champions',
-    NEWS: 'news',
+    BLOG: 'blog',
     WRESTLER: 'wrestlers',
     TWITTER: 'twitter',
     GALLERY: 'gallery',
     DRAFT: 'draft',
-    SINGLE_NEW: 'news/report/:id',
+    BLOG_POST: 'blog/post/:id',
 };

@@ -25,7 +25,7 @@ export const PublicMenu = [
     },
     {
         name: 'BLOG',
-        url: makeRoute(PrivateRoutes.NEWS),
+        url: makeRoute(PrivateRoutes.BLOG),
         icon: BlogIcon,
     },
 ];
@@ -33,18 +33,18 @@ export const PublicMenu = [
 export const AdminMenu = [
     {
         name: 'BLOG',
-        url: makePrivateRoute(PrivateRoutes.NEWS),
+        url: makePrivateRoute(PrivateRoutes.BLOG),
         icon: BlogIcon,
         submenu: [
             {
                 label: 'Listado',
-                href: makePrivateRoute(PrivateRoutes.NEWS),
+                href: makePrivateRoute(PrivateRoutes.BLOG),
             },
             {
                 label: 'Nuevo post',
-                href: makePrivateRoute(PrivateRoutes.NEWS),
+                href: makePrivateRoute(PrivateRoutes.BLOG),
             },
-        ]
+        ],
     },
     {
         name: 'WRESTLERS',
