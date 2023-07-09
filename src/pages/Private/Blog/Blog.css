@@ -1,0 +1,9 @@
+.admin-blog-page .post-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
