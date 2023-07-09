@@ -1,6 +1,6 @@
 import React from 'react';
 import BlogActions from './BlogActions';
-import Image from '~/components/Image/image';
+import Image from '~/components/Image/Image';
 import { transformDate } from '~/utilities/date.normalizer.utility';
 import { DarkSpinner } from '~/components/Spinner/Spinner';
 import { NullableLoading } from '~/components/Loading/LoadingComponent';
