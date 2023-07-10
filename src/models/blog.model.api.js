@@ -10,6 +10,10 @@ export const BlogModel = _ => {
             };
         },
 
+        getSinglePost: id => {
+            return ApiModel.get(`blog/single/post/${id}`);
+        },
+
         deletePost: id => {
             const mustDelete = confirm('¿Realmente desea borrar este post?');
 

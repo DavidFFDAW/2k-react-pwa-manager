@@ -10,12 +10,12 @@ export default function BlogActions({ post, deletePost }) {
         <Actions
             options={[
                 {
-                    href: `/admin/wrestlers/update/${post.id}`,
+                    href: `/admin/blog/update/${post.id}`,
                     icon: EditIcon,
                     text: `Editar ${cuttedText}`,
                 },
                 {
-                    href: '/admin/wrestlers/create/new',
+                    href: '/admin/blog/create/new',
                     icon: CreateIcon,
                     text: 'Crear nuevo post',
                 },
