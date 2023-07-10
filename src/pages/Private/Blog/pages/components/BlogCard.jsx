@@ -25,10 +25,11 @@ export default function BlogCard({ post, loading, deletePost, actions = true }) 
 
     return (
         <div className="post boxed flex between gap">
-            <div className="w1 flex start al-start gap">
+            <div className="w1 blog-separation-image flex start al-start gap">
                 <div className="first-column post-image">
                     <Image src={post.image} className="post-image" />
                 </div>
+
                 <div className="w1 second-column flex start gap column">
                     <h2 className="title">{post.title}</h2>
                     <p>{post.exceptr}</p>

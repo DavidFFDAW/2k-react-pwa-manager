@@ -7,3 +7,22 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+@media only screen and (max-width: 768px) {
+    .admin-blog-page .post.boxed {
+        flex-direction: column;
+        position: relative;
+    }
+    .admin-blog-page .actions-option-group.relative {
+        position:absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .admin-blog-page .blog-separation-image {
+        flex-direction: column;
+    }
+    .admin-blog-page .post-image {
+        width: 100%;
+    }
+}
+
