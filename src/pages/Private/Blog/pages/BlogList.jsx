@@ -12,6 +12,9 @@ export default function BlogList() {
 
     return (
         <>
+            <button type="button" onClick={functions.getCheckedBlogPosts}>
+                Obtener seleccionados
+            </button>
             <div className="w1 blog-panel flex center">
                 <div className="w90 flex center gap column">
                     {blogPosts.list.map((post, index) => {
@@ -21,8 +24,8 @@ export default function BlogList() {
                                 post={post}
                                 key={key}
                                 loading={blogPosts.loading}
-                                deletePost={functions.deletePost}
-                                imageChanger={functions.setImageChanger}
+                                functions={functions}
+                                checks={blogPosts.checked}
                             />
                         );
                     })}

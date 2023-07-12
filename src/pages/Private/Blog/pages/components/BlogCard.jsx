@@ -20,14 +20,26 @@ function BlogCardLoading() {
     );
 }
 
-export default function BlogCard({ post, loading, deletePost, actions = true }) {
+export default function BlogCard({ post, loading, functions, checks = false, actions = true }) {
     if (loading) return <BlogCardLoading />;
+    const checkPost = checks[post.id] || false;
 
     return (
-        <div className="post boxed flex between gap">
+        <div className="post boxed flex between gap" typeof={post.id}>
             <div className="w1 blog-separation-image flex start al-start gap">
+                <NullableLoading condition={Boolean(checks)}>
+                    <input
+                        className="checkbox-grouped-actions"
+                        type="checkbox"
+                        name="blog-list-checks"
+                        onChange={ev => functions.setCheckedState(ev, post.id)}
+                        checked={checkPost}
+                    />
+                </NullableLoading>
+
                 <div className="first-column post-image">
                     <Image src={post.image} className="post-image" />
+                    {post.id}
                 </div>
 
                 <div className="w1 second-column flex start gap column">
@@ -40,7 +52,7 @@ export default function BlogCard({ post, loading, deletePost, actions = true }) 
             </div>
 
             <NullableLoading condition={actions}>
-                <BlogActions post={post} deletePost={deletePost} />
+                <BlogActions post={post} deletePost={functions.deletePost} />
             </NullableLoading>
         </div>
     );
