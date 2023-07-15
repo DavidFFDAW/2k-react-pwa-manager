@@ -7,6 +7,7 @@ import HomeDashboard from './pages/Home/Home';
 import { useUserStorage } from './contexts/user.context';
 import { AdminHeaders } from './components/PageHeaders/Headers';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import InternetObserver from './components/InternetObserver';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
@@ -20,7 +21,7 @@ export function Router() {
     useEffect(() => {
         const body = document.body;
         body.classList.add(storedUser.theme);
-        document.documentElement.setAttribute("class", storedUser.theme);
+        document.documentElement.setAttribute('class', storedUser.theme);
 
         return () => {
             body.classList.remove(storedUser.theme);
@@ -29,6 +30,7 @@ export function Router() {
 
     return (
         <>
+            <InternetObserver />
             <BrowserRouter>
                 {Headers}
                 <ErrorBoundary>
