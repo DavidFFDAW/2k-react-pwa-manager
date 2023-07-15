@@ -39,7 +39,6 @@ export default function BlogCard({ post, loading, functions, checks = false, act
 
                 <div className="first-column post-image">
                     <Image src={post.image} className="post-image" />
-                    {post.id}
                 </div>
 
                 <div className="w1 second-column flex start gap column">
