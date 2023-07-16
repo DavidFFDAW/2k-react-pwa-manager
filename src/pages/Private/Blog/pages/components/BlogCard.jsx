@@ -25,7 +25,7 @@ export default function BlogCard({ post, loading, functions, checks = false, act
     const checkPost = checks[post.id] || false;
 
     return (
-        <div className="post boxed flex between gap" typeof={post.id}>
+        <div className="post boxed flex between gap" dataid={post.id}>
             <div className="w1 blog-separation-image flex start al-start gap">
                 <NullableLoading condition={Boolean(checks)}>
                     <input

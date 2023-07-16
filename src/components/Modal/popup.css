@@ -7,9 +7,12 @@
     border-bottom: solid 1px #000;
 }
 .popup-container {
+    background-color: #fff;
     width: 100%;
     margin-right: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
-    margin-bottom: 30px;
+}
+.popup-container .popup-content {
+    padding: 20px 0;
 }

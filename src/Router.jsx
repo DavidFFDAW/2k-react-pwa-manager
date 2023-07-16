@@ -8,6 +8,7 @@ import { useUserStorage } from './contexts/user.context';
 import { AdminHeaders } from './components/PageHeaders/Headers';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import InternetObserver from './components/InternetObserver';
+import CookieAccept from './components/CookieAccept';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
@@ -52,6 +53,7 @@ export function Router() {
                     </main>
                 </ErrorBoundary>
             </BrowserRouter>
+            <CookieAccept />
         </>
     );
 }
