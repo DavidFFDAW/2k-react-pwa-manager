@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateIcon, EditIcon, TrashIcon } from '~/components/Icons/CommonIcons';
+import { CreateIcon, EditIcon, EyeIcon, TrashIcon } from '~/components/Icons/CommonIcons';
 import Actions, { ActionTypes, ColorTypes } from '~/components/ListOptions/Actions';
 const cutTextLength = 30;
 
@@ -18,6 +18,22 @@ export default function BlogActions({ post, deletePost }) {
                     href: '/admin/blog/create/new',
                     icon: CreateIcon,
                     text: 'Crear nuevo post',
+                },
+                {
+                    type: ActionTypes.BUTTON,
+                    href: '/admin/blog/create/new',
+                    icon: EyeIcon,
+                    text: 'Desactivar publicación',
+                    callback: deletePost,
+                    color: ColorTypes.WARNING,
+                },
+                {
+                    type: ActionTypes.BUTTON,
+                    href: '/admin/blog/create/new',
+                    icon: CreateIcon,
+                    text: 'Activar borrado atomático',
+                    callback: deletePost,
+                    color: ColorTypes.WARNING,
                 },
                 {
                     type: ActionTypes.BUTTON,

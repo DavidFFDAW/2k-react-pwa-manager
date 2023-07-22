@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { BlogModel } from '~/models/blog.model.api';
+import { BlogService } from '~/services/blog.service';
 
 export default function useBlogList() {
-    const blogModel = BlogModel();
+    const blogService = BlogService();
     const initial = {
         loading: true,
         list: Array.from({ length: 10 }).map(i => i + 1),
@@ -12,7 +12,7 @@ export default function useBlogList() {
 
     useEffect(_ => {
         const aborter = new AbortController();
-        const posts = blogModel.getBlogPosts();
+        const posts = blogService.getBlogPosts();
         posts.api.then(postsList => {
             setBlogPosts(previous => ({ ...previous, loading: false, list: postsList }));
         });
@@ -25,7 +25,7 @@ export default function useBlogList() {
     return {
         blogPosts,
         functions: {
-            ...blogModel,
+            ...blogService,
             setBlogPosts,
             setCheckedState: (event, id) => {
                 const checked = event.target.checked;

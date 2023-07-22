@@ -5,6 +5,7 @@ import { makePrivateRoute } from '~/utilities/private.route.utility';
 import { PrivateRoutes } from '~/constants/routes';
 import CreateButton from '~/components/Buttons/CreateButton';
 import Popup from '~/components/Modal/Popup';
+import { DangerButton, InfoButton } from '~/components/Buttons/Buttons';
 
 export default function BlogList() {
     const { blogPosts, functions } = useBlogList();
@@ -14,7 +15,10 @@ export default function BlogList() {
     return (
         <>
             <Popup show={isGroupedAction} title={'Acciones agrupadas'}>
-                animate__animated
+                <div class="w1 flex start al-start gap-small">
+                    <InfoButton text={'Ocultar publicación (front)'} />
+                    <DangerButton text={'Borrar conjunto'} />
+                </div>
             </Popup>
 
             <div className="w1 blog-panel flex center">
@@ -32,7 +36,8 @@ export default function BlogList() {
                         );
                     })}
                 </div>
-                <CreateButton endpoint={makePrivateRoute(PrivateRoutes.BLOG) + '/upsert'} />
+
+                <CreateButton endpoint={'blog/create/new'} />
             </div>
         </>
     );
