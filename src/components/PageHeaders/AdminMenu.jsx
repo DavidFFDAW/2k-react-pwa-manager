@@ -56,7 +56,14 @@ export function AdminMenuContent({ closeMenu }) {
                     <ul className="submenu">
                         {HeaderMenu.admin.map((item, indx) => {
                             if (item.submenu) {
-                                return <HeaderLinkWithSubmenu key={indx} href={item.url} closeMenu={closeMenu} item={item} />
+                                return (
+                                    <HeaderLinkWithSubmenu
+                                        key={indx}
+                                        href={item.url}
+                                        closeMenu={closeMenu}
+                                        item={item}
+                                    />
+                                );
                             }
 
                             return (
@@ -72,7 +79,7 @@ export function AdminMenuContent({ closeMenu }) {
                         Cerrar sesión
                     </a>
                 </li>
-                <li style={{ marginTop: 20 }} className="logout">
+                {/* <li style={{ marginTop: 20 }} className="logout">
                     <div className="flex end al-start gap">
                         <p>Claro</p>
                         <div>
@@ -80,7 +87,7 @@ export function AdminMenuContent({ closeMenu }) {
                         </div>
                         <p>Oscuro</p>
                     </div>
-                </li>
+                </li> */}
             </ul>
         </>
     );

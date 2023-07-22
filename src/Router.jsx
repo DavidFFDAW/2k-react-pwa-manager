@@ -19,15 +19,15 @@ export function Router() {
 
     const Headers = storedUser.id ? <AdminHeaders /> : null;
 
-    useEffect(() => {
-        const body = document.body;
-        body.classList.add(storedUser.theme);
-        document.documentElement.setAttribute('class', storedUser.theme);
+    // useEffect(() => {
+    //     const body = document.body;
+    //     body.classList.add(storedUser.theme);
+    //     document.documentElement.setAttribute('class', storedUser.theme);
 
-        return () => {
-            body.classList.remove(storedUser.theme);
-        };
-    }, [storedUser]);
+    //     return () => {
+    //         body.classList.remove(storedUser.theme);
+    //     };
+    // }, [storedUser]);
 
     return (
         <>
@@ -53,7 +53,7 @@ export function Router() {
                     </main>
                 </ErrorBoundary>
             </BrowserRouter>
-            <CookieAccept />
+            {/* <CookieAccept /> */}
         </>
     );
 }
