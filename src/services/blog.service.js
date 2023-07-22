@@ -1,6 +1,6 @@
-import { ApiModel } from './api.model';
+import { ApiModel } from '../models/api.model';
 
-export const BlogModel = _ => {
+export const BlogService = _ => {
     return {
         getBlogPosts: _ => {
             const api = ApiModel.get('blog/all');
@@ -12,6 +12,23 @@ export const BlogModel = _ => {
 
         getSinglePost: id => {
             return ApiModel.get(`blog/single/post/${id}`);
+        },
+
+        createBlogPost: payload => {
+            return ApiModel.post(`blog/upsert`, payload, true);
+        },
+
+        getBlogPostPayload: post => {
+            return {
+                id: post.id ?? 0,
+                title: post.title,
+                image: post.image,
+                content: post.content,
+                exceptr: post.content.slice(0, 20),
+                published: post.published,
+                is_deletable: post.is_deletable,
+                date_publication: post.date_publication,
+            };
         },
 
         deletePost: id => {
