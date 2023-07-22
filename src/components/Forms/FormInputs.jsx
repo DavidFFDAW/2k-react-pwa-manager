@@ -1,4 +1,5 @@
 import { UnbuttonButton } from '../Buttons/Buttons';
+import Image from '../Image/Image';
 import { FlexStart } from '../Layouts/Flex';
 import { NullableLoading } from '../Loading/LoadingComponent';
 import { ComponentSpinner } from '../Spinner/Spinner';
@@ -13,6 +14,7 @@ export default function UpsertInput({
     formState,
     setFormState,
     onChangeCallback,
+    placeholder = 'Default placeholder',
     required = false,
 }) {
     const value = literalValue || formState[`${property}`] || '';
@@ -31,6 +33,7 @@ export default function UpsertInput({
                     required={required}
                     value={value}
                     onChange={change}
+                    placeholder={placeholder}
                 />
                 <NullableLoading condition={formState.loading}>
                     <ComponentSpinner className="input-loading-spinner" />
@@ -40,7 +43,15 @@ export default function UpsertInput({
     );
 }
 
-export function UpsertSelect({ children, label, property, formState, setFormState, defaultVal = '', required = false }) {
+export function UpsertSelect({
+    children,
+    label,
+    property,
+    formState,
+    setFormState,
+    defaultVal = '',
+    required = false,
+}) {
     const value = formState[`${property}`] || defaultVal;
 
     return (
@@ -82,12 +93,15 @@ export function UpsertTextArea({ label, property, formState, setFormState, requi
     );
 }
 
-export function UpsertToggle({ toggleCallback, label, checked }) {
+export function UpsertToggle({ property, formState, setFormState, label }) {
+    const isChecked = Boolean(formState[property]);
+    const toggler = _ => setFormState(previous => ({ ...previous, [property]: !previous[property] }));
+
     return (
-        <div className="custom-toggle-switch">
+        <div className="custom-toggle-switch flex column center al-center">
             <label className="form-label block">{label}</label>
             <label className="switch block">
-                <input type="checkbox" name="isCurrent" checked={checked || false} onChange={toggleCallback} />
+                <input type="checkbox" name={property} checked={isChecked || false} onChange={toggler} />
                 <span className="slider round"></span>
             </label>
         </div>
@@ -128,7 +142,10 @@ export function InputWithDeleteButton({ type, max, label, property, formState, s
                         value={formState[`${property}`] || ''}
                         onChange={defaultChange}
                     />
-                    <UnbuttonButton text={<>&times;</>} onClick={_ => setFormState(prev => ({ ...prev, [property]: '' }))} />
+                    <UnbuttonButton
+                        text={<>&times;</>}
+                        onClick={_ => setFormState(prev => ({ ...prev, [property]: '' }))}
+                    />
                 </div>
             </div>
         </FlexStart>
@@ -149,6 +166,28 @@ export function CheckboxInput({ label, property, formState, defaultChecked, setF
                 />
                 {label}
             </label>
+        </div>
+    );
+}
+
+export function UpsertImage({ placeholder = 'Imagen', formState, setFormState, property = 'image' }) {
+    const size = 100;
+    const imageSrc = formState[property];
+
+    return (
+        <div className="w1 flex between al-center gap-small">
+            <Image width={size} height={size} src={imageSrc}></Image>
+            <div className="w1">
+                <UpsertInput
+                    type={'text'}
+                    formState={formState}
+                    setFormState={setFormState}
+                    property={property}
+                    required={true}
+                    max={255}
+                    placeholder={placeholder}
+                />
+            </div>
         </div>
     );
 }

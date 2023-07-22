@@ -23,6 +23,9 @@
     -webkit-transition: 0.4s;
     transition: 0.4s;
 }
+.custom-toggle-switch label.form-label {
+    margin-bottom: 10px;
+}
 body.dark-theme .slider {
     background-color: var(--dark);
 }
