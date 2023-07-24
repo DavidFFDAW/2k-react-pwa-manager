@@ -1,3 +1,4 @@
+import Image from '../Image/Image';
 import './spinner.css';
 
 export default function Spinner() {
@@ -9,7 +10,14 @@ export default function Spinner() {
 
     return (
         <div className="w1 flex center" style={scss}>
-            <div className="spinner"></div>
+            <Image
+                src={'/icons/icon-152x152.png'}
+                alt="App champions logo"
+                title="App loading logo"
+                draggable={false}
+                width={152}
+                height={152}
+            />
         </div>
     );
 }
