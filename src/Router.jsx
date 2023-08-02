@@ -8,7 +8,8 @@ import { useUserStorage } from './contexts/user.context';
 import { AdminHeaders } from './components/PageHeaders/Headers';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import InternetObserver from './components/InternetObserver';
-import CookieAccept from './components/CookieAccept';
+// import CookieAccept from './components/CookieAccept';
+import Sidebar from './components/Sidebar/Sidebar';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
@@ -18,6 +19,8 @@ export function Router() {
     const { storedUser } = useUserStorage();
 
     const Headers = storedUser.id ? <AdminHeaders /> : null;
+    const AppSidebar = storedUser.id ? <Sidebar /> : null;
+    const mainClass = storedUser.id ? 'responsive-lockup sidebar-main-margin' : 'responsive-lockup';
 
     // useEffect(() => {
     //     const body = document.body;
@@ -33,9 +36,10 @@ export function Router() {
         <>
             <InternetObserver />
             <BrowserRouter>
-                {Headers}
-                <ErrorBoundary>
-                    <main className="responsive-lockup">
+                {/* {Headers} */}
+                {AppSidebar}
+                <main className={mainClass}>
+                    <ErrorBoundary>
                         <RoutesWithNotFound>
                             <Route path="/" element={<HomeDashboard />} />
                             <Route path={PublicRoutes.REGISTER} element={<Login />} />
@@ -50,8 +54,8 @@ export function Router() {
                                 <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
                             </Route>
                         </RoutesWithNotFound>
-                    </main>
-                </ErrorBoundary>
+                    </ErrorBoundary>
+                </main>
             </BrowserRouter>
             {/* <CookieAccept /> */}
         </>

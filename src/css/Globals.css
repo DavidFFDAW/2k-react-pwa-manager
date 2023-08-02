@@ -41,7 +41,7 @@ body {
     min-height: 99vh;
 }
 
-.responsive-lockup>* {
+.responsive-lockup > * {
     padding: 20px 0;
 }
 
@@ -154,7 +154,6 @@ dialog[open] {
     background-color: var(--danger-red);
 }
 
-
 label.label {
     font-size: 0.8em;
     font-weight: 500;
@@ -178,7 +177,8 @@ select.custom {
     cursor: pointer;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
-textarea, textarea.custom {
+textarea,
+textarea.custom {
     resize: vertical;
 }
 
@@ -276,7 +276,8 @@ input.app-custom-input.nradius {
     font-weight: 300;
 }
 
-button {
+.btn,
+button.btn {
     border-radius: 5px;
     padding: 0.6em 1.2em;
     font-size: 1em;
@@ -391,7 +392,6 @@ img.rounded-preview-icon,
     color: var(--blackwhite);
 }
 
-
 .boxed {
     padding: 20px;
     background-color: #ffffff;
@@ -409,7 +409,7 @@ img.rounded-preview-icon,
     margin-bottom: 20px;
 }
 .page-title:after {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
     width: 100%;
