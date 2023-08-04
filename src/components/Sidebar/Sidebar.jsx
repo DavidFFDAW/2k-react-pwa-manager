@@ -20,7 +20,15 @@ export default function Sidebar() {
             <div className="flex center">
                 <div className="sidebar-links-container links">
                     {HeaderMenu.admin.map((item, indx) => {
-                        return <SidebarLink icon={item.material} to={item.url} key={indx} text={item.name} />;
+                        return (
+                            <SidebarLink
+                                submenu={item.submenu}
+                                icon={item.material}
+                                to={item.url}
+                                key={indx}
+                                text={item.name}
+                            />
+                        );
                     })}
                 </div>
             </div>

@@ -38,13 +38,13 @@ export const AdminMenu = [
         material: 'feed',
         submenu: [
             {
-                label: 'Listado',
-                href: makePrivateRoute(PrivateRoutes.BLOG),
+                name: 'Listado',
+                url: makePrivateRoute(PrivateRoutes.BLOG),
                 material: 'list',
             },
             {
-                label: 'Nuevo post',
-                href: makePrivateRoute(PrivateRoutes.BLOG),
+                name: 'Nuevo post',
+                url: makePrivateRoute(PrivateRoutes.BLOG),
                 material: 'add_circle',
             },
         ],
