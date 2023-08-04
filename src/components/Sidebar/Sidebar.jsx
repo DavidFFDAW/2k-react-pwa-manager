@@ -1,8 +1,8 @@
 import React from 'react';
 import './sidebar.css';
 import { HeaderMenu } from '~/constants/Menus';
-import HeaderLink from '../PageHeaders/MenuLink';
-import { Link } from 'react-router-dom';
+import Image from '../Image/Image';
+import SidebarLink from './SidebarLink';
 
 export default function Sidebar() {
     const toggleSidebar = event => {
@@ -10,24 +10,19 @@ export default function Sidebar() {
     };
 
     return (
-        <aside className="flex center al-center column sidebar gap-small" id="sidebear">
+        <aside className="sidebar" id="sidebear">
             <button type="button" role="button" className="btn close responsive" onClick={toggleSidebar}></button>
 
-            <div className="links">
-                {HeaderMenu.public.map((item, indx) => {
-                    return (
-                        <Link to={item.url} className="block" key={indx}>
-                            {item.name}
-                        </Link>
-                    );
-                })}
-                {HeaderMenu.admin.map((item, indx) => {
-                    return (
-                        <Link to={item.url} className="block" key={indx}>
-                            {item.name}
-                        </Link>
-                    );
-                })}
+            <div className="flex center sidebar-image-container">
+                <Image src={'/icons/icon-128x128.png'} width={128} height={128} className="sidebar-image-logo" />
+            </div>
+
+            <div className="flex center">
+                <div className="sidebar-links-container links">
+                    {HeaderMenu.admin.map((item, indx) => {
+                        return <SidebarLink icon={item.material} to={item.url} key={indx} text={item.name} />;
+                    })}
+                </div>
             </div>
 
             <button className="btn-sidebar responsive btn-open-sidebar" onClick={toggleSidebar}>

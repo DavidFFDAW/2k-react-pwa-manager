@@ -6,6 +6,7 @@ import { Router } from './Router';
 import './css/Globals.css';
 import './css/MediaQueries.css';
 import 'animate.css';
+import 'material-symbols';
 
 function App() {
     return (
