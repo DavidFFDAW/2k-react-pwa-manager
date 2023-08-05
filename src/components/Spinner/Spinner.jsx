@@ -22,6 +22,29 @@ export default function Spinner() {
     );
 }
 
+export function SidebarSpinner() {
+    const scss = {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+    };
+
+    return (
+        <div className="sidebar-spinner-container relative" style={{ height: '98vh' }}>
+            <div className="w1 flex center" style={scss}>
+                <Image
+                    src={'/icons/icon-152x152.png'}
+                    alt="App champions logo"
+                    title="App loading logo"
+                    draggable={false}
+                    width={152}
+                    height={152}
+                />
+            </div>
+        </div>
+    );
+}
+
 export function ComponentSpinner({ className }) {
     const css = className
         ? `w1 flex center al-center component-spinner-ch4478asdw ${className}`

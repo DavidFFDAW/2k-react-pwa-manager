@@ -10,7 +10,7 @@ import 'material-symbols';
 
 function App() {
     return (
-        <Suspense fallback={<Spinner />}>
+        <>
             <SnackbarProvider
                 autoHideDuration={4000}
                 anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
@@ -21,7 +21,7 @@ function App() {
             <UserProvider>
                 <Router />
             </UserProvider>
-        </Suspense>
+        </>
     );
 }
 

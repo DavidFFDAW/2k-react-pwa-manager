@@ -41,7 +41,9 @@ body {
     color: var(--title-color);
     font-size: 20px;
 }
-
+.relative {
+    position: relative;
+}
 .pointer {
     cursor: pointer;
 }

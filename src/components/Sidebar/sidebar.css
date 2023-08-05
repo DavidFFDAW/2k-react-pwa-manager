@@ -1,5 +1,6 @@
 :root {
     --sidebar-width: 320px;
+    --sidebar-bg: #17181c;
 }
 .sidebar {
     position: fixed;
@@ -9,7 +10,7 @@
     height: 100%;
     background-color: black;
     border-right: 2px solid rgb(73, 73, 73);
-    background: rgb(31, 31, 31);
+    background: var(--sidebar-bg);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     transition: all 0.5s ease-in-out;
@@ -18,18 +19,42 @@
 .sidebar-image-container {
     margin-top: 50px;
 }
+.sidebar-link-submenu-container
+    .sidebar-links-container {
+    margin-top: 0;
+}
 .sidebar-links-container {
     margin-top: 50px;
+}
+.sidebar-link-submenu-container.non-active {
+    display: none;
+}
+.sidebar-link-submenu-container {
+    position: absolute;
+    top: 0;
+    right: -207px;
+    background-color: var(--sidebar-bg);
+    padding: 15px;
 }
 .sidebar .links {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    gap: 20px;
+    gap: 5px;
 }
-.sidebar .links a {
+.sidebar .links .sidebar-link {
+    width: 100%;
     color: #fff;
+    cursor: pointer;
+    padding: 10px 25px;
+    border-radius: 10px;
+}
+.sidebar .links .sidebar-link.active,
+.sidebar .links .sidebar-link:hover {
+    background: #c91727;
+    background: linear-gradient(140deg, #c91727 0%, rgba(31,31,31,1) 100%);
+
 }
 .sidebar-main-margin {
     margin-left: var(--sidebar-width);
