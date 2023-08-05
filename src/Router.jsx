@@ -28,24 +28,26 @@ export function Router() {
                 {/* {Headers} */}
                 {AppSidebar}
                 <main className={mainClass}>
-                    <Suspense fallback={<SidebarSpinner />}>
-                        <ErrorBoundary>
-                            <RoutesWithNotFound>
-                                <Route path="/" element={<HomeDashboard />} />
-                                <Route path={PublicRoutes.REGISTER} element={<Login />} />
+                    <section className="boxed-content">
+                        <Suspense fallback={<SidebarSpinner />}>
+                            <ErrorBoundary>
+                                <RoutesWithNotFound>
+                                    <Route path="/" element={<HomeDashboard />} />
+                                    <Route path={PublicRoutes.REGISTER} element={<Login />} />
 
-                                <Route element={<LoginAuthGuard />}>
-                                    <Route path={PublicRoutes.LOGIN} element={<Login />} />
-                                </Route>
+                                    <Route element={<LoginAuthGuard />}>
+                                        <Route path={PublicRoutes.LOGIN} element={<Login />} />
+                                    </Route>
 
-                                <Route path={'/twitter/*'} element={<TwitterRouting />} />
+                                    <Route path={'/twitter/*'} element={<TwitterRouting />} />
 
-                                <Route element={<AuthGuard privateValidation={true} />}>
-                                    <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
-                                </Route>
-                            </RoutesWithNotFound>
-                        </ErrorBoundary>
-                    </Suspense>
+                                    <Route element={<AuthGuard privateValidation={true} />}>
+                                        <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
+                                    </Route>
+                                </RoutesWithNotFound>
+                            </ErrorBoundary>
+                        </Suspense>
+                    </section>
                 </main>
             </BrowserRouter>
             {/* <CookieAccept /> */}

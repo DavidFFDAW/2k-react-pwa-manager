@@ -32,6 +32,13 @@ export const PublicMenu = [
 
 export const AdminMenu = [
     {
+        key: 'menu-dashboard',
+        name: 'DASHBOARD',
+        url: makePrivateRoute(PrivateRoutes.DASHBOARD),
+        icon: BlogIcon,
+        material: 'dashboard',
+    },
+    {
         key: 'menu-blog',
         name: 'BLOG',
         url: makePrivateRoute(PrivateRoutes.BLOG),

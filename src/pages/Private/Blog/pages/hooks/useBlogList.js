@@ -7,6 +7,7 @@ export default function useBlogList() {
         loading: true,
         list: Array.from({ length: 10 }).map(i => i + 1),
         checked: {},
+        currentTab: 'all',
     };
     const [blogPosts, setBlogPosts] = useState(initial);
 
@@ -14,8 +15,9 @@ export default function useBlogList() {
         const aborter = new AbortController();
         const posts = blogService.getBlogPosts();
         posts.api.then(postsList => {
-            setBlogPosts(previous => ({ ...previous, loading: false, list: postsList }));
+            setBlogPosts(previous => ({ ...previous, loading: false, list: postsList, original: postsList }));
         });
+        console.log(blogPosts);
 
         return _ => {
             aborter.abort();
@@ -36,6 +38,27 @@ export default function useBlogList() {
                     .filter(([_, value]) => Boolean(value))
                     .map(item => Number(item[0]));
                 console.log({ checked });
+            },
+            filterAll: _ => {
+                setBlogPosts(prev => ({
+                    ...prev,
+                    list: prev.original,
+                    currentTab: 'all',
+                }));
+            },
+            filterPublished: () => {
+                setBlogPosts(prev => ({
+                    ...prev,
+                    list: prev.original.filter(item => item.visible),
+                    currentTab: 'published',
+                }));
+            },
+            filterNotPublished: () => {
+                setBlogPosts(prev => ({
+                    ...prev,
+                    list: prev.original.filter(item => !item.visible),
+                    currentTab: 'non-published',
+                }));
             },
         },
     };

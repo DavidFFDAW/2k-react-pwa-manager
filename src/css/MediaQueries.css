@@ -1,4 +1,12 @@
 @media only screen and (max-width: 768px) {
+    .custom-totalpage-wallpaper {
+        margin: 0;
+        width: 100%;
+    }
+    .sidebar.shown {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
     .custom-totalpage-wallpaper.principal {
         background-image: url('/rhea.webp');
     }
