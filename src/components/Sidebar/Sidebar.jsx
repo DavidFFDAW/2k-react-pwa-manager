@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './sidebar.css';
 import { HeaderMenu } from '~/constants/Menus';
 import Image from '../Image/Image';
 import SidebarLink from './SidebarLink';
 
 export default function Sidebar() {
+    const [activeLink, setActive] = useState('');
     const toggleSidebar = event => {
         event.target.parentElement.classList.toggle('shown');
     };
@@ -19,8 +20,18 @@ export default function Sidebar() {
 
             <div className="flex center">
                 <div className="sidebar-links-container links">
-                    {HeaderMenu.admin.map((item, indx) => {
-                        return <SidebarLink icon={item.material} to={item.url} key={indx} text={item.name} />;
+                    {HeaderMenu.admin.map(item => {
+                        const isActive = item.key === activeLink ? 'active' : 'non-active';
+                        return (
+                            <SidebarLink
+                                active={isActive}
+                                setActive={setActive}
+                                icon={item.material}
+                                to={item.url}
+                                key={item.key}
+                                text={item.name}
+                            />
+                        );
                     })}
                 </div>
             </div>
