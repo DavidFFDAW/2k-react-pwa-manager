@@ -21,10 +21,10 @@ export default function Sidebar() {
             <div className="flex center">
                 <div className="sidebar-links-container links">
                     {HeaderMenu.admin.map(item => {
-                        const isActive = item.key === activeLink ? 'active' : 'non-active';
                         return (
                             <SidebarLink
-                                active={isActive}
+                                id={item.key}
+                                active={activeLink}
                                 setActive={setActive}
                                 icon={item.material}
                                 to={item.url}

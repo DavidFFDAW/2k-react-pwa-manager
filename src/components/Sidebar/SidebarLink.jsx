@@ -27,15 +27,18 @@ function SidebarLinkSubmenu({ icon, submenu, text }) {
     );
 }
 
-export default function SidebarLink({ to, icon, text, submenu }) {
+export default function SidebarLink({ id, to, icon, text, active, setActive, submenu }) {
     // if (submenu && submenu.length > 0) return <SidebarLinkSubmenu icon={icon} text={text} submenu={submenu} />;
+    const isActive = active === id ? 'active' : 'non-active';
     const clickHandler = ev => {
-        ev.target.classList.toggle('active');
+        const sidebar = ev.target.parentElement.parentElement.parentElement;
+        sidebar.classList.remove('shown');
+        setActive(id);
     };
 
     return (
         <>
-            <Link to={to} className="sidebar-link flex start gap-small al-center" onClick={clickHandler}>
+            <Link to={to} className={`sidebar-link flex start gap-small al-center ${isActive}`} onClick={clickHandler}>
                 <MaterialIcon icon={icon} />
                 {text}
             </Link>
