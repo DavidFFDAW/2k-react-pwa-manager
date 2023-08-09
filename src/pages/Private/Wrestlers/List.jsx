@@ -6,6 +6,7 @@ import CreateButton from '~/components/Buttons/CreateButton';
 import { ConditionalLoading, NullableLoading } from '~/components/Loading/LoadingComponent';
 import { ComponentSpinner } from '~/components/Spinner/Spinner';
 import WrestlerFilters from './components/WrestlerFilters';
+import Title from '~/components/Title/Title';
 
 export default function List({ endpoint }) {
     const { wrestlerList, setWrestlerList, hire, release } = useWrestler(endpoint);
@@ -25,11 +26,13 @@ export default function List({ endpoint }) {
 
     return (
         <>
-            <div className="w1 flex between column al-center gap">
+            <Title title={'Wrestlers'}>
                 <div className="w1 sticky sticky-filters">
                     <WrestlerFilters wrestlerList={wrestlerList} setWrestlerList={setWrestlerList} />
                 </div>
+            </Title>
 
+            <div className="w1 flex between column al-center gap">
                 <NullableLoading condition={wrestlerList.pagination}>
                     <div className="w1 pagination-block">
                         <SimplePagination
@@ -50,12 +53,7 @@ export default function List({ endpoint }) {
 
                             <NullableLoading condition={list.length > 0}>
                                 {list.map(wrestler => (
-                                    <WrestlerCard
-                                        key={wrestler.id}
-                                        wrestler={wrestler}
-                                        hire={hire}
-                                        release={release}
-                                    />
+                                    <WrestlerCard key={wrestler.id} wrestler={wrestler} hire={hire} release={release} />
                                 ))}
                             </NullableLoading>
                         </div>
