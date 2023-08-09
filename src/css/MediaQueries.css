@@ -13,7 +13,10 @@
     .custom-totalpage-wallpaper.default {
         background-image: url('/cody.jpg');
     }
-
+    .labeled-possible-states .possible-state-item.label {
+        font-size: 16px;
+        padding: 5px 10px;
+    }
     .pagination .pagination-numbers button.pagination-button {
         padding: 0 4px;
         font-size: 12px;
