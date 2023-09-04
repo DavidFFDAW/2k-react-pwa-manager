@@ -11,6 +11,7 @@ const TwitterAdminComponent = lazy(() => import('./Twitter/TwitterAdminRouting')
 const BlogRouting = lazy(() => import('./Blog/BlogRouting'));
 const Draft = lazy(() => import('./Draft/Draft'));
 const TestElement = lazy(() => import('./TestPage'));
+const Gallery = lazy(() => import('./Gallery/Gallery'));
 
 function PrivateRoutingModule() {
     return (
@@ -25,6 +26,7 @@ function PrivateRoutingModule() {
                 <Route path={PrivateRoutes.BLOG + '/*'} element={<BlogRouting />}></Route>
                 <Route path={'/draft'} element={<Draft />}></Route>
                 <Route path={'/test'} element={<TestElement />}></Route>
+                <Route path={'/gallery'} element={<Gallery />}></Route>
             </RoutesWithNotFound>
         </>
     );
