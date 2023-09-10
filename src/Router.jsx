@@ -10,6 +10,7 @@ import InternetObserver from './components/InternetObserver';
 // import CookieAccept from './components/CookieAccept';
 import Sidebar from './components/Sidebar/Sidebar';
 import { SidebarSpinner } from './components/Spinner/Spinner';
+import GalleryModule from './modules/gallery/GalleryModule';
 
 const Login = lazy(() => import('./pages/Login'));
 const PrivateRoutingModule = lazy(() => import('./pages/Private/PrivateRoutingModule'));
@@ -29,6 +30,7 @@ export function Router() {
                 {AppSidebar}
                 <main className={mainClass}>
                     <section className="boxed-content">
+                        <GalleryModule />
                         <Suspense fallback={<SidebarSpinner />}>
                             <ErrorBoundary>
                                 <RoutesWithNotFound>
