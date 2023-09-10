@@ -1,13 +1,14 @@
-import HttpService from '@services/http.service';
+import HttpService from '~/services/http.service';
+
 const API_ENDPOINT = 'https://vps-f87b433e.vps.ovh.net/2k/api/v2/';
 
-async function getAllImages() {
+export async function getAllImages() {
     const response = await HttpService.get(`${API_ENDPOINT}images`);
-    console.log({ gallery: response });
+    const { content } = response;
 
     return {
-        images: response.data.images,
-        size: response.data.directory_size,
+        images: content.data.images,
+        size: content.data.directory_size,
     };
     // console.log(response);
     // document.querySelector('.wp_gallery .head h4').textContent =

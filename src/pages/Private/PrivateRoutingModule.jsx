@@ -12,6 +12,7 @@ const BlogRouting = lazy(() => import('./Blog/BlogRouting'));
 const Draft = lazy(() => import('./Draft/Draft'));
 const TestElement = lazy(() => import('./TestPage'));
 const Gallery = lazy(() => import('./Gallery/Gallery'));
+const UserPage = lazy(() => import('./User/UserPage'));
 
 function PrivateRoutingModule() {
     return (
@@ -27,6 +28,7 @@ function PrivateRoutingModule() {
                 <Route path={'/draft'} element={<Draft />}></Route>
                 <Route path={'/test'} element={<TestElement />}></Route>
                 <Route path={'/gallery'} element={<Gallery />}></Route>
+                <Route path={'/user/me'} element={<UserPage />}></Route>
             </RoutesWithNotFound>
         </>
     );
