@@ -9,7 +9,7 @@ export default function Spinner() {
     };
 
     return (
-        <div className="w1 flex center" style={scss}>
+        <div className="w1 flex center animate__animated animate__pulse animate__infinite" style={scss}>
             <Image
                 src={'/icons/icon-152x152.png'}
                 alt="App champions logo"
