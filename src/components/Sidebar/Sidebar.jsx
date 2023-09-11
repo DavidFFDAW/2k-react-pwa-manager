@@ -15,7 +15,7 @@ export default function Sidebar() {
             <button type="button" role="button" className="btn close responsive" onClick={toggleSidebar}></button>
 
             <div className="flex center sidebar-image-container">
-                <Image src={'/icons/icon-128x128.png'} width={128} height={128} className="sidebar-image-logo" />
+                <Image src={'/icons/icon-512x512.png'} width={128} height={128} className="sidebar-image-logo" />
             </div>
 
             <div className="flex center links-container-big">
