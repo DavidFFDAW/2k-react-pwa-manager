@@ -8,8 +8,7 @@ export default function useGallery() {
         const abortController = new AbortController();
 
         getAllImages(abortController.signal).then(data => {
-            console.log(data);
-            setImages(data);
+            setImages(data.images);
         });
 
         return () => {
