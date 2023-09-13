@@ -1,14 +1,12 @@
 import React from 'react';
 import { getAllImages } from '../../services/gallery.api.service';
 
-export default function useGallery() {
-    const [images, setImages] = React.useState([]);
-
+export default function useGallery(state, stateUpdater) {
     React.useEffect(() => {
         const abortController = new AbortController();
 
         getAllImages(abortController.signal).then(data => {
-            setImages(data.images);
+            stateUpdater('images', data.images);
         });
 
         return () => {
@@ -17,7 +15,7 @@ export default function useGallery() {
     }, []);
 
     return {
-        images,
-        setImages,
+        images: state.images,
+        setImages: stateUpdater,
     };
 }

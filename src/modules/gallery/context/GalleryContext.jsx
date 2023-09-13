@@ -10,11 +10,20 @@ export const GalleryContextProvider = ({ children }) => {
     });
 
     const toggleGallery = () => setGalleryState(prev => ({ ...prev, showGallery: !prev.showGallery }));
+    const setItem = (key, value) => setGalleryState(prev => ({ ...prev, [key]: value }));
 
-    return <GalleryContext.Provider value={{ galleryState, setGalleryState, toggleGallery }}>{children}</GalleryContext.Provider>;
+    const provided = {
+        galleryState,
+        setGalleryState,
+        toggleGallery,
+        setItem
+    };
+
+    return <GalleryContext.Provider value={provided}>{children}</GalleryContext.Provider>;
 };
 
 export const useGalleryContext = _ => React.useContext(GalleryContext);
+
 export default {
     Provider: GalleryContextProvider,
     Consumer: GalleryContext
