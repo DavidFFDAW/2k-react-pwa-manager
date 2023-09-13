@@ -2,6 +2,7 @@
     .sidebar-main-margin .custom-totalpage-wallpaper {
         margin: 0;
         width: 100%;
+        height: 105vh;
     }
     .sidebar.shown {
         overflow-x: hidden;

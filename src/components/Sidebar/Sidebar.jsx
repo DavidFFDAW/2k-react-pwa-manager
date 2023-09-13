@@ -3,19 +3,33 @@ import { HeaderMenu } from '~/constants/Menus';
 import Image from '../Image/Image';
 import SidebarLink from './SidebarLink';
 import './sidebar.css';
+import { Link } from 'react-router-dom';
+import { MaterialIcon } from '../Icon/Icon';
 
 export default function Sidebar() {
-    const [activeLink, setActive] = useState('');
-    const toggleSidebar = event => {
-        event.target.parentElement.classList.toggle('shown');
+    const [sidebarData, setSidebarData] = useState({
+        activeLink: '',
+        showSidebar: true,
+    });
+
+    const toggleSidebar = () => {
+        setSidebarData(p => ({ ...p, showSidebar: !p.showSidebar }));
     };
 
+    const setActive = id => {
+        setSidebarData(p => ({ ...p, activeLink: id }));
+    };
+
+    const showSidebar = sidebarData.showSidebar ? 'shown' : '';
+
     return (
-        <aside className="sidebar" id="sidebear">
+        <aside className={`sidebar ${showSidebar}`} id="sidebear">
             <button type="button" role="button" className="btn close responsive" onClick={toggleSidebar}></button>
 
             <div className="flex center sidebar-image-container">
-                <Image src={'/icons/icon-512x512.png'} width={128} height={128} className="sidebar-image-logo" />
+                <Link to={'/admin/dashboard'} title="Image Dashboard Link">
+                    <Image src={'/icons/icon-512x512.png'} width={128} height={128} className="sidebar-image-logo" />
+                </Link>
             </div>
 
             <div className="flex center links-container-big">
@@ -25,7 +39,7 @@ export default function Sidebar() {
                             return (
                                 <SidebarLink
                                     id={item.key}
-                                    active={activeLink}
+                                    active={sidebarData.activeLink}
                                     setActive={setActive}
                                     icon={item.material}
                                     to={item.url}
@@ -38,8 +52,12 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <button className="btn-sidebar responsive btn-open-sidebar" onClick={toggleSidebar}>
-                Sidebar
+            <button className="btn-sidebar btn-open-sidebar" onClick={toggleSidebar}>
+                {sidebarData.showSidebar ? (
+                    <MaterialIcon icon={'chevron_left'} />
+                ) : (
+                    <MaterialIcon icon={'chevron_right'} />
+                )}
             </button>
         </aside>
     );

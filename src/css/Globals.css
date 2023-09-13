@@ -140,7 +140,6 @@ dialog[open] {
     width: 100%;
     top: 0;
     left: 0;
-    height: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -148,7 +147,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }

@@ -38,7 +38,12 @@ export default function SidebarLink({ id, to, icon, text, active, setActive, sub
 
     return (
         <>
-            <Link to={to} className={`sidebar-link flex start gap-small al-center ${isActive}`} onClick={clickHandler}>
+            <Link
+                to={to}
+                title={text + ' Menu Link'}
+                className={`uppercase sidebar-link flex start gap-small al-center ${isActive}`}
+                onClick={clickHandler}
+            >
                 <MaterialIcon icon={icon} />
                 {text}
             </Link>
