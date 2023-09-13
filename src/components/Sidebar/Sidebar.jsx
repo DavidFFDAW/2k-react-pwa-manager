@@ -21,17 +21,19 @@ export default function Sidebar() {
             <div className="flex center links-container-big">
                 <div className="sidebar-links-container links">
                     {HeaderMenu.admin.map(item => {
-                        return (
-                            <SidebarLink
-                                id={item.key}
-                                active={activeLink}
-                                setActive={setActive}
-                                icon={item.material}
-                                to={item.url}
-                                key={item.key}
-                                text={item.name}
-                            />
-                        );
+                        if (item.showOnSidebar) {
+                            return (
+                                <SidebarLink
+                                    id={item.key}
+                                    active={activeLink}
+                                    setActive={setActive}
+                                    icon={item.material}
+                                    to={item.url}
+                                    key={item.key}
+                                    text={item.name}
+                                />
+                            );
+                        }
                     })}
                 </div>
             </div>

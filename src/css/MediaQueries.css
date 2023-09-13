@@ -1,5 +1,5 @@
 @media only screen and (max-width: 768px) {
-    .custom-totalpage-wallpaper {
+    .sidebar-main-margin .custom-totalpage-wallpaper {
         margin: 0;
         width: 100%;
     }

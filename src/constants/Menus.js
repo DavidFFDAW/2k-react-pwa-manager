@@ -37,6 +37,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.DASHBOARD),
         icon: BlogIcon,
         material: 'dashboard',
+        showOnSidebar: false,
     },
     {
         key: 'menu-blog',
@@ -44,6 +45,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.BLOG),
         icon: BlogIcon,
         material: 'feed',
+        showOnSidebar: true,
         submenu: [
             {
                 key: 'submenu-blog-list',
@@ -65,6 +67,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.WRESTLER),
         material: 'group',
         icon: WrestlersIcon,
+        showOnSidebar: true,
     },
     {
         key: 'menu-champions',
@@ -72,6 +75,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.CHAMPIONS),
         material: 'trophy',
         icon: WWEChampionship,
+        showOnSidebar: true,
     },
     {
         key: 'menu-teams',
@@ -79,6 +83,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.TEAMS),
         material: 'diversity_3',
         icon: TeamsIcon,
+        showOnSidebar: true,
     },
     {
         key: 'menu-user',
@@ -86,6 +91,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.USER),
         material: 'person',
         icon: UserIcon,
+        showOnSidebar: true,
     },
     {
         key: 'menu-twitter',
@@ -93,6 +99,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.TWITTER),
         material: 'post',
         icon: TwitterIcon,
+        showOnSidebar: true,
     },
     {
         key: 'menu-draft',
@@ -100,6 +107,7 @@ export const AdminMenu = [
         url: makePrivateRoute(PrivateRoutes.DRAFT),
         material: 'rebase_edit',
         icon: DraftIcon,
+        showOnSidebar: true,
     },
 ];
 
