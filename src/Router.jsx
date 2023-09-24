@@ -25,7 +25,6 @@ export function Router() {
         <>
             <InternetObserver />
             <BrowserRouter>
-                {/* {Headers} */}
                 {AppSidebar}
                 <main className={mainClass}>
                     <section className="boxed-content">
@@ -40,6 +39,7 @@ export function Router() {
                                     </Route>
 
                                     <Route path={'/twitter/*'} element={<TwitterRouting />} />
+                                    {/* <Route path={'/blog/*'} element={<PublicBlogRouting />} /> */}
 
                                     <Route element={<AuthGuard privateValidation={true} />}>
                                         <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<PrivateRoutingModule />} />
