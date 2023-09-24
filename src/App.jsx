@@ -13,7 +13,7 @@ function App() {
         <>
             <SnackbarProvider
                 autoHideDuration={4000}
-                anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 className="notistack-notification-popup"
                 maxSnack={3}
                 dense={true}
