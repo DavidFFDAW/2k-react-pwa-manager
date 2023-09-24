@@ -31,8 +31,8 @@ export default function SidebarLink({ id, to, icon, text, active, setActive, sub
     // if (submenu && submenu.length > 0) return <SidebarLinkSubmenu icon={icon} text={text} submenu={submenu} />;
     const isActive = active === id ? 'active' : 'non-active';
     const clickHandler = ev => {
-        const sidebar = ev.target.parentElement.parentElement.parentElement;
-        sidebar.classList.remove('shown');
+        // const sidebar = ev.target.parentElement.parentElement.parentElement;
+        // sidebar.classList.remove('shown');
         setActive(id);
     };
 

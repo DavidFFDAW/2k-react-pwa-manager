@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { HeaderMenu } from '~/constants/Menus';
 import Image from '../Image/Image';
 import SidebarLink from './SidebarLink';
-import './sidebar.css';
 import { Link } from 'react-router-dom';
 import { MaterialIcon } from '../Icon/Icon';
+import './sidebar.css';
 
 export default function Sidebar() {
     const [sidebarData, setSidebarData] = useState({
